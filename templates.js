@@ -21,23 +21,24 @@ const createTemplate = (name, creator, date, html) => {
 }
 
 
-function create(name, creator, date, html) {
-    const template = createTemplate(name, creator, date, html);
+function create(data) {
+    const {name, creator, html} = data;
+    const template = createTemplate(name, creator, new Date().toLocaleString(), html);
     const templatesFile = readTemplates();
     const updatedTemplateFile = {
-        ...templatesFile,
-        templates: [...templatesFile.templates, template]
+        templates: [...templatesFile, template]
     };
     writeTemplates(updatedTemplateFile);
 
 }
 
-function edit(templateID, name ="", creator="", html="") {
+function edit(templateID, data) {
+    const {name ="", creator="", html=""} = data;
     const templates = readTemplates();
     templates.forEach(
         function (obj)
         {
-            if (obj.template_id === templateID) {
+            if (obj.template_id == templateID) {
                 if(name)
                     obj.name = name;
                 if (creator)
@@ -55,8 +56,8 @@ function edit(templateID, name ="", creator="", html="") {
 
 function deleteTemplate (templateId) {
     const templates = readTemplates().filter(template => {
-        return template.template_id !== templateId;
-    });;
+        return template.template_id != templateId;
+    });
 
     writeTemplates({templates: [...templates]});
 }

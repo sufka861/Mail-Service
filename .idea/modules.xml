@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Mail-Service.iml" filepath="$PROJECT_DIR$/.idea/Mail-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/templatesFront.iml" filepath="$PROJECT_DIR$/templatesFront.iml" />
     </modules>
   </component>
 </project>

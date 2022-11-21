@@ -1,28 +1,47 @@
-const express = require('express')
-const app = express()
-const port = 8080
 const{events, templateEvents, templatesList} = require(`./templates`)
+const http = require(`http`);
+const port = 8080;
+
+http.createServer(
+     function (req, res) {
+         const url = new URL(req.url, `http://${req.headers.host}`);
 
 
-app.get('/templates/', (req,res) =>{
+         if (url.pathname === `/templates`) {
+            const templateID = url.searchParams.has(`id`) ? url.searchParams.get(`id`) : null;
 
-   res.send(templatesList())
-})
-app.get('/templates/:id', (req, res)=>
-{
-    res.send(templatesList().find(temp => temp.template_id === req.params.id))
-})
-
-app.put('/templates/', (req,res) =>{
-
-    templateEvents.emit(events.CREATE, req.params.name, req.params.creator, req.params.date, req.params.date )
-})
-app.put('/templates/:id', (req, res)=> {
-    templateEvents.emit(events.EDIT,req.params.id,  req.params.name, req.params.creator, req.params.html);
-})
-app.listen(port, ()=>{
-    console.log(`Example app listening on port ${port}`);
-})
-app.delete('/templates/:id', (req, res)=> {
-    templateEvents.emit(events.DELETE, req.params.id);
-})
+             switch (req.method) {
+                 case "GET":
+                     if (templateID) {
+                         res.end(JSON.stringify(templatesList().find(temp => temp.template_id == templateID)));
+                     } else {
+                         res.end(JSON.stringify((templatesList())));
+                     }
+                     break;
+                 case "POST":
+                        req.on('data', template =>{
+                            template = JSON.parse(template.toString());
+                            templateEvents.emit(events.CREATE, template);
+                        });
+                        res.end();
+                     break;
+                 case "PUT":
+                     if (templateID) {
+                         req.on('data', template =>{
+                             template = JSON.parse(template.toString());
+                             templateEvents.emit(events.EDIT, templateID, template);
+                         });
+                     }
+                     res.end();
+                     break;
+                 case "DELETE":
+                     req.on('data', deleteID => {
+                         deleteID = JSON.parse(deleteID.toString()).template_id;
+                         templateEvents.emit(events.DELETE, deleteID);
+                     });
+                     res.end();
+                     break;
+             }
+         }
+     }
+).listen(port);
