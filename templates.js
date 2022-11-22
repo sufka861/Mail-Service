@@ -65,6 +65,9 @@ function deleteTemplate (templateId) {
 function templatesList (){
     return readTemplates()
 }
+function findTemplateByID(tempID){
+    return templatesList().find(temp => temp.template_id == tempID);
+}
 
 
 templateEvents.on(events.CREATE, create)
@@ -74,5 +77,6 @@ templateEvents.on(events.CREATE, create)
 module.exports = {
     events,
     templateEvents,
-    templatesList
+    templatesList,
+    findTemplateByID
 }

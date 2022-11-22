@@ -1,8 +1,12 @@
 const {paths} = require(`./config`);
 const fs = require('fs');
+const path = require(`node:path`)
 
 function writeTemplates (templates) {
-    fs.writeFileSync(paths.templatesJasonPath, JSON.stringify(templates));
+    fs.writeFile(path.join(__dirname,paths.templatesJasonPath), JSON.stringify(templates),`utf8`, err =>{
+        if (err) throw err;
+        console.log(`File Updated`);
+    });
 
 }
 
