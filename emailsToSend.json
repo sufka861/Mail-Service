@@ -1,0 +1,27 @@
+{
+  "emails": [
+    {
+      "to": [
+        "sufkarmon2@gmail.com",
+        "blah@gmail.com"
+      ],
+      "cc": "someone@gmail.com",
+      "bcc": "asdf@gmail.com",
+      "subject": "Email from Node-App: A Test Message!",
+      "html": "<h1>hi there</h1>",
+      "timeToSend": ""
+    },
+    {
+      "to": [
+        "jfk@gmail.com",
+        "blah@gmail.com"
+      ],
+      "cc": "oop@gmail.com",
+      "bcc": "rrr@gmail.com",
+      "subject": "Email from Node-App: A Test Message!",
+      "html": "<h1>hi there</h1>",
+      "timeToSend": ""
+    }
+  ]
+}
+
