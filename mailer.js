@@ -28,7 +28,10 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-let wantedTime = '39 10 22 11 *';
+let minute, hour, date, month;
+// GET WANTED TIME FROM USER FORM
+//DEFAULT TIMES? NOW?
+let wantedTime = `${minute} ${hour} ${date} ${month} *`;
 
 cron.schedule(wantedTime, function () {
     console.log('---------------------');
