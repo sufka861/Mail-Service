@@ -1,27 +1,15 @@
 {
   "emails": [
     {
+      "from": "dcs-growth dcs-growth@outlook.com",
       "to": [
-        "sufkarmon2@gmail.com",
-        "blah@gmail.com"
+        "sufkarmon2@gmail.com"
       ],
-      "cc": "someone@gmail.com",
-      "bcc": "asdf@gmail.com",
+      "cc": "",
+      "bcc": "",
       "subject": "Email from Node-App: A Test Message!",
       "html": "<h1>hi there</h1>",
-      "timeToSend": ""
-    },
-    {
-      "to": [
-        "jfk@gmail.com",
-        "blah@gmail.com"
-      ],
-      "cc": "oop@gmail.com",
-      "bcc": "rrr@gmail.com",
-      "subject": "Email from Node-App: A Test Message!",
-      "html": "<h1>hi there</h1>",
-      "timeToSend": ""
+      "timeToSend": "23.11.2022, 9:41:38"
     }
   ]
 }
-

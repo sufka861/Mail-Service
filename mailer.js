@@ -1,15 +1,13 @@
-//create a server object: **************** JUST FOR DEBUG ************
-let http = require('http');
-http.createServer(function (req, res) {
-    res.write('Hello World!'); //write a response to the client
-    res.end(); //end the response
-}).listen(3000); //the server object listens on port 8080
-console.log("server running on port 3000");
-// ********************************************************************
+
 
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
+
+const {addToSentJason} = require("./emailsDAL");
+const {addToFutureEmails} = require("./emailsDAL");
+const {getAllSentEmails} = require("./emailsDAL");
+const {getAllFutureEmails} = require("./emailsDAL");
 
 let mailOptions = {
     from: 'dcs-growth dcs-growth@outlook.com',
@@ -17,7 +15,7 @@ let mailOptions = {
     cc: '',
     bcc: '',
     subject: 'Email from Node-App: A Test Message!',
-    html: '<h1>hi there</h1>',
+    html: '<h1>hello world this is a try test</h1>',
 };
 
 let transporter = nodemailer.createTransport({
@@ -35,10 +33,8 @@ function sendMail(mailOptions) {
     //     else console.log('Email sent: ' + info.response);
     // });
 
-    let timeNow = {timeSent: new Date().toLocaleString()};
-    let mailDetails = Object.assign(mailOptions, timeNow);
-    mailDetails = JSON.stringify(mailDetails);
-    console.log(mailDetails);
+    // $$$$$ CALL TO write to sentEmail json file
+    addToSentJason(mailOptions);
 
 }
 
@@ -52,9 +48,15 @@ if (isScheduled == true) {
     cron.schedule(wantedTime, function () {
         console.log('---------------------');
         console.log('Running Cron Process');
+        //write to JSON of scheduled emails $$$$$$
         // Delivering mail with sendMail method
         sendMail(mailOptions);
     });
 } else {
     sendMail(mailOptions);
+}
+
+module.exports = {
+    sendMail,
+    mailOptions
 }
