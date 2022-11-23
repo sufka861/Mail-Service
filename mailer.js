@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
+require('dotenv').config();
 
 const {addToSentJason} = require("./emailsDAL");
 const {addToFutureEmails} = require("./emailsDAL");
@@ -20,8 +21,8 @@ let mailOptions = {
 let transporter = nodemailer.createTransport({
     service: 'outlook',
     auth: {
-        user: 'dcs-growth@outlook.com',
-        pass: 'Abc2022!',
+        user: `${process.env.EMAIL_ADDRESS}`,
+        pass: `${process.env.EMAIL_PASS}`,
     },
 });
 
