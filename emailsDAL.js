@@ -73,6 +73,7 @@ function getNumOfEmailsToSend(){
 module.exports = {
     addToSentJason,
     addToFutureEmails,
+    deleteFromFutureEmails,
     getAllSentEmails,
     getAllFutureEmails,
     getNumOfSentEmails,

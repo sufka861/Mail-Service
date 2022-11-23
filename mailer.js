@@ -4,6 +4,8 @@ const {schedule} = require("node-cron");
 
 const {addToSentJason} = require("./emailsDAL");
 const {addToFutureEmails} = require("./emailsDAL");
+const {deleteFromFutureEmails} = require("./emailsDAL");
+
 
 
 let mailOptions = {
@@ -32,9 +34,9 @@ function sendMail(mailOptions) {
 
     //CALL TO write to sentEmail json file
     //addToSentJason(mailOptions);
-    const timeToSend = {timeToSend: new Date().toLocaleString()};
-    addToFutureEmails(mailOptions, timeToSend);
-
+    //const timeToSend = {timeToSend: new Date().toLocaleString()};
+    //addToFutureEmails(mailOptions, timeToSend);
+    //deleteFromFutureEmails("1");
 }
 
 
