@@ -1,5 +1,3 @@
-
-
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
@@ -15,7 +13,7 @@ let mailOptions = {
     cc: '',
     bcc: '',
     subject: 'Email from Node-App: A Test Message!',
-    html: '<h1>hello world this is a try test</h1>',
+    html: '<h1>blah blah blah</h1>',
 };
 
 let transporter = nodemailer.createTransport({
@@ -33,30 +31,36 @@ function sendMail(mailOptions) {
     //     else console.log('Email sent: ' + info.response);
     // });
 
-    // $$$$$ CALL TO write to sentEmail json file
-    addToSentJason(mailOptions);
-
+    //CALL TO write to sentEmail json file
+    //addToSentJason(mailOptions);
+    const timeToSend = {timeToSend: new Date().toLocaleString()};
+    addToFutureEmails(mailOptions, timeToSend);
 }
 
 
-let isScheduled = false;
 
-if (isScheduled == true) {
-    let minute = "", hour = "", date = "", month = "";
-    let wantedTime = `${minute} ${hour} ${date} ${month} *`;
+//let isScheduled = false;
 
-    cron.schedule(wantedTime, function () {
-        console.log('---------------------');
-        console.log('Running Cron Process');
-        //write to JSON of scheduled emails $$$$$$
-        // Delivering mail with sendMail method
+function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
+    if (isScheduled == true) {
+        let minute = "", hour = "", date = "", month = "";
+        let wantedTime = `${minute} ${hour} ${date} ${month} *`;
+
+        cron.schedule(wantedTime, function () {
+            console.log('---------------------');
+            console.log('Running Cron Process');
+            //write to JSON of scheduled emails $$$$$$
+            // Delivering mail with sendMail method
+            sendMail(mailOptions);
+            // WRITE TO EmailToSnd.json ******
+            //
+        });
+    } else {
         sendMail(mailOptions);
-    });
-} else {
-    sendMail(mailOptions);
+    }
 }
 
 module.exports = {
-    sendMail,
+    newMail,
     mailOptions
 }
