@@ -4,8 +4,7 @@ const {schedule} = require("node-cron");
 
 const {addToSentJason} = require("./emailsDAL");
 const {addToFutureEmails} = require("./emailsDAL");
-const {getAllSentEmails} = require("./emailsDAL");
-const {getAllFutureEmails} = require("./emailsDAL");
+
 
 let mailOptions = {
     from: 'dcs-growth dcs-growth@outlook.com',
@@ -35,6 +34,7 @@ function sendMail(mailOptions) {
     //addToSentJason(mailOptions);
     const timeToSend = {timeToSend: new Date().toLocaleString()};
     addToFutureEmails(mailOptions, timeToSend);
+
 }
 
 
@@ -49,11 +49,10 @@ function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
         cron.schedule(wantedTime, function () {
             console.log('---------------------');
             console.log('Running Cron Process');
-            //write to JSON of scheduled emails $$$$$$
+            //write to JSON of scheduled emails
+            addToFutureEmails(mailOptions, scheduledTo);
             // Delivering mail with sendMail method
             sendMail(mailOptions);
-            // WRITE TO EmailToSnd.json ******
-            //
         });
     } else {
         sendMail(mailOptions);

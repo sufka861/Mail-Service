@@ -1,7 +1,7 @@
 const fs = require('fs');
 const emailsSent = require("./emailsSent.json");
 const emailsToSend = require("./emailsToSend.json");
-
+const { v4: uuidv4 } = require('uuid');
 
 function addToSentJason(mailOptions){
     let emailsSent = require("./emailsSent.json");
@@ -22,9 +22,10 @@ function addToSentJason(mailOptions){
 //NOTICE - TimeToSend has to be a Date().toLocaleString() object
 function addToFutureEmails(mailOptions, timeToSend){
     let emailsToSend = require("./emailsToSend.json");
-    let mailDetails = Object.assign(mailOptions, timeToSend);
+    let mailID = uuidv4();
+    console.log(mailID);
+    let mailDetails = Object.assign(mailOptions, timeToSend, mailID);
     emailsToSend.emails.push(mailDetails);
-
     fs.writeFile("./emailsToSend.json", JSON.stringify(emailsToSend), "utf-8", (err)=>{
         if(err)
             throw err;
@@ -33,8 +34,19 @@ function addToFutureEmails(mailOptions, timeToSend){
     });
 }
 
-function deleteFromFutureEmails(){
 
+function deleteFromFutureEmails(mailID){
+    let emailsToSend = require("./emailsToSend.json");
+    let indexOfEmail = emailsToSend.emails.findIndex(function(mailID) {
+        return emailsToSend.emails.id == mailID;
+    });
+    emailsToSend.emails.splice(indexOfEmail, 1);
+    fs.writeFile("./emailsToSend.json", JSON.stringify(emailsToSend), "utf-8", (err)=>{
+        if(err)
+            throw err;
+        else
+            console.log("deleted email from emailsToSend.json");
+    });
 }
 
 function getAllSentEmails(){
