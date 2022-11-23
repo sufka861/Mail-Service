@@ -1,0 +1,15 @@
+{
+  "emails": [
+    {
+      "from": "dcs-growth dcs-growth@outlook.com",
+      "to": [
+        "sufkarmon2@gmail.com"
+      ],
+      "cc": "",
+      "bcc": "",
+      "subject": "Email from Node-App: A Test Message!",
+      "html": "<h1>hi there</h1>",
+      "timeSent": "23.11.2022, 9:41:38"
+    }
+  ]
+}

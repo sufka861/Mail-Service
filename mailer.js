@@ -12,7 +12,7 @@ const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
 
 let mailOptions = {
-    from: 'dcs-growth@outlook.com',
+    from: 'dcs-growth dcs-growth@outlook.com',
     to: ['sufkarmon2@gmail.com',],
     cc: '',
     bcc: '',
@@ -30,10 +30,16 @@ let transporter = nodemailer.createTransport({
 
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) console.log(error);
-        else console.log('Email sent: ' + info.response);
-    });
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) console.log(error);
+    //     else console.log('Email sent: ' + info.response);
+    // });
+
+    let timeNow = {timeSent: new Date().toLocaleString()};
+    let mailDetails = Object.assign(mailOptions, timeNow);
+    mailDetails = JSON.stringify(mailDetails);
+    console.log(mailDetails);
+
 }
 
 
@@ -50,10 +56,5 @@ if (isScheduled == true) {
         sendMail(mailOptions);
     });
 } else {
-    sendMail(mailOptions)
+    sendMail(mailOptions);
 }
-
-
-// module.exports = {
-//     transporter,
-// }
