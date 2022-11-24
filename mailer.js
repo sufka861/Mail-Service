@@ -34,9 +34,7 @@ function sendMail(mailOptions) {
     //CALL TO write to sentEmail json file
     addToSentJason(mailOptions);
 
-
     //const timeToSend = {timeToSend: new Date().toLocaleString()};
-    //addToFutureEmails(mailOptions, timeToSend);
     //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
 }
 
@@ -44,6 +42,7 @@ function sendMail(mailOptions) {
 function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
     if (isScheduled == true) {
         //$$$$$ BREAK DOWN TO WANTED TIME $$$$$$
+
         let minute = "", hour = "", date = "", month = "";
         let wantedTime = `${minute} ${hour} ${date} ${month} *`;
 
