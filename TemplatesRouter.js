@@ -5,7 +5,7 @@ const { errorHandler,
         editTemplateHandler,
         deleteTemplateHandler} = require("./TemplatesControllers");
 
-const {loadPage} = require("../Client/clientController")
+const {loadPage} = require("./clientController")
 
 const {URL} = require(`url`);
 const path = require('node:path');
