@@ -3,10 +3,6 @@ let http = require('http');
 const routes = require(`./mailRouter`);
 
 
-//const {newMail} = require("./mailer");
-//const {mailOptions} = require("./mailer");
-
-
 
 // ************** DEMO SERVER FOR DEBUGGING *************************
 http.createServer(routes).listen(3000);

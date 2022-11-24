@@ -1,18 +1,6 @@
 const cron = require("node-cron");
-
-//const mailer = require("mailer");
-//const {transporter} = require("./mailer");
 const {newMail} = require("./mailer");
-//const {mailOptions} = require("./mailer");
-
-const {addToSentJason} = require("./emailsDAL");
-const {addToFutureEmails} = require("./emailsDAL");
-const {deleteFromFutureEmails} = require("./emailsDAL");
-const {getAllSentEmails} = require("./emailsDAL");
-const {getAllFutureEmails} = require("./emailsDAL");
-const {getNumOfSentEmails} = require("./emailsDAL");
-const {getNumOfEmailsToSend} = require("./emailsDAL");
-
+const {getAllSentEmails, getAllFutureEmails, getNumOfSentEmails, getNumOfEmailsToSend} = require("./emailsDAL");
 
 function getEmails(req,res){
     res.setHeader('Access-Control-Allow-Origin', '*');

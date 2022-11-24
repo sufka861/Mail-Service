@@ -2,6 +2,7 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
 require('dotenv').config();
+const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("./emailsDAL");
 
 
 let mailOptions = {
@@ -31,15 +32,13 @@ function sendMail(mailOptions) {
         else console.log('Email sent: ' + info.response);
     });
     //CALL TO write to sentEmail json file
-    //addToSentJason(mailOptions);
+    addToSentJason(mailOptions);
 
 
     //const timeToSend = {timeToSend: new Date().toLocaleString()};
     //addToFutureEmails(mailOptions, timeToSend);
     //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
 }
-
-
 
 
 function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
@@ -55,6 +54,7 @@ function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
             addToFutureEmails(mailOptions, scheduledTo);
             // Delivering mail with sendMail method
             sendMail(mailOptions);
+            //deleteFromFutureEmails();
         });
     } else {
         sendMail(mailOptions);
