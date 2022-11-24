@@ -22,8 +22,7 @@ function addToSentJason(mailOptions){
 //NOTICE - TimeToSend has to be a Date().toLocaleString() object
 function addToFutureEmails(mailOptions, timeToSend){
     let emailsToSend = require("./emailsToSend.json");
-    let mailID = uuidv4();
-    console.log(mailID);
+    let mailID = {id: uuidv4()};
     let mailDetails = Object.assign(mailOptions, timeToSend, mailID);
     emailsToSend.emails.push(mailDetails);
     fs.writeFile("./emailsToSend.json", JSON.stringify(emailsToSend), "utf-8", (err)=>{
