@@ -3,11 +3,6 @@ const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
 require('dotenv').config();
 
-const {addToSentJason} = require("./emailsDAL");
-const {addToFutureEmails} = require("./emailsDAL");
-const {deleteFromFutureEmails} = require("./emailsDAL");
-
-
 
 let mailOptions = {
     from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,

@@ -1,15 +1,18 @@
 //create a server object: **************** JUST FOR DEBUG ************
 let http = require('http');
 
-const {newMail} = require("./mailer");
-const {mailOptions} = require("./mailer");
+//const {newMail} = require("./mailer");
+//const {mailOptions} = require("./mailer");
+
+const {GetEmails} = require("./mailerController");
+
 
 http.createServer(function (req, res) {
     res.write('Hello World!'); //write a response to the client
 
 
-    newMail(mailOptions);
-
+    //newMail(mailOptions);
+    GetEmails();
 
     res.end(); //end the response
 }).listen(3000); //the server object listens on port 8080
