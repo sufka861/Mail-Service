@@ -9,7 +9,8 @@ function errorHandler (req, res){
 }
 
 getTemplateID = (req)=>{
-    return new URL(req.url ,`http://${req.headers.host}`).searchParams.get('id');
+    return new URL(req.url ,`http://${req.headers.host}`)
+                .searchParams.get('id');
 }
 
 function getAllTemplates(req,res){
@@ -52,7 +53,7 @@ function deleteTemplateHandler(req,res) {
         .on(`data`, data => templateID =JSON.parse(data.toString()).template_id)
         .on(`end`, () =>{
             templateEvents.emit(events.DELETE, templateID);
-            res.end(`Templated has been deleted edited`);
+            res.end(`Template has been deleted`);
         });
 
 }
