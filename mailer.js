@@ -10,33 +10,37 @@ const {deleteFromFutureEmails} = require("./emailsDAL");
 
 
 let mailOptions = {
-    from: 'dcs-growth dcs-growth@outlook.com',
+    from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
     to: ['sufkarmon2@gmail.com',],
     cc: '',
     bcc: '',
     subject: 'Email from Node-App: A Test Message!',
-    html: '<h1>blah blah blah</h1>',
+    html: '<h1>new mail check</h1>',
 };
 
 let transporter = nodemailer.createTransport({
-    service: 'outlook',
+    //host: "smtp-mail.outlook.com",
+    service: 'Zoho',
+    //service: 'outlook',
     auth: {
-        user: `${process.env.EMAIL_ADDRESS}`,
+        user: `${process.env.EMAIL_ADDRESS_ZOHO}`,
         pass: `${process.env.EMAIL_PASS}`,
     },
+    secureConnection: false,
 });
 
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) console.log(error);
-    //     else console.log('Email sent: ' + info.response);
-    // });
-
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) console.log(error);
+        else console.log('Email sent: ' + info.response);
+    });
     //CALL TO write to sentEmail json file
     //addToSentJason(mailOptions);
-    const timeToSend = {timeToSend: new Date().toLocaleString()};
-    addToFutureEmails(mailOptions, timeToSend);
+
+
+    //const timeToSend = {timeToSend: new Date().toLocaleString()};
+    //addToFutureEmails(mailOptions, timeToSend);
     //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
 }
 
