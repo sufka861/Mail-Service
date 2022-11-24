@@ -4,13 +4,17 @@ const { errorHandler,
         createTemplateHandler,
         editTemplateHandler,
         deleteTemplateHandler} = require("./TemplatesControllers");
+
+const {loadPage} = require("../Client/clientController")
+
 const {URL} = require(`url`);
+const path = require('node:path');
 
 
 const ROUTES = {
     GET: {
         '/templates': getAllTemplates,
-        '/template/id': getTemplate
+        '/template/id': getTemplate,
     },
     POST:{
         '/template': createTemplateHandler
@@ -21,12 +25,20 @@ const ROUTES = {
     },
     DELETE:{
         '/template':deleteTemplateHandler
-    }
+    },
+    FILES: {
+        'script.js': loadPage,
+        'style.css':loadPage,
+        'Templates.html' :loadPage,
+        'homepage.html': loadPage,
+        }
 }
 
 module.exports = (req,res) =>{
     const url = new URL(req.url,`http://${req.headers.host}`);
-    const handler = ROUTES[req.method][url.pathname];
+    const ext =  path.extname(url.pathname);
+
+    const handler =  ext ? loadPage : ROUTES[req.method][url.pathname];
     if(!handler){
         return errorHandler(req,res);
     }

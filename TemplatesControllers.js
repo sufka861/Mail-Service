@@ -1,6 +1,7 @@
 const {events, templateEvents, templatesList, findTemplateByID} = require(`./templates`)
 const path = require(`node:path`);
 const {URL} = require(`url`);
+
 function errorHandler (req, res){
     res.writeHead(404);
     res.write(`Bad request`);
@@ -20,6 +21,7 @@ function getAllTemplates(req,res){
 
 function getTemplate(req,res){
     const templateID = getTemplateID(req);
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
     res.end(JSON.stringify(findTemplateByID(templateID)));
