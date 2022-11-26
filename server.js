@@ -3,5 +3,5 @@ const routes = require(`./router`);
 const {addToSentJason} = require("./DAL/emailsDAL");
 require('dotenv').config();
 
-http.createServer(routes).listen(process.env.PORT);
+http.createServer(routes).listen(3000);
 console.log("server running on port 3000");
