@@ -7,7 +7,8 @@
     "cc": "",
     "bcc": "",
     "subject": "Email from Node-App: A Test Message!",
-    "html": "<h1>let go to the culi</h1>",
+    "text": "someText",
+    "html": "<h1>sample html here</h1>",
     "timeSent": "23.11.2022, 9:41:38"
   },
   "isScheduled": false,

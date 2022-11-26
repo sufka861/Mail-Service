@@ -27,20 +27,15 @@ let transporter = nodemailer.createTransport({
 
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) console.log(error);
-    //     else
-    //     {
-    //         console.log('Email sent: ' + info.response);
-    //         //CALL TO write to sentEmail json file
-    //         addToSentJason(mailOptions);
-    //     }
-    // });
-
-    addToSentJason(mailOptions);
-
-    //const timeToSend = {timeToSend: new Date().toLocaleString()};
-    //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) console.log(error);
+        else
+        {
+            console.log('Email sent: ' + info.response);
+            //CALL TO write to sentEmail json file
+            addToSentJason(mailOptions);
+        }
+    });
 }
 
 
