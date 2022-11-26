@@ -2,7 +2,7 @@ const cron = require("node-cron");
 const {newMail} = require("./mailer");
 const {getAllSentEmails, getAllFutureEmails, getNumOfSentEmails, getNumOfEmailsToSend} = require("./emailsDAL");
 
-function getEmails(req,res){
+function getEmails(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
@@ -10,7 +10,7 @@ function getEmails(req,res){
     res.end(JSON.stringify(getAllSentEmails()));
 }
 
-function getScheduledEmails(req,res){
+function getScheduledEmails(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
@@ -18,7 +18,7 @@ function getScheduledEmails(req,res){
     res.end(JSON.stringify(getAllFutureEmails()));
 }
 
-function totalSentEmails(req,res){
+function totalSentEmails(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', ' text/plain');
     res.writeHeader(200);
@@ -26,7 +26,7 @@ function totalSentEmails(req,res){
     res.end(`${getNumOfSentEmails()}`);
 }
 
-function totalEmailsToSend(req,res){
+function totalEmailsToSend(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', ' text/plain');
     res.writeHeader(200);
@@ -34,13 +34,13 @@ function totalEmailsToSend(req,res){
     res.end(`${getNumOfEmailsToSend()}`);
 }
 
-function sendMail(req, res){
+function sendMail(req, res) {
     let mailData;
     req
         .on('data', data => mailData = JSON.parse(data.toString()))
         .on('end', () => {
-            const {mail,isScheduled=false,timeToSend=""} = mailData;
-        newMail(mail, isScheduled, timeToSend);
+            const {mail, isScheduled = false, timeToSend = ""} = mailData;
+            newMail(mail, isScheduled, timeToSend);
             res.end();
         });
 }

@@ -1,11 +1,18 @@
 const {URL} = require('url');
 const fs = require('fs');
 
+function errorHandler (req, res){
+    res.writeHead(404);
+    res.write(`Bad request`);
+    res.end();
+}
+
 function  loadPage (req, res) {
     const pathName = new URL(req.url,`http://${req.headers.host}`).pathname;
     res.writeHead(200);
     fs.createReadStream((__dirname+ '/Front' + pathName)).pipe(res);
 }
 module.exports = {
-    loadPage
+    loadPage,
+    errorHandler
 }

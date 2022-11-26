@@ -1,12 +1,7 @@
 const {events, templateEvents, templatesList, findTemplateByID} = require(`./templates`)
-const path = require(`node:path`);
+//const path = require(`node:path`);
 const {URL} = require(`url`);
 
-function errorHandler (req, res){
-    res.writeHead(404);
-    res.write(`Bad request`);
-    res.end();
-}
 
 getTemplateID = (req)=>{
     return new URL(req.url ,`http://${req.headers.host}`)
@@ -58,7 +53,6 @@ function deleteTemplateHandler(req,res) {
 
 }
 module.exports = {
-    errorHandler,
     getAllTemplates,
     getTemplate,
     createTemplateHandler,
