@@ -1,12 +1,18 @@
-const {getEmails, getScheduledEmails, totalSentEmails, totalEmailsToSend, sendMail} = require("./mailerController");
 const {
-    errorHandler,
+    getEmails,
+    getScheduledEmails,
+    totalSentEmails,
+    totalEmailsToSend,
+    sendMail
+} = require("./mailerController");
+const {
     getAllTemplates,
     getTemplate,
     createTemplateHandler,
     editTemplateHandler,
     deleteTemplateHandler
-} = require("./TemplatesControllers");
+} = require("./templatesControllers");
+const {errorHandler} = require("./clientController");
 const {loadPage} = require("./clientController");
 const {URL} = require(`url`);
 const path = require('node:path');
@@ -25,6 +31,10 @@ const ROUTES = {
         '/template': createTemplateHandler
 
     },
+    PUT: {
+        '/template/id': editTemplateHandler
+
+    },
     DELETE: {
         '/template': deleteTemplateHandler
     },
@@ -41,9 +51,9 @@ module.exports = (req, res) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
     const ext = path.extname(url.pathname);
     // const handler = ROUTES[req.method][url.pathname];
-    const handler =  ext ? loadPage : ROUTES[req.method][url.pathname];
+    const handler = ext ? loadPage : ROUTES[req.method][url.pathname];
     if (!handler) {
-        return errorHandler(req,res);
+        return errorHandler(req, res);
     }
     return handler(req, res);
 }
