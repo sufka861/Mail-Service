@@ -200,7 +200,7 @@ function postSend(){
 
 function getAllTemplates(){
     $.ajax({
-        url: 'http://localhost:8080/templates',
+        url: 'http://localhost:3000/templates',
         type: 'GET',
         success: function(templates) {
             console.log(templates);
