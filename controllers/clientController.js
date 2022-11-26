@@ -10,7 +10,9 @@ function errorHandler (req, res){
 function  loadPage (req, res) {
     const pathName = new URL(req.url,`http://${req.headers.host}`).pathname;
     res.writeHead(200);
-    fs.createReadStream((__dirname+ '/Front' + pathName)).pipe(res);
+    fs.createReadStream('../../Front' + pathName)
+        .on('error', error => errorHandler(req,res))
+        .pipe(res);
 }
 module.exports = {
     loadPage,
