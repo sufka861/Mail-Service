@@ -6,9 +6,7 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 function addToSentJason(mailOptions){
-    //console.log(`${paths.emailsSentPath}`);
-    console.log(__dirname);
-    let emailsSent = require("../DB/emailsSent.json");
+    let emailsSent = require(`${paths.emailsSentPath}`);
     //console.log(emailsSent);
     let numOfEmails = emailsSent.emails.length;
     console.log(numOfEmails);
@@ -16,7 +14,7 @@ function addToSentJason(mailOptions){
     let mailDetails = Object.assign(mailOptions, timeNow);
     emailsSent.emails.push(mailDetails);
 
-    fs.writeFile("../DB/emailsSent.json", JSON.stringify(emailsSent), "utf-8", (err)=>{
+    fs.writeFile( `${paths.emailsSentPath}`, JSON.stringify(emailsSent), "utf-8", (err)=>{
         if(err)
             throw err;
         else
