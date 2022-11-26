@@ -5,15 +5,6 @@ require('dotenv').config();
 const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../DAL/emailsDAL");
 
 
-// let mailOptions = {
-//     from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
-//     to: ['sufkarmon2@gmail.com',],
-//     cc: '',
-//     bcc: '',
-//     subject: 'Email from Node-App: A Test Message!',
-//     html: '<h1>new mail check</h1>',
-// };
-
 let transporter = nodemailer.createTransport({
     //host: "smtp-mail.outlook.com",
     service: 'Zoho',
