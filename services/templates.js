@@ -1,4 +1,4 @@
-const {readTemplates, writeTemplates} = require(`./templatesDAL`)
+const {readTemplates, writeTemplates} = require(`../DAL/templatesDAL`)
 const eventsEmitter = require('events');
 const templateEvents = new eventsEmitter();
 const {v4: uuidv4, validate: validId} = require('uuid')

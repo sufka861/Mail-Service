@@ -1,21 +1,22 @@
 const path = require(`node:path`)
-const {paths} = require(`./config`);
+const {paths} = require(`../DB/config`);
 const fs = require('fs');
-const emailsSent = require(path.join(__dirname, paths.emailsSentPath));
-const emailsToSend = require(path.join(__dirname, paths.emailsToSendPath));
+//const emailsSent = require(`../${paths.emailsSentPath}`);
+//const emailsToSend = require(`../${paths.emailsToSendPath}`);
 const { v4: uuidv4 } = require('uuid');
 
-
-
 function addToSentJason(mailOptions){
-    let emailsSent = require(path.join(__dirname, paths.emailsSentPath));
+    //console.log(`${paths.emailsSentPath}`);
+    console.log(__dirname);
+    let emailsSent = require("../DB/emailsSent.json");
+    //console.log(emailsSent);
     let numOfEmails = emailsSent.emails.length;
     console.log(numOfEmails);
     const timeNow = {timeSent: new Date().toLocaleString()};
     let mailDetails = Object.assign(mailOptions, timeNow);
     emailsSent.emails.push(mailDetails);
 
-    fs.writeFile(path.join(__dirname, paths.emailsSentPath), JSON.stringify(emailsSent), "utf-8", (err)=>{
+    fs.writeFile("../DB/emailsSent.json", JSON.stringify(emailsSent), "utf-8", (err)=>{
         if(err)
             throw err;
         else
@@ -29,7 +30,7 @@ function addToFutureEmails(mailOptions, timeToSend){
     let mailID = {id: uuidv4()};
     let mailDetails = Object.assign(mailOptions, timeToSend, mailID);
     emailsToSend.emails.push(mailDetails);
-    fs.writeFile(path.join(__dirname, paths.emailsToSendPath), JSON.stringify(emailsToSend), "utf-8", (err)=>{
+    fs.writeFile((`../${paths.emailsToSendPath}`), JSON.stringify(emailsToSend), "utf-8", (err)=>{
         if(err)
             throw err;
         else
@@ -39,12 +40,12 @@ function addToFutureEmails(mailOptions, timeToSend){
 
 
 function deleteFromFutureEmails(mailID){
-    let emailsToSend = require(path.join(__dirname, paths.emailsToSendPath));
+    let emailsToSend = require(`../${paths.emailsToSendPath}`);
     let indexOfEmail = emailsToSend.emails.findIndex(function(mailID) {
         return emailsToSend.emails.id == mailID;
     });
     emailsToSend.emails.splice(indexOfEmail, 1);
-    fs.writeFile(path.join(__dirname, paths.emailsToSendPath), JSON.stringify(emailsToSend), "utf-8", (err)=>{
+    fs.writeFile((`../${paths.emailsToSendPath}`), JSON.stringify(emailsToSend), "utf-8", (err)=>{
         if(err)
             throw err;
         else
@@ -53,23 +54,23 @@ function deleteFromFutureEmails(mailID){
 }
 
 function getAllSentEmails(){
-    const emailsSent = require(path.join(__dirname, paths.emailsSentPath));
+    const emailsSent = require(`../${paths.emailsSentPath}`);
     return(emailsSent);
 }
 
 
 function getAllFutureEmails(){
-    const emailsToSend = require(path.join(__dirname, paths.emailsToSendPath));
+    const emailsToSend = require(`../${paths.emailsToSendPath}`);
     return(emailsToSend);
 }
 
 function getNumOfSentEmails(){
-    const emailsSent = require(path.join(__dirname, paths.emailsSentPath));
+    const emailsSent = require(`../${paths.emailsSentPath}`);
     return(emailsSent.emails.length);
 }
 
 function getNumOfEmailsToSend(){
-    const emailsToSend = require(path.join(__dirname, paths.emailsToSendPath));
+    const emailsToSend = require(`../${paths.emailsToSendPath}`);
     return(emailsToSend.emails.length);
 }
 

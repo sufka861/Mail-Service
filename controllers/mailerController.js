@@ -1,6 +1,6 @@
 const cron = require("node-cron");
-const {newMail} = require("./mailer");
-const {getAllSentEmails, getAllFutureEmails, getNumOfSentEmails, getNumOfEmailsToSend} = require("./emailsDAL");
+const {newMail} = require("../services/mailer");
+const {getAllSentEmails, getAllFutureEmails, getNumOfSentEmails, getNumOfEmailsToSend} = require("../DAL/emailsDAL");
 
 function getEmails(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +35,7 @@ function totalEmailsToSend(req, res) {
 }
 
 function sendMail(req, res) {
+    //console.log(req.url);
     let mailData;
     req
         .on('data', data => mailData = JSON.parse(data.toString()))

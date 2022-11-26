@@ -1,4 +1,4 @@
-const {events, templateEvents, templatesList, findTemplateByID} = require(`./templates`)
+const {events, templateEvents, templatesList, findTemplateByID} = require(`../services/templates`)
 //const path = require(`node:path`);
 const {URL} = require(`url`);
 

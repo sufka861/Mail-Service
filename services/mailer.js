@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const {schedule} = require("node-cron");
 require('dotenv').config();
-const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("./emailsDAL");
+const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../DAL/emailsDAL");
 
 
 let mailOptions = {
@@ -27,11 +27,16 @@ let transporter = nodemailer.createTransport({
 
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) console.log(error);
-        else console.log('Email sent: ' + info.response);
-    });
-    //CALL TO write to sentEmail json file
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) console.log(error);
+    //     else
+    //     {
+    //         console.log('Email sent: ' + info.response);
+    //         //CALL TO write to sentEmail json file
+    //         addToSentJason(mailOptions);
+    //     }
+    // });
+
     addToSentJason(mailOptions);
 
     //const timeToSend = {timeToSend: new Date().toLocaleString()};

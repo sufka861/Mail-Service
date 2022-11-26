@@ -4,16 +4,16 @@ const {
     totalSentEmails,
     totalEmailsToSend,
     sendMail
-} = require("./mailerController");
+} = require("./controllers/mailerController");
 const {
     getAllTemplates,
     getTemplate,
     createTemplateHandler,
     editTemplateHandler,
     deleteTemplateHandler
-} = require("./templatesControllers");
-const {errorHandler} = require("./clientController");
-const {loadPage} = require("./clientController");
+} = require("./controllers/templatesControllers");
+const {errorHandler} = require("./controllers/clientController");
+const {loadPage} = require("./controllers/clientController");
 const {URL} = require(`url`);
 const path = require('node:path');
 
@@ -27,7 +27,7 @@ const ROUTES = {
         '/template/id': getTemplate,
     },
     POST: {
-        '/sendMail': sendMail,   //how to send the mailOptions
+        '/sendMail': sendMail,
         '/template': createTemplateHandler
 
     },
