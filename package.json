@@ -2,7 +2,7 @@
   "name": "mail-service",
   "version": "1.0.0",
   "description": "",
-  "main": "Mail-Service/templates.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon demoServer.js"
@@ -17,11 +17,13 @@
     "url": "https://github.com/sufka861/Mail-Service/issues"
   },
   "homepage": "https://github.com/sufka861/Mail-Service#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.8.0",
+    "uuid": "^9.0.0"
+  },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "uuid": "^9.0.0"
   }
 }
