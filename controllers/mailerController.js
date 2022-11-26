@@ -35,21 +35,14 @@ function totalEmailsToSend(req, res) {
 }
 
 function sendMail(req, res) {
-
+    //console.log(req.url);
     let mailData;
     req
-        .on('data', data => {
-            mailData = JSON.parse(data.toString());
-        })
+        .on('data', data => mailData = JSON.parse(data.toString()))
         .on('end', () => {
-            //*****************//
-            Object.assign(mailData, {"text": "test"});
-            //*****************//
-            console.log(mailData);
             // const {mail, isScheduled = false, timeToSend = ""} = mailData;
             // newMail(mail, isScheduled, timeToSend);
-            newMail(mailData, false, "");
-
+            newMail(mailData);
             res.end();
         });
 }
