@@ -5,17 +5,18 @@ require('dotenv').config();
 const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../DAL/emailsDAL");
 
 
-let mailOptions = {
-    from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
-    to: ['sufkarmon2@gmail.com',],
-    cc: '',
-    bcc: '',
-    subject: 'Email from Node-App: A Test Message!',
-    html: '<h1>new mail check</h1>',
-};
+// let mailOptions = {
+//     from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
+//     to: ['sufkarmon2@gmail.com',],
+//     cc: '',
+//     bcc: '',
+//     subject: 'Email from Node-App: A Test Message!',
+//     html: '<h1>new mail check</h1>',
+// };
 
 let transporter = nodemailer.createTransport({
-    //host: "smtp-mail.outlook.com",
+    //  host: 'localhost',
+    // port: process.env.PORT,
     service: 'Zoho',
     //service: 'outlook',
     auth: {
@@ -27,17 +28,19 @@ let transporter = nodemailer.createTransport({
 
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) console.log(error);
-    //     else
-    //     {
-    //         console.log('Email sent: ' + info.response);
-    //         //CALL TO write to sentEmail json file
-    //         addToSentJason(mailOptions);
-    //     }
-    // });
+    transporter.sendMail(mailOptions, (error, info) => {
+        Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
+        console.log(mailOptions);
+        if (error) console.log(error);
+        else
+        {
+            console.log('Email sent: ' + info.response);
+            //CALL TO write to sentEmail json file
+            addToSentJason(mailOptions);
+        }
+    });
 
-    addToSentJason(mailOptions);
+    // addToSentJason(mailOptions);
 
     //const timeToSend = {timeToSend: new Date().toLocaleString()};
     //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
@@ -67,5 +70,5 @@ function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
 
 module.exports = {
     newMail,
-    mailOptions
+    // mailOptions
 }

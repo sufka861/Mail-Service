@@ -8,8 +8,9 @@ function addToSentJason(mailOptions){
     let emailsSent = require(path.join(process.cwd(),paths.emailsSentPath));
     //console.log(emailsSent);
     let numOfEmails = emailsSent.emails.length;
-    console.log(numOfEmails);
-    const timeNow = {timeSent: new Date().toLocaleString()};
+    console.log(mailOptions);
+    const timeNow = {"timeSent": new Date().toLocaleString()};
+
     let mailDetails = Object.assign(mailOptions, timeNow);
     emailsSent.emails.push(mailDetails);
 

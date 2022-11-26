@@ -43,6 +43,16 @@
       "subject": "Email from Node-App: A Test Message!",
       "html": "<h1>lets go to the culi yo</h1>",
       "timeSent": "11/26/2022, 9:28:20 PM"
+    },
+    {
+      "to": [
+        "peerfikhman@gmail.com"
+      ],
+      "cc": "",
+      "bcc": "",
+      "subject": "test",
+      "text": "test",
+      "timeSent": "11/27/2022, 12:24:07 AM"
     }
   ]
 }
