@@ -1,0 +1,6 @@
+../../node_modules
+.vscode
+.idea
+emailsDAL.js.json
+format1.html
+Templatestest.html
