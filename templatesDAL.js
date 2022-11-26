@@ -11,7 +11,7 @@ function writeTemplates (templates) {
 }
 
 function readTemplates(){
-    const templatesFile = require(paths.templatesJson);
+    const templatesFile = require(paths.templatesJasonPath);
     return templatesFile.templates;
 }
 

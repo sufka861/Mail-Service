@@ -1,7 +1,7 @@
 module.exports = {
     paths: {
-        templatesJson: './templates.json',
-        templatesJasonPath: `./templates.json`
-
+        templatesJasonPath: `./templates.json`,
+        emailsSentPath: './emailSent.json',
+        emailsToSendPath: './emailToSend.json'
     }
 }

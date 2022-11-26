@@ -2,6 +2,8 @@ const fs = require('fs');
 const emailsSent = require("./emailsSent.json");
 const emailsToSend = require("./emailsToSend.json");
 const { v4: uuidv4 } = require('uuid');
+const path = require(`node:path`)
+
 
 function addToSentJason(mailOptions){
     let emailsSent = require("./emailsSent.json");
