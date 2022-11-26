@@ -8,7 +8,7 @@ function addToSentJason(mailOptions){
     let emailsSent = require(path.join(process.cwd(),paths.emailsSentPath));
     //console.log(emailsSent);
     let numOfEmails = emailsSent.emails.length;
-    console.log(numOfEmails);
+    console.log("num of sent emails: " + numOfEmails);
     const timeNow = {timeSent: new Date().toLocaleString()};
     let mailDetails = Object.assign(mailOptions, timeNow);
     emailsSent.emails.push(mailDetails);
@@ -25,7 +25,8 @@ function addToSentJason(mailOptions){
 function addToFutureEmails(mailOptions, timeToSend){
     let emailsToSend = require(path.join(process.cwd(),paths.emailsToSendPath));
     let mailID = {id: uuidv4()};
-    let mailDetails = Object.assign(mailOptions, timeToSend, mailID);
+    timeObj = {"timeToSend": timeToSend};
+    let mailDetails = Object.assign(mailOptions, timeObj, mailID);
     emailsToSend.emails.push(mailDetails);
     fs.writeFile((path.join(process.cwd(),paths.emailsToSendPath)), JSON.stringify(emailsToSend), "utf-8", (err)=>{
         if(err)

@@ -11,6 +11,20 @@
       "html": "<h1>blah blah blah</h1>",
       "timeToSend": "24.11.2022, 11:23:42",
       "id": "62d58269-c5b5-47d7-923e-f37412af232b"
+    },
+    {
+      "from": "dcs-growth dcs.growth@zohomail.com",
+      "to": [
+        "peerfikhman@gmail.com"
+      ],
+      "cc": "",
+      "bcc": "",
+      "subject": "Email from Node-App: A Test Message!",
+      "text": "someText",
+      "html": "<h1>sample html here</h1>",
+      "timeSent": "27.11.2022, 00:16:00",
+      "timeToSend": "27.11.2022, 01:07:00",
+      "id": "6f23106f-2bff-4327-9256-4be130b1fd1e"
     }
   ]
 }

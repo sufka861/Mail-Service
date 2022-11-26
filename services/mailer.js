@@ -5,14 +5,14 @@ require('dotenv').config();
 const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../DAL/emailsDAL");
 
 
-let mailOptions = {
-    from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
-    to: ['sufkarmon2@gmail.com',],
-    cc: '',
-    bcc: '',
-    subject: 'Email from Node-App: A Test Message!',
-    html: '<h1>new mail check</h1>',
-};
+// let mailOptions = {
+//     from: `dcs-growth ${process.env.EMAIL_ADDRESS_ZOHO}`,
+//     to: ['sufkarmon2@gmail.com',],
+//     cc: '',
+//     bcc: '',
+//     subject: 'Email from Node-App: A Test Message!',
+//     html: '<h1>new mail check</h1>',
+// };
 
 let transporter = nodemailer.createTransport({
     //host: "smtp-mail.outlook.com",
@@ -28,6 +28,7 @@ let transporter = nodemailer.createTransport({
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
     transporter.sendMail(mailOptions, (error, info) => {
+        Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
         if (error) console.log(error);
         else
         {
@@ -39,19 +40,21 @@ function sendMail(mailOptions) {
 }
 
 
-function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
+function newMail(mailOptions, isScheduled = false, timeToSend = "") {
     if (isScheduled == true) {
-        //$$$$$ BREAK DOWN TO WANTED TIME $$$$$$
-
-        let minute = "", hour = "", date = "", month = "";
-        let wantedTime = `${minute} ${hour} ${date} ${month} *`;
+        //$$$$$ BREAK DOWN TO WANTED TIME
+        let [date, time]= timeToSend.split(',');
+        let [hours, minutes, seconds] = time.split(':');
+        let [day, month, year] = date.split('.');
+        let wantedTime = `${seconds} ${minutes} ${hours} ${day} ${month} *`;
 
         cron.schedule(wantedTime, function () {
             console.log('---------------------');
-            console.log('Running Cron Process');
+            console.log('Running Cron Process schedule for: ' + timeToSend);
             //write to JSON of scheduled emails
-            addToFutureEmails(mailOptions, scheduledTo);
+            addToFutureEmails(mailOptions, timeToSend);
             // Delivering mail with sendMail method
+            console.log(mailOptions);
             sendMail(mailOptions);
             //deleteFromFutureEmails();
         });
@@ -62,5 +65,5 @@ function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
 
 module.exports = {
     newMail,
-    mailOptions
+    //mailOptions
 }
