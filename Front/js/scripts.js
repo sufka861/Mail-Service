@@ -269,7 +269,7 @@ function DeleteByID(num){
 
 
     $.ajax({
-        url: 'http://localhost:3000/template/',
+        url: 'http://localhost:3000/template',
         type: 'DELETE',
         success: function(template) {
             console.log(template);
