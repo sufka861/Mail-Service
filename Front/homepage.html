@@ -100,7 +100,7 @@
                                     </tr>
                                     <tr class="read">
                                         <td class="action">
-                                            <div class="icheckbox_square-blue" st<td class="action"><input
+                                            <div class="icheckbox_square-blue" <td class="action"><input
                                             type="checkbox" />
                                     </td>
                                         <td class="action"><i class="fa fa-star"></i></td>
@@ -328,25 +328,29 @@
 </div>
 
 <script >
-    // Wait for the page to finish loading
     document.addEventListener(
         "DOMContentLoaded",
         () => {
-            // Attach `change` event listener to checkbox
-            document.getElementById("billing-checkbox").onchange = toggleBilling;
+            document.getElementById("myCheck").onchange = toggleBilling;
+
         },
         false
     );
 
     function toggleBilling() {
-        // Select the billing text fields
         const billingItems = document.querySelectorAll('#billing input[type="time"]');
+        const Item2 = document.querySelectorAll('#billing input[type="date"]');
 
-        // Toggle the billing text fields
         billingItems.forEach((item) => {
+            item.disabled = !item.disabled;
+
+        });
+        Item2.forEach((item) => {
             item.disabled = !item.disabled;
         });
     }
+
+
 
 </script>
 <script>clickSend()</script>
