@@ -220,7 +220,12 @@ body{
     border-bottom-width: 4px !important;
     border-bottom-style: solid !important;
 }
+input[type="time"]:disabled {
+    background: #ccc;
+}
 
+input[type="date"]:disabled {
+    background: #ccc;
+}
 
-/*datepicker*/
 
