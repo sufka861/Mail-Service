@@ -179,7 +179,7 @@ function postSend(){
     $.ajax({
         url: 'http://localhost:3000/sendMail',
         type: 'POST',
-        data:formData,
+        data: JSON.stringify(formData),
         // cache: false,
         // async:false,
         dataType : 'json'
@@ -264,13 +264,17 @@ function DeleteByID(num){
     let id3 = JSON.parse(id2);
     let id4 = id.replace('"','');
     let id5 = id4.replace('"','');
+    let data ={
+        "template_id" : id5
+    }
 
     console.log("the id is" ,id5);
 
 
     $.ajax({
-        url: 'http://localhost:3000/template/',
+        url: 'http://localhost:3000/template',
         type: 'DELETE',
+        data: (JSON.stringify(data)),
         success: function(template) {
             console.log(template);
             console.log(template.name);
@@ -279,8 +283,8 @@ function DeleteByID(num){
             document.getElementById("email_message").innerHTML=html;
 
         },
-        error:function(){
-            console.log('Error - DELETE -  TemplatesBYID');
+        error:function(error){
+            console.log(error);
             // top.location.href="404.html";
         }
     });
