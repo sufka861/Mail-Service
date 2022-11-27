@@ -1,23 +1,21 @@
 const path = require(`node:path`)
 const {paths} = require(`../DB/config`);
 const fs = require('fs');
-//const emailsSent = require(`../${paths.emailsSentPath}`);
-//const emailsToSend = require(`../${paths.emailsToSendPath}`);
-const { v4: uuidv4 } = require('uuid');
+const {v4: uuidv4} = require('uuid');
 
-function addToSentJason(mailOptions){
-    //console.log(`${paths.emailsSentPath}`);
-    console.log(__dirname);
-    let emailsSent = require("../DB/emailsSent.json");
+function addToSentJason(mailOptions) {
+
+    let emailsSent = require(path.join(process.cwd(), paths.emailsSentPath));
     //console.log(emailsSent);
     let numOfEmails = emailsSent.emails.length;
-    console.log(numOfEmails);
-    const timeNow = {timeSent: new Date().toLocaleString()};
+    console.log(mailOptions);
+    const timeNow = {"timeSent": new Date().toLocaleString()};
+
     let mailDetails = Object.assign(mailOptions, timeNow);
     emailsSent.emails.push(mailDetails);
 
-    fs.writeFile("../DB/emailsSent.json", JSON.stringify(emailsSent), "utf-8", (err)=>{
-        if(err)
+    fs.writeFile(path.join(process.cwd(), paths.emailsSentPath), JSON.stringify(emailsSent), "utf-8", (err) => {
+        if (err)
             throw err;
         else
             console.log("email saved to emailsSent.json");
@@ -25,13 +23,14 @@ function addToSentJason(mailOptions){
 }
 
 //NOTICE - TimeToSend has to be a Date().toLocaleString() object
-function addToFutureEmails(mailOptions, timeToSend){
-    let emailsToSend = require(path.join(__dirname, paths.emailsToSendPath));
+function addToFutureEmails(mailOptions, timeToSend) {
+    let emailsToSend = require(path.join(process.cwd(), paths.emailsToSendPath));
     let mailID = {id: uuidv4()};
-    let mailDetails = Object.assign(mailOptions, timeToSend, mailID);
+    timeObj = {"timeToSend": timeToSend};
+    let mailDetails = Object.assign(mailOptions, timeObj, mailID);
     emailsToSend.emails.push(mailDetails);
-    fs.writeFile((`../${paths.emailsToSendPath}`), JSON.stringify(emailsToSend), "utf-8", (err)=>{
-        if(err)
+    fs.writeFile((path.join(process.cwd(), paths.emailsToSendPath)), JSON.stringify(emailsToSend), "utf-8", (err) => {
+        if (err)
             throw err;
         else
             console.log("email saved to emailsToSend.json");
@@ -39,39 +38,39 @@ function addToFutureEmails(mailOptions, timeToSend){
 }
 
 
-function deleteFromFutureEmails(mailID){
-    let emailsToSend = require(`../${paths.emailsToSendPath}`);
-    let indexOfEmail = emailsToSend.emails.findIndex(function(mailID) {
+function deleteFromFutureEmails(mailID) {
+    let emailsToSend = require(path.join(process.cwd(), paths.emailsToSendPath));
+    let indexOfEmail = emailsToSend.emails.findIndex(function (mailID) {
         return emailsToSend.emails.id == mailID;
     });
     emailsToSend.emails.splice(indexOfEmail, 1);
-    fs.writeFile((`../${paths.emailsToSendPath}`), JSON.stringify(emailsToSend), "utf-8", (err)=>{
-        if(err)
+    fs.writeFile(path.join(process.cwd(), paths.emailsToSendPath), JSON.stringify(emailsToSend), "utf-8", (err) => {
+        if (err)
             throw err;
         else
             console.log("deleted email from emailsToSend.json");
     });
 }
 
-function getAllSentEmails(){
-    const emailsSent = require(`../${paths.emailsSentPath}`);
-    return(emailsSent);
+function getAllSentEmails() {
+    const emailsSent = require(path.join(process.cwd(), paths.emailsSentPath));
+    return (emailsSent);
 }
 
 
-function getAllFutureEmails(){
+function getAllFutureEmails() {
     const emailsToSend = require(`../${paths.emailsToSendPath}`);
-    return(emailsToSend);
+    return (emailsToSend);
 }
 
-function getNumOfSentEmails(){
+function getNumOfSentEmails() {
     const emailsSent = require(`../${paths.emailsSentPath}`);
-    return(emailsSent.emails.length);
+    return (emailsSent.emails.length);
 }
 
-function getNumOfEmailsToSend(){
+function getNumOfEmailsToSend() {
     const emailsToSend = require(`../${paths.emailsToSendPath}`);
-    return(emailsToSend.emails.length);
+    return (emailsToSend.emails.length);
 }
 
 module.exports = {

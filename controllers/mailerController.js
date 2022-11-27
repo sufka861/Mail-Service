@@ -37,11 +37,13 @@ function totalEmailsToSend(req, res) {
 function sendMail(req, res) {
     //console.log(req.url);
     let mailData;
+    // debugger;
     req
         .on('data', data => mailData = JSON.parse(data.toString()))
         .on('end', () => {
-            const {mail, isScheduled = false, timeToSend = ""} = mailData;
-            newMail(mail, isScheduled, timeToSend);
+            // const {mail, isScheduled = false, timeToSend = ""} = mailData;
+            // newMail(mail, isScheduled, timeToSend);
+            newMail(mailData);
             res.end();
         });
 }
