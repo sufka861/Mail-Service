@@ -33,13 +33,12 @@ function create(data) {
 }
 
 function edit(templateID, data) {
-    const {name ="", creator="", html=""} = data;
+    const {name = "", creator = "", html = ""} = data;
     const templates = readTemplates();
     templates.forEach(
-        function (obj)
-        {
+        function (obj) {
             if (obj.template_id == templateID) {
-                if(name)
+                if (name)
                     obj.name = name;
                 if (creator)
                     obj.creator = creator;
@@ -54,7 +53,7 @@ function edit(templateID, data) {
 
 }
 
-function deleteTemplate (templateId) {
+function deleteTemplate(templateId) {
     const templates = readTemplates().filter(template => {
         return template.template_id != templateId;
     });
@@ -62,10 +61,11 @@ function deleteTemplate (templateId) {
     writeTemplates({templates: [...templates]});
 }
 
-function templatesList (){
+function templatesList() {
     return readTemplates()
 }
-function findTemplateByID(tempID){
+
+function findTemplateByID(tempID) {
     return templatesList().find(temp => temp.template_id == tempID);
 }
 

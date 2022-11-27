@@ -20,11 +20,10 @@ let transporter = nodemailer.createTransport({
 ////****** SENDING EMAIL FUNCTION******
 function sendMail(mailOptions) {
     transporter.sendMail(mailOptions, (error, info) => {
-        Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
-        console.log(mailOptions);
+        Object.assign(mailOptions, {"from": "dcs.growth" + process.env.EMAIL_ADDRESS_ZOHO});
+        //console.log(mailOptions);
         if (error) console.log(error);
-        else
-        {
+        else {
             console.log('Email sent: ' + info.response);
             //CALL TO write to sentEmail json file
             addToSentJason(mailOptions);

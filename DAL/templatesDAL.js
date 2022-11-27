@@ -2,15 +2,15 @@ const {paths} = require(`../DB/config`);
 const fs = require('fs');
 const path = require(`node:path`)
 
-function writeTemplates (templates) {
-    fs.writeFile(path.join(process.cwd(), paths.templatesJasonPath), JSON.stringify(templates),`utf8`, err =>{
+function writeTemplates(templates) {
+    fs.writeFile(path.join(process.cwd(), paths.templatesJasonPath), JSON.stringify(templates), `utf8`, err => {
         if (err) throw err;
         console.log(`File Updated`);
     });
 
 }
 
-function readTemplates(){
+function readTemplates() {
     const templatesFile = require(path.join(process.cwd(), paths.templatesJasonPath));
     return templatesFile.templates;
 }
