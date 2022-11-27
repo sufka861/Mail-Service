@@ -219,17 +219,20 @@
                                                                   placeholder="Message" style="height: 120px;"></textarea>
                                                 </div>
                                                 <form>
+                                                    <fieldset id="billing">
+
                                                     <input type="checkbox" class="form-group" id="myCheck"> schedule<br>
                                                     <div class="mb-3">
                                                         <label class="form-label">
-                                                            <input type="date" class="form-group" name="event_date"  id="date" placeholder="date1" >
+                                                            <input type="date" class="form-group" name="event_date"  id="date" placeholder="date1" disabled >
                                                         </label>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">
-                                                            <input type="time" class="form-group" name="event_time"  placeholder="Time" id="time1" >
+                                                            <input type="time" class="form-group" name="event_time"  placeholder="Time" id="time1" disabled>
                                                         </label>
                                                     </div>
+                                                        </fieldset>
                                                 </form>
 
 
@@ -262,132 +265,30 @@
                                                                                 <div
                                                                                         class="col-sm-4 col-md-3 box-product-outer">
                                                                                     <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #1</a></h6>
+
+                                                                                        <h6><a onclick="getTemplateByID(0)">Template #1</a></h6>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
-                                                                                        class="col-sm-4 col-md-3 hidden-xs box-product-outer">
+                                                                                        class="col-sm-4 col-md-3 box-product-outer">
                                                                                     <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src=mob-1720961.png>
-                                                                                            </a>
 
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #2</a></h6>
-
+                                                                                        <h6><a onclick="getTemplateByID(1)">Template #2</a></h6>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
-                                                                                        class="col-sm-4 col-md-3 hidden-xs box-product-outer">
+                                                                                        class="col-sm-4 col-md-3 box-product-outer">
                                                                                     <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                                                                                            </a>
 
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #2</a></h6>
-
+                                                                                        <h6><a onclick="getTemplateByID(2)">Template #3</a></h6>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div
-                                                                                        class="col-sm-4 col-md-3 hidden-sm hidden-xs box-product-outer">
-                                                                                    <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                                                                                            </a>
-
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">NikeAs
-                                                                                            Matchup -Pq Grey
-                                                                                            Polo T-Shirt</a>
-                                                                                        </h6>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="clearfix"></div>
 
                                                                                 <div
                                                                                         class="col-sm-4 col-md-3 box-product-outer">
                                                                                     <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                                                                            </a>
 
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #4</a></h6>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                        class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-                                                                                    <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                                                                                            </a>
-
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #5</a></h6>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                        class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-                                                                                    <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                                                                                            </a>
-
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Template
-                                                                                            #6</a></h6>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                        class="col-sm-4 col-md-3 hidden-sm hidden-xs box-product-outer">
-                                                                                    <div class="box-product">
-                                                                                        <div class="img-wrapper">
-                                                                                            <a href="detail.html">
-                                                                                                <img alt="Product"
-                                                                                                     src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                                                                                            </a>
-
-
-                                                                                        </div>
-                                                                                        <h6><a href="detail.html">Tagd
-                                                                                            New YorkGrey Printed
-                                                                                            V Neck T-Shirts</a>
-                                                                                        </h6>
-
+                                                                                        <h6><a onclick="getTemplateByID(3)">Template #4</a></h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -405,6 +306,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div>
                                         <div>
                                             <button type="submit" class="btn btn-primary pull-right" id="send"><i
                                                     class="fa fa-envelope"></i> Send Message</button>
@@ -424,33 +326,28 @@
     <!-- END INBOX -->
 </div>
 </div>
-<style type="text/css">
-</style>
-<script type="text/javascript">
-    /*$("input:date").prop("disabled", true);
 
-    $("input:checkbox").on("click", function() {
-      $("input:date").prop("disabled", true);
-      $("input.group" + $(this).val()).prop("disabled", false);
-    });*/
-    function myFunction() {
-        // Get the checkbox
-        var checkBox = document.getElementById("myCheck");
-        // Get the output text
-        var date1 = document.getElementById("date1");
-        var time1 = document.getElementById("time1");
+<script >
+    // Wait for the page to finish loading
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+            // Attach `change` event listener to checkbox
+            document.getElementById("billing-checkbox").onchange = toggleBilling;
+        },
+        false
+    );
 
+    function toggleBilling() {
+        // Select the billing text fields
+        const billingItems = document.querySelectorAll('#billing input[type="time"]');
 
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked == true){
-            date1.style.display = "block";
-            time1.style.display = "block";
-        } else {
-            date1.style.display = "none";
-            time1.style.display = "none";
-        }
+        // Toggle the billing text fields
+        billingItems.forEach((item) => {
+            item.disabled = !item.disabled;
+        });
     }
-    <p id="text" style="display:none">Checkbox is CHECKED!</p>
+
 </script>
 <script>clickSend()</script>
 </body>
