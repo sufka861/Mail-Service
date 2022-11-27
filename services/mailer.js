@@ -6,7 +6,7 @@ const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../
 
 
 let transporter = nodemailer.createTransport({
-    //  host: 'localhost',
+     host: 'zohomail.com',
     // port: process.env.PORT,
     service: 'Zoho',
     //service: 'outlook',
@@ -18,10 +18,10 @@ let transporter = nodemailer.createTransport({
 });
 
 ////****** SENDING EMAIL FUNCTION******
-function sendMail(mailOptions) {
-    transporter.sendMail(mailOptions, (error, info) => {
-        Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
-        console.log(mailOptions);
+async function sendMail(mailOptions) {
+    Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
+    console.log(mailOptions);
+    await transporter.sendMail(mailOptions, (error, info) => {
         if (error) console.log(error);
         else
         {
