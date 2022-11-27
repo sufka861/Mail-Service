@@ -155,7 +155,7 @@ function getTotaltoSendEmail(){
 
 function postSend(){
     const formData = {
-        'to' : $('input[name=to]').val(),
+        'to' :[ $('input[name=to]').val()],
         'cc': $('input[name=cc]').val(),
         'bcc': $('input[name=Bcc]').val(),
         'subject': $('input[name=subject]').val(),
@@ -167,7 +167,10 @@ function postSend(){
     $.ajax({
         url: 'http://localhost:3000/sendMail',
         type: 'POST',
-        data: formData,
+        data: JSON.stringify(formData),
+        processData: false,
+        contentType: "application/json;  charset=UTF-8",
+        traditional: true,
         dataType : 'json'
     })
         .done(function(data) {
@@ -183,7 +186,7 @@ function postSend(){
 
 function getAllTemplates(){
     $.ajax({
-        url: 'http://localhost:8080/templates',
+        url: 'http://localhost:3000/templates',
         type: 'GET',
         success: function(templates) {
             console.log(templates);
