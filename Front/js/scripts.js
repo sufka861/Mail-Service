@@ -134,7 +134,7 @@ function getTotalSentEmail(){
             //         </h5>
             //         <!--                                            id="total"-->
             //     </section> ;
-            document.getElementById("total").innerHTML = total;
+            document.getElementById("total").innerHTML = totalNum;
 
 
         },
@@ -157,7 +157,7 @@ function getTotaltoSendEmail(){
             //         </h5>
             //         <!--                                            id="total"-->
             //     </section> ;
-            document.getElementById("total").innerHTML = total;
+            document.getElementById("total").innerHTML = totalNum;
 
 
         },
