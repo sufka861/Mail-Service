@@ -1,6 +1,7 @@
 const templatesService = require(`../services/templates`)
 //const path = require(`node:path`);
 const {URL} = require(`url`);
+const {getNumOfSentEmails} = require("../DAL/emailsDAL");
 
 // ************* HTTP way of handling id passed in query string ******************/
 // getTemplateID = (req) => {
@@ -10,7 +11,7 @@ const {URL} = require(`url`);
 
 // ************* Express way of handling Id passed in path params  ****************/
 getTemplateID = (req) => {
-    return new req.params.id;
+    return  req.params.id;
 }
 
 
@@ -25,9 +26,9 @@ function getAllTemplates(req, res) {
 function getNumOfTemplates(req, res)
 {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', 'text/plain');
-    res.writeHeader(200);
-    res.end(JSON.stringify(templatesService.templatesList().length));
+    res.setHeader('Content-Type', ' text/plain');
+    res.writeHead(200);
+    res.end(`${templatesService.templatesList().length}`);
 
 }
 

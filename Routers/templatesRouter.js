@@ -6,8 +6,9 @@ const templatesRouter = new express.Router();
 
 // ************** GET method routing ********************* //
 templatesRouter.get('/', templatesController.getAllTemplates);
-templatesRouter.get('/:id', templatesController.getTemplate);
 templatesRouter.get('/num', templatesController.getNumOfTemplates);
+templatesRouter.get('/:id', templatesController.getTemplate);
+
 
 // ************** POST method routing ********************* //
 
