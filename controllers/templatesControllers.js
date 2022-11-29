@@ -2,17 +2,33 @@ const {events, templateEvents, templatesList, findTemplateByID} = require(`../se
 //const path = require(`node:path`);
 const {URL} = require(`url`);
 
+// ************* HTTP way of handling id passed in query string ******************/
+// getTemplateID = (req) => {
+//     return new URL(req.url, `http://${req.headers.host}`)
+//         .searchParams.get('id');
+// }
 
+// ************* Express way of handling Id passed in path params  ****************/
 getTemplateID = (req) => {
-    return new URL(req.url, `http://${req.headers.host}`)
-        .searchParams.get('id');
+    return new req.params.id;
 }
+
+
 
 function getAllTemplates(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
     res.end(JSON.stringify(templatesList()));
+}
+
+function getNumOfTemplates(req, res)
+{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'text/plain');
+    res.writeHeader(200);
+    res.end(JSON.stringify(templatesList()).length);
+
 }
 
 function getTemplate(req, res) {
@@ -62,5 +78,6 @@ module.exports = {
     createTemplateHandler,
     editTemplateHandler,
     deleteTemplateHandler,
+    getNumOfTemplates
 
 }
