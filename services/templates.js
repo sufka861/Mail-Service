@@ -9,8 +9,12 @@ const events = {
     DELETE: 'template_delete',
     EDIT: `template_edit`
 }
+templateEvents.on(events.CREATE, createTemplate)
+    .on(events.EDIT, editTemplate)
+    .on(events.DELETE, deleteTemplate);
 
-const createTemplate = (name, creator, date, html) => {
+
+const createTemplateObj = (name, creator, date, html) => {
     return {
         template_id: uuidv4(),
         name: name,
@@ -21,9 +25,9 @@ const createTemplate = (name, creator, date, html) => {
 }
 
 
-function create(data) {
+function createTemplate(data) {
     const {name, creator, html} = data;
-    const template = createTemplate(name, creator, new Date().toLocaleString(), html);
+    const template = createTemplateObj(name, creator, new Date().toLocaleString(), html);
     const templatesFile = readTemplates();
     const updatedTemplateFile = {
         templates: [...templatesFile, template]
@@ -32,7 +36,7 @@ function create(data) {
 
 }
 
-function edit(templateID, data) {
+function editTemplate(templateID, data) {
     const {name = "", creator = "", html = ""} = data;
     const templates = readTemplates();
     templates.forEach(
@@ -70,13 +74,12 @@ function findTemplateByID(tempID) {
 }
 
 
-templateEvents.on(events.CREATE, create)
-    .on(events.EDIT, edit)
-    .on(events.DELETE, deleteTemplate);
+
 
 module.exports = {
-    events,
-    templateEvents,
+    deleteTemplate,
+    editTemplate,
+    createTemplate,
     templatesList,
     findTemplateByID
 }

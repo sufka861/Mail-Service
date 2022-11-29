@@ -1,1 +1,32 @@
-{"templates":[{"template_id":"2f3b0b4f-cf8c-4357-909e-a5198c21ae8f","name":"Pe'er","creator":"Pe'er","date":"11/21/2022, 6:20:19 PM","html":"<h1> test</h1>"}]}
+{
+  "templates": [
+    {
+      "template_id": 1,
+      "name": "TestTemp late",
+      "creator": "sufKarmonm",
+      "date": "11/18/2022, 5:32:49 PM",
+      "html": "<h1>Hi!</h1>"
+    },
+    {
+      "template_id": 2,
+      "name": "Template Name2",
+      "creator": "Template Creator2",
+      "date": "11/18/2022, 5:32:49 PM",
+      "html": "<h1>Test Template 2 <h1>"
+    },
+    {
+      "template_id": 3,
+      "name": "Template Name3",
+      "creator": "Template Creator3",
+      "date": "11/18/2022, 5:32:49 PM",
+      "html": "<h1>Test Template 3 <h1>"
+    },
+    {
+      "template_id": "3e8dde2f-9e62-4962-8de7-13ee60fbb77c",
+      "name": "testName00",
+      "creator": "testCreator",
+      "date": "11/18/2022, 5:32:49 PM",
+      "html": "<h1>Test1</h1>"
+    }
+  ]
+}

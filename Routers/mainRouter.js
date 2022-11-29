@@ -4,8 +4,10 @@ const {templatesRouter} = require('./templatesRouter');
 const {clientRouter} = require('./clientRouter');
 
 
-app.use(('/', clientRouter));
-app.use(('/api/templates', templatesRouter));
+
+app.use('/api/templates', templatesRouter);
+app.use('/', clientRouter);
+
 
 
 module.exports ={

@@ -1,4 +1,4 @@
-const {events, templateEvents, templatesList, findTemplateByID} = require(`../services/templates`)
+const templatesService = require(`../services/templates`)
 //const path = require(`node:path`);
 const {URL} = require(`url`);
 
@@ -19,7 +19,7 @@ function getAllTemplates(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
-    res.end(JSON.stringify(templatesList()));
+    res.end(JSON.stringify(templatesService.templatesList()));
 }
 
 function getNumOfTemplates(req, res)
@@ -27,7 +27,7 @@ function getNumOfTemplates(req, res)
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'text/plain');
     res.writeHeader(200);
-    res.end(JSON.stringify(templatesList()).length);
+    res.end(JSON.stringify(templatesService.templatesList().length));
 
 }
 
@@ -36,7 +36,7 @@ function getTemplate(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
     res.writeHeader(200);
-    res.end(JSON.stringify(findTemplateByID(templateID)));
+    res.end(JSON.stringify(templatesService.findTemplateByID(templateID)));
 }
 
 function createTemplateHandler(req, res) {
@@ -44,7 +44,7 @@ function createTemplateHandler(req, res) {
     req
         .on(`data`, data => newTemplateData = JSON.parse(data.toString()))
         .on(`end`, () => {
-            templateEvents.emit(events.CREATE, newTemplateData);
+           templatesService.createTemplate(newTemplateData);
             res.end(`New Template Saved!`);
         });
 }
@@ -55,7 +55,7 @@ function editTemplateHandler(req, res) {
     req
         .on(`data`, data => editedTemplate = JSON.parse(data.toString()))
         .on(`end`, () => {
-            templateEvents.emit(events.EDIT, templateID, editedTemplate);
+            templatesService.editTemplate(templateID, editedTemplate);
             res.end(`Templated has been successfully edited`);
         });
 
@@ -66,7 +66,7 @@ function deleteTemplateHandler(req, res) {
     req
         .on(`data`, data => templateID = JSON.parse(data.toString()).template_id)
         .on(`end`, () => {
-            templateEvents.emit(events.DELETE, templateID);
+           templatesService.deleteTemplate(templateID);
             res.end(`Template has been deleted`);
         });
 
