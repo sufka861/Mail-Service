@@ -228,4 +228,33 @@ input[type="date"]:disabled {
     background: #ccc;
 }
 
+/*Templates Style*/
 
+.templatesBoard{
+    display: flex;
+    flex-wrap: wrap;
+}
+.tempDetails > ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.flexBox{
+    display: flex;
+}
+.flexCol{
+    flex-direction: column;
+}
+.detailsBtn{
+    text-decoration: none;
+}
+.templateBox{
+    margin: 5px;
+}
+.mg{
+    margin: 3px;
+}
+.btnSize{
+    height: 30px;
+    width: 50px;
+}
