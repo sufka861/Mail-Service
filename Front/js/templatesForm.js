@@ -37,7 +37,7 @@ window.onload = () => {
             const myFormData = new FormData(event.target);
             const newTemp = Object.fromEntries(myFormData.entries());
 
-            fetch(`http://localhost:3000/templates`,
+            fetch(`http://localhost:3000/template`,
                 {
                     method: 'POST',
                     mode: 'cors',
