@@ -4,15 +4,15 @@ const {URL} = require(`url`);
 const {getNumOfSentEmails} = require("../DAL/emailsDAL");
 
 // ************* HTTP way of handling id passed in query string ******************/
-// getTemplateID = (req) => {
-//     return new URL(req.url, `http://${req.headers.host}`)
-//         .searchParams.get('id');
-// }
+getTemplateID = (req) => {
+    return new URL(req.url, `http://${req.headers.host}`)
+        .searchParams.get('id');
+}
 
 // ************* Express way of handling Id passed in path params  ****************/
-getTemplateID = (req) => {
-    return  req.params.id;
-}
+// getTemplateID = (req) => {
+//     return  req.params.id;
+// }
 
 
 

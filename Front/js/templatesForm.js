@@ -8,7 +8,7 @@ window.onload = () => {
             const myFormData = new FormData(event.target);
             const editedTemp = Object.fromEntries(myFormData.entries());
 
-            fetch(`http://localhost:3000/api/templates/${id}`,
+            fetch(`http://localhost:3000/template/id?id=${id}`,
                 {
                     method: 'PUT',
                     mode: 'cors',
@@ -21,7 +21,7 @@ window.onload = () => {
         });
 
 
-        fetch(`http://localhost:3000/api/templates/${id}`,
+        fetch(`http://localhost:3000/template/id?id=${id}`,
             {method: 'GET', mode: 'cors', headers: {'Accept': `application/json`}})
             .then((res) => res.json())
             .then((data) => {
@@ -37,7 +37,7 @@ window.onload = () => {
             const myFormData = new FormData(event.target);
             const newTemp = Object.fromEntries(myFormData.entries());
 
-            fetch(`http://localhost:3000/api/templates`,
+            fetch(`http://localhost:3000/templates`,
                 {
                     method: 'POST',
                     mode: 'cors',

@@ -1,10 +1,10 @@
-// let http = require('http');
-// const routes = require(`./router`);
+let http = require('http');
+const routes = require(`./router`);
 require('dotenv').config();
-//
-// http.createServer(routes).listen(process.env.PORT);
-// console.log("server running on port 3000");
+// ******** Http Server **************//
+http.createServer(routes).listen(process.env.PORT);
+console.log("server running on port 3000");
 
-
-const {app} = require('./Routers/mainRouter');
-app.listen(process.env.PORT);
+//************* Express Server ************//
+// const {app} = require('./Routers/mainRouter');
+// app.listen(process.env.PORT);

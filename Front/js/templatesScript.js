@@ -2,12 +2,20 @@ const listDiv = document.getElementById('tempBoard');
 window.onload = () => {
 
     createTemplatesList();
-    document.getElementById('createNewTemp').addEventListener('click', () => window.location = 'http://localhost:3000/TemplatesForm.html')
+    document.getElementById('createNewTemp').addEventListener('click', () => window.location = 'http://localhost:3000/TemplatesForm.html');
+
+    setTimeout( () =>{
+        const frames = document.querySelectorAll('iframe');
+    frames.forEach((obj) => {
+
+        obj.contentWindow.document.body.style = 'zoom: 0.6;';
+        // obj.contentWindow.document.body.scrollWidth = obj.style.width - 'px';
+    });
+    }, 3000);
 }
 
-
 createTemplatesList = () => {
-    fetch('http://localhost:3000/api/templates',
+    fetch('http://localhost:3000/templates',
         {method: 'GET', mode: `cors`, headers: {'Accept': `application/json`}}
     ).then((res) => res.json())
         .then((data) => {
@@ -28,7 +36,7 @@ function addButtons(template) {
     del.addEventListener('click', () => {
         const delTempConfirm = confirm(`Are you sure you want to delete ${template.name} ?`)
         if (delTempConfirm) {
-            fetch('http://localhost:3000/api/templates',
+            fetch('http://localhost:3000/templates',
                 {
                     method: 'DELETE',
                     mode: `cors`,
@@ -59,7 +67,9 @@ function addButtons(template) {
 function createTemplateElem(template) {
     const elem = document.createElement(`div`);
     const frame = document.createElement('iframe');
-    frame.srcdoc = template.html
+    frame.srcdoc = template.html;
+    frame.classList.add("frameScale");
+
 
     const details = document.createElement('div');
     details.classList.add('tempDetails');
@@ -72,7 +82,7 @@ function createTemplateElem(template) {
     elem.appendChild(frame);
 
     const detailsBtnsDiv = document.createElement('div');
-    detailsBtnsDiv.classList.add('flexBox');
+    detailsBtnsDiv.classList.add('flexBox', 'frame');
     detailsBtnsDiv.appendChild(details);
     detailsBtnsDiv.appendChild(addButtons(template));
 
