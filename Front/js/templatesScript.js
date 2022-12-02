@@ -1,21 +1,21 @@
 const listDiv = document.getElementById('tempBoard');
 window.onload = () => {
 
-    createTemplatesList();
+    createTemplatesList()
     document.getElementById('createNewTemp').addEventListener('click', () => window.location = 'http://localhost:3000/TemplatesForm.html');
 
     setTimeout( () =>{
         const frames = document.querySelectorAll('iframe');
     frames.forEach((obj) => {
 
-        obj.contentWindow.document.body.style = 'zoom: 0.6;';
+        obj.contentWindow.document.body.style =' zoom: 0.4;';
         // obj.contentWindow.document.body.scrollWidth = obj.style.width - 'px';
     });
-    }, 3000);
+    }, 100);
 }
 
-createTemplatesList = () => {
-    fetch('http://localhost:3000/templates',
+async function createTemplatesList (){
+    await fetch('http://localhost:3000/templates',
         {method: 'GET', mode: `cors`, headers: {'Accept': `application/json`}}
     ).then((res) => res.json())
         .then((data) => {
@@ -30,6 +30,16 @@ createTemplatesList = () => {
 
 
 function addButtons(template) {
+
+    const send = document.createElement('a');
+    send.classList.add('btn', 'btn-primary', 'btn-sm', 'mg');
+    send.innerHTML = 'Send';
+    send.setAttribute("data-toggle", "modal");
+    send.setAttribute("data-target", "#compose-modal");
+    send.addEventListener('click', ()=>{
+        document.getElementById('email_message').value = template.html;
+    })
+
     const del = document.createElement('a')
     del.classList.add('btn', 'btn-danger', 'btn-sm', 'mg');
     del.innerHTML = 'Delete';
@@ -56,6 +66,7 @@ function addButtons(template) {
 
     const btnsDiv = document.createElement('div');
     btnsDiv.classList.add('flexBox', 'flexCol')
+    btnsDiv.appendChild(send);
     btnsDiv.appendChild(edit);
     btnsDiv.appendChild(del);
 
@@ -66,9 +77,13 @@ function addButtons(template) {
 
 function createTemplateElem(template) {
     const elem = document.createElement(`div`);
+
+
+
     const frame = document.createElement('iframe');
     frame.srcdoc = template.html;
     frame.classList.add("frameScale");
+
 
 
     const details = document.createElement('div');
