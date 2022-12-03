@@ -152,6 +152,8 @@ function postSend() {
         'bcc': $('input[name=Bcc]').val(),
         'subject': $('input[name=subject]').val(),
         'html' : $('textarea#email_message').val()
+        // 'isScheduled': $('').val(),
+        // 'timeToSend': $('').val(),
     };
     console.log(formData);
     $.ajax({
