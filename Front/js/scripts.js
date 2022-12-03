@@ -150,7 +150,8 @@ function postSend() {
         'to': $('input[name=to]').val(),
         'cc': $('input[name=cc]').val(),
         'bcc': $('input[name=Bcc]').val(),
-        'subject': $('input[name=subject]').val()
+        'subject': $('input[name=subject]').val(),
+        'html' : $('textarea#email_message').val()
     };
     console.log(formData);
     $.ajax({
