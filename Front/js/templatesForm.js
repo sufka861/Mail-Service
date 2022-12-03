@@ -4,7 +4,7 @@ window.onload = () => {
     if (id) {
 
         document.getElementById('tempForm').addEventListener('submit', (event) => {
-
+            event.preventDefault();
             const myFormData = new FormData(event.target);
             const editedTemp = Object.fromEntries(myFormData.entries());
 
