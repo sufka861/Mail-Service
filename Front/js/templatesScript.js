@@ -46,14 +46,18 @@ function addButtons(template) {
     del.addEventListener('click', () => {
         const delTempConfirm = confirm(`Are you sure you want to delete ${template.name} ?`)
         if (delTempConfirm) {
-            fetch('http://localhost:3000/templates',
+            fetch('http://localhost:3000/template',
                 {
                     method: 'DELETE',
                     mode: `cors`,
                     headers: {'Accept': `application/json`},
                     body: JSON.stringify({"template_id": template.template_id})
                 }).then((response) => {
-                    alert(`Template ${template.name} deleted successfully`)
+                    if  (response.status === 200)
+                        alert(`Template ${template.name} deleted successfully`);
+                    else
+                        alert(`${response.status} Error: couldn't delete template`);
+
                     window.location.reload();
                 }
             );

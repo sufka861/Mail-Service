@@ -1,4 +1,4 @@
-const {APIpaths} = import('./APIpaths');
+
 function createTable(toArray, subjectArray, timeSentArray, bool) {
 
     if (bool == 1) {
