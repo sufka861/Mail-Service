@@ -33,11 +33,24 @@ async function sendMail(mailOptions) {
 }
 
 
-function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
-    if (isScheduled == true) {
+function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
+    if (isScheduled == "on") {
         // BREAK DOWN TO WANTED TIME
-        let minute = "", hour = "", date = "", month = "";
-        let wantedTime = `${minute} ${hour} ${date} ${month} *`;
+        const dateTimeArr = scheduledTo.split(",");
+        let dateStr = dateTimeArr[0];
+        dateStr = dateStr.split("-");
+        const month = dateStr[1];
+        const day = dateStr[2];
+        // const date = new Date(scheduledTo);
+        // const day = date.getDay();
+        // const month = date.getMonth();
+
+        const timeStr = dateTimeArr[1];
+        const timeArr = timeStr.split(":")
+        const hour = timeArr[0];
+        const minute = timeArr[1];
+        console.log(day, month, hour, minute);
+        let wantedTime = `${minute} ${hour} ${day} ${month} *`;
 
         cron.schedule(wantedTime, function () {
             console.log('---------------------');
