@@ -1,17 +1,12 @@
+
 const listDiv = document.getElementById('tempBoard');
+
 window.onload = () => {
 
     createTemplatesList()
     document.getElementById('createNewTemp').addEventListener('click', () => window.location = 'http://localhost:3000/TemplatesForm.html');
+    setTimeout(zoomOutFrames, 100);
 
-    setTimeout( () =>{
-        const frames = document.querySelectorAll('iframe');
-    frames.forEach((obj) => {
-
-        obj.contentWindow.document.body.style =' zoom: 0.4;';
-        // obj.contentWindow.document.body.scrollWidth = obj.style.width - 'px';
-    });
-    }, 100);
 }
 
 async function createTemplatesList (){
@@ -103,4 +98,10 @@ function createTemplateElem(template) {
 
     elem.appendChild(detailsBtnsDiv);
     return elem
+}
+zoomOutFrames = () =>{
+    const frames = document.querySelectorAll('iframe');
+    frames.forEach((obj) => {
+        obj.contentWindow.document.body.style ='zoom: 0.4;';
+    });
 }

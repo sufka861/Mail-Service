@@ -1,3 +1,5 @@
+
+
 const id = (new URL(document.location)).searchParams.get('id');
 window.onload = () => {
     console.log(id);
@@ -16,8 +18,9 @@ window.onload = () => {
                     body: JSON.stringify(editedTemp)
                     }
             ).then( (response) => response);
+            alert('template edited')
+            window.location.href = 'Templates.html'
 
-            window.location.href = 'http://localhost:3000/Templates.html'
         });
 
 
@@ -48,10 +51,11 @@ window.onload = () => {
 
             alert(`New template: ${newTemp.name} created`);
 
-            window.location.href = 'http://localhost:3000/Templates.html'
+            window.location.href = 'Templates.html'
         });
 
 
     }
 
 }
+

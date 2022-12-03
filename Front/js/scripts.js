@@ -95,7 +95,6 @@ function getScheduledEmails() {
         }
     });
 }
-
 function clickSend() {
     $(document).on('click', '#send', function (e) {
         e.preventDefault();
@@ -294,9 +293,6 @@ function clickTemplate() {
         alert("herrre");
     });
 }
-
-
-
 
 
 

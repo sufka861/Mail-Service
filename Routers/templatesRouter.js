@@ -9,7 +9,6 @@ templatesRouter.get('/', templatesController.getAllTemplates);
 templatesRouter.get('/num', templatesController.getNumOfTemplates);
 templatesRouter.get('/:id', templatesController.getTemplate);
 
-
 // ************** POST method routing ********************* //
 
 templatesRouter.post('/', templatesController.createTemplateHandler);
@@ -23,5 +22,5 @@ templatesRouter.put('/:id', templatesController.editTemplateHandler);
 templatesRouter.delete('/', templatesController.deleteTemplateHandler);
 
 module.exports = {
-    templatesRouter
-}
+  templatesRouter,
+};

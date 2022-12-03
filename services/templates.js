@@ -40,7 +40,7 @@ function editTemplate(templateID, data) {
     const {name = "", creator = "", html = ""} = data;
     const templates = readTemplates();
     templates.forEach(
-        function (obj) {
+      (obj) => {
             if (obj.template_id == templateID) {
                 if (name)
                     obj.name = name;
