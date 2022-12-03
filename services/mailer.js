@@ -40,8 +40,7 @@ async function sendMail(mailOptions) {
 
 function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
     if (isScheduled == true) {
-        //$$$$$ BREAK DOWN TO WANTED TIME $$$$$$
-
+        // BREAK DOWN TO WANTED TIME
         let minute = "", hour = "", date = "", month = "";
         let wantedTime = `${minute} ${hour} ${date} ${month} *`;
 
