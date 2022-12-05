@@ -1,20 +1,5 @@
 const {mailRouter} = require("../Routers/mailRouter");
-// const {newMail} = require("../services/mailer");
 const {errorHandler} = require("../controllers/clientController");
-const fs = require('fs/promises');
-
-
-async function readHTML(HTMLRoute) {
-    try {
-        const data = await fs.readFile(HTMLRoute, {encoding: 'utf8'});
-        return (data);
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-HTMLRoute = './welcome.html';
-const HTMLContent = readHTML(HTMLRoute);
 
 
 const data = {
@@ -25,7 +10,7 @@ const data = {
         "cc": "",
         "bcc": "",
         "subject": "Welcome!",
-        "html": "<h1>hello welcome</h1>"
+        "html": {path: './IAM/welcome.html'},
     },
     "isScheduled": "off",
     "timeToSend": "",
@@ -40,7 +25,7 @@ fetch('http://localhost:3000/api/mail/sendMail', {
 })
     .then((response) => response.json())
     .then((data) => {
-        console.log('Success:', data);
+        console.log('Success: Email was sent');
     })
     .catch((error) => {
         console.error('Error:', error);
