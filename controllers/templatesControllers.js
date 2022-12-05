@@ -13,6 +13,7 @@ function getAllTemplates(req, res) {
   try {
     res.json(templatesService.templatesList());
   } catch (err) {
+    console.log(err);
     return errorHandler(req, res);
   }
 }

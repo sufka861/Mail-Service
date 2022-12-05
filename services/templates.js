@@ -1,12 +1,10 @@
-const { readTemplates, writeTemplates } = require(`../DAL/templatesDAL`);
-const eventsEmitter = require("events");
-const { v4: uuidv4, validate: validId } = require("uuid");
+const {
+  readTemplates,
+  writeTemplates,
+  getAllTemplates,
+} = require(`../DAL/templatesDAL`);
 
-const events = {
-  CREATE: "template_create",
-  DELETE: "template_delete",
-  EDIT: `template_edit`,
-};
+const { v4: uuidv4, validate: validId } = require("uuid");
 
 const createTemplateObj = (name, creator, date, html) => {
   return {
@@ -56,8 +54,8 @@ function deleteTemplate(templateId) {
   writeTemplates({ templates: [...templates] });
 }
 
-function templatesList() {
-  return readTemplates();
+async function templatesList() {
+  return await getAllTemplates();
 }
 
 function findTemplateByID(tempID) {
