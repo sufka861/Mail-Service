@@ -1,21 +1,25 @@
 const {mailRouter} = require("../Routers/mailRouter");
 const {errorHandler} = require("../controllers/clientController");
 
-
+//DYNAMIC LOAD DATA OF EMAIL TO SEND
+const userEmail = "sufkarmon2@gmail.com";
+const subject = "Welcome!";
+const htmlPATH = {path: './IAM/welcome.html'}
 const data = {
     "mail": {
         "to": [
-            "sufkarmon2@gmail.com"
+            userEmail
         ],
         "cc": "",
         "bcc": "",
-        "subject": "Welcome!",
-        "html": {path: './IAM/welcome.html'},
+        "subject": subject,
+        "html": htmlPATH,
     },
     "isScheduled": "off",
     "timeToSend": "",
 }
 
+//FETCH FUNCTION NEEDS TO BE TRIGGERED BY REGISTRATION
 fetch('http://localhost:3000/api/mail/sendMail', {
     method: 'POST',
     headers: {
