@@ -49,10 +49,10 @@ function editTemplate(templateID, data) {
 }
 
 function deleteTemplate(templateId) {
+  console.log(templateId);
   const templates = readTemplates().filter((template) => {
     return template.template_id != templateId;
   });
-
   writeTemplates({ templates: [...templates] });
 }
 

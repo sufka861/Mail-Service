@@ -51,7 +51,6 @@ function sendMail(req, res) {
     const { mail, isScheduled, timeToSend } = req.body;
     newMail(mail, isScheduled, timeToSend);
     res.status(200);
-    res.send("New Template Saved");
   } catch (err) {
     return errorHandler(req, res);
   }
