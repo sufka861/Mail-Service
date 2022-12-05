@@ -21,7 +21,6 @@ let transporter = nodemailer.createTransport({
 ////****** SENDING EMAIL FUNCTION******
 async function sendMail(mailOptions) {
   Object.assign(mailOptions, { from: process.env.EMAIL_ADDRESS_ZOHO });
-  console.log(mailOptions);
   await transporter.sendMail(mailOptions, (error, info) => {
     if (error) console.log(error);
     else {
@@ -48,12 +47,9 @@ function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
     const timeArr = timeStr.split(":");
     const hour = timeArr[0];
     const minute = timeArr[1];
-    console.log(day, month, hour, minute);
     let wantedTime = `${minute} ${hour} ${day} ${month} *`;
 
     cron.schedule(wantedTime, function () {
-      console.log("---------------------");
-      console.log("Running Cron Process");
       //write to JSON of scheduled emails
       addToFutureEmails(mailOptions, scheduledTo);
       // Delivering mail with sendMail method
