@@ -1,19 +1,14 @@
-require('dotenv').config();
-const domain = `http://localhost:${process.env.PORT}`
+const domain = `http://localhost:3000`;
 
-module.exports = APIpaths = {
-    HTTP: {
-        emailsSent : domain + '/emailsSent',
-        scheduledEmails: domain + '/scheduledEmails',
-        numSentEmails: domain + '/numOfSentEmails',
-        numScheduledEmails: domain + '/numOfEmailsToSend',
-        allTemplates : domain + '/templates',
-        templateById: domain + '/template/id',
-        sendMail: domain + '/sendMail',
-        creatTemplate: domain + '/template',
-        editTemplate: domain + '/template/id',
-        deleteTemplate: domain +  '/template'
-    }
+export const APIpaths = {
+  emailsSent: domain + "/api/mail/emailsSent",
+  scheduledEmails: domain + "/api/mail/scheduledEmails",
+  numSentEmails: domain + "/api/mail/numOfSentEmails",
+  numScheduledEmails: domain + "/api/mail/numOfEmailsToSend",
+  allTemplates: domain + "/api/templates",
+  templateById: domain + "/api/templates",
+  sendMail: domain + "/api/mail/sendMail",
+  creatTemplate: domain + "/template",
+  editTemplate: domain + "/api/templates",
+  deleteTemplate: domain + "/api/templates",
 };
-
-

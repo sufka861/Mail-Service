@@ -1,3 +1,5 @@
+import { APIpaths } from "./APIpaths.js";
+
 const id = new URL(document.location).searchParams.get("id");
 window.onload = () => {
   if (id) {
@@ -25,7 +27,7 @@ function getDataFromForm(event) {
 async function editTemplate(event) {
   event.preventDefault();
   const editedTemp = getDataFromForm(event);
-  await fetch(`http://localhost:3000/template/id?id=${id}`, {
+  await fetch(APIpaths["editTemplate"] + `/${id}`, {
     method: "PUT",
     mode: "cors",
     headers: { Accept: `application/json` },
@@ -36,7 +38,7 @@ async function editTemplate(event) {
 }
 
 async function injectDataToForm() {
-  await fetch(`http://localhost:3000/template/id?id=${id}`, {
+  await fetch(APIpaths["templateById"] + `/${id}`, {
     method: "GET",
     mode: "cors",
     headers: { Accept: `application/json` },
@@ -52,7 +54,7 @@ async function injectDataToForm() {
 async function createTemplate(event) {
   event.preventDefault();
   const newTemp = getDataFromForm(event);
-  await fetch(`http://localhost:3000/template`, {
+  await fetch(APIpaths["creatTemplate"], {
     method: "POST",
     mode: "cors",
     headers: { Accept: `application/json` },

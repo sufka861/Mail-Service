@@ -1,3 +1,5 @@
+import { APIpaths } from "./APIpaths.js";
+
 const listDiv = document.getElementById("tempBoard");
 window.onload = () => {
   createTemplatesList().then(() => {
@@ -13,17 +15,10 @@ window.onload = () => {
       "click",
       () => (window.location = "http://localhost:3000/TemplatesForm.html")
     );
-
-  // setTimeout( () =>{
-  //
-  //     document.querySelectorAll('iframe').forEach((obj) => {
-  //     obj.contentWindow.document.body.style ='zoom: 0.4;';
-  // });
-  // }, 100);
 };
 
 async function createTemplatesList() {
-  const res = await fetch("http://localhost:3000/templates", {
+  const res = await fetch(APIpaths["allTemplates"], {
     method: "GET",
     mode: `cors`,
     headers: { Accept: `application/json` },
@@ -55,7 +50,7 @@ function addButtons(template) {
       `Are you sure you want to delete ${template.name} ?`
     );
     if (delTempConfirm) {
-      fetch("http://localhost:3000/template", {
+      fetch(APIpaths["deleteTemplate"], {
         method: "DELETE",
         mode: `cors`,
         headers: { Accept: `application/json` },
