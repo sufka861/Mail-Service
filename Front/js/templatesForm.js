@@ -19,8 +19,7 @@ window.onload = () => {
 function getDataFromForm(event) {
   const tempFormData = new FormData(event.target);
   console.log(tempFormData);
-  const data = Object.fromEntries(tempFormData.entries());
-  return data;
+  return Object.fromEntries(tempFormData.entries());
 }
 
 async function editTemplate(event) {
