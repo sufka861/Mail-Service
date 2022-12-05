@@ -48,13 +48,12 @@ function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
     const hour = timeArr[0];
     const minute = timeArr[1];
     let wantedTime = `${minute} ${hour} ${day} ${month} *`;
+    //write to JSON of scheduled emails that are not yet sent
+    const maildID =addToFutureEmails(mailOptions, scheduledTo);
 
     cron.schedule(wantedTime, function () {
-      //write to JSON of scheduled emails
-      addToFutureEmails(mailOptions, scheduledTo);
-      // Delivering mail with sendMail method
       sendMail(mailOptions);
-      //deleteFromFutureEmails();
+      deleteFromFutureEmails(maildID);  //delete the mail from the scheduled DB after it was allready sent and written in the sent emails DB
     });
   } else {
     sendMail(mailOptions);

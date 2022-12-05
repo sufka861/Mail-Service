@@ -34,6 +34,7 @@ function addToFutureEmails(mailOptions, timeToSend) {
             throw err;
         else
             console.log("email saved to emailsToSend.json");
+            return mailID;
     });
 }
 
