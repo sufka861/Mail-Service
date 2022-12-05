@@ -13,14 +13,15 @@ window.onload = () => {
     document
       .getElementById("tempForm")
       .addEventListener("submit", (event) =>
-        createTemplate(event).then(() => alert("Template Created!"))
+        createTemplate(event).then(
+          () => (window.location.href = "http://localhost:3000/Templates.html")
+        )
       );
   }
 };
 
 function getDataFromForm(event) {
   const tempFormData = new FormData(event.target);
-  console.log(tempFormData);
   return Object.fromEntries(tempFormData.entries());
 }
 
@@ -30,7 +31,8 @@ async function editTemplate(event) {
   await fetch(APIpaths["editTemplate"] + `/${id}`, {
     method: "PUT",
     mode: "cors",
-    headers: { Accept: `application/json` },
+    headers: { "Content-Type": `application/json` },
+    cache: "no-cache",
     body: JSON.stringify(editedTemp),
   }).then(
     () => (window.location.href = "http://localhost:3000/Templates.html")
@@ -57,12 +59,14 @@ async function createTemplate(event) {
   await fetch(APIpaths["creatTemplate"], {
     method: "POST",
     mode: "cors",
-    headers: { Accept: `application/json` },
+    headers: { "Content-Type": `application/json` },
+    cache: "no-cache",
     body: JSON.stringify(newTemp),
   }).then((res) => {
     if (res.status === 200) {
       alert(`New template: ${newTemp.name} created`);
-      window.location.href = "http://localhost:3000/Templates.html";
+    } else {
+      alert(`Unable to create new template`);
     }
   });
 }

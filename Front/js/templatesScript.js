@@ -1,6 +1,7 @@
 import { APIpaths } from "./APIpaths.js";
 
 const listDiv = document.getElementById("tempBoard");
+
 window.onload = () => {
   createTemplatesList().then(() => {
     const frames = document.getElementsByTagName("iframe");
@@ -53,13 +54,13 @@ function addButtons(template) {
       fetch(APIpaths["deleteTemplate"], {
         method: "DELETE",
         mode: `cors`,
-        headers: { Accept: `application/json` },
+        headers: { "Content-Type": `application/json` },
+        cache: "no-cache",
         body: JSON.stringify({ template_id: template.template_id }),
       }).then((response) => {
         if (response.status === 200)
           alert(`Template ${template.name} deleted successfully`);
         else alert(`${response.status} Error: couldn't delete template`);
-
         window.location.reload();
       });
     }

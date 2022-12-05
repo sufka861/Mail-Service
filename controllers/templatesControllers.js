@@ -42,6 +42,7 @@ function getTemplate(req, res) {
 
 function createTemplateHandler(req, res) {
   try {
+    console.log(req.body);
     templatesService.createTemplate(req.body);
     res.status(200);
     res.send("New Template Saved");
@@ -63,6 +64,7 @@ function editTemplateHandler(req, res) {
 
 function deleteTemplateHandler(req, res) {
   try {
+    console.log(req.body);
     templatesService.deleteTemplate(req.body.template_id);
     res.status(200);
     res.send("Template Deleted");

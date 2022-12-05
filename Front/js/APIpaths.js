@@ -8,7 +8,7 @@ export const APIpaths = {
   allTemplates: domain + "/api/templates",
   templateById: domain + "/api/templates",
   sendMail: domain + "/api/mail/sendMail",
-  creatTemplate: domain + "/template",
+  creatTemplate: domain + "/api/templates",
   editTemplate: domain + "/api/templates",
   deleteTemplate: domain + "/api/templates",
 };
