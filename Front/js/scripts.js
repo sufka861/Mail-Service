@@ -1,4 +1,3 @@
-
 function createTable(toArray, subjectArray, timeSentArray, bool) {
 
     if (bool == 1) {
@@ -137,11 +136,17 @@ function getTotaltoSendEmail() {
 }
 
 function postSend() {
+
     const formData = {
-        'to': $('input[name=to]').val(),
-        'cc': $('input[name=cc]').val(),
-        'bcc': $('input[name=Bcc]').val(),
-        'subject': $('input[name=subject]').val()
+        "mail": {
+            'to': $('input[name=to]').val(),
+            'cc': $('input[name=cc]').val(),
+            'bcc': $('input[name=Bcc]').val(),
+            'subject': $('input[name=subject]').val(),
+            'html': $('textarea#email_message').val(),
+        },
+        'isScheduled': $('input:checkbox:checked').val(),
+        'timeToSend': $("#date").val() + ", " + $("#time1").val(),
     };
     console.log(formData);
     $.ajax({

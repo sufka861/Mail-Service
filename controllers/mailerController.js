@@ -41,9 +41,8 @@ function sendMail(req, res) {
     req
         .on('data', data => mailData = JSON.parse(data.toString()))
         .on('end', () => {
-            // const {mail, isScheduled = false, timeToSend = ""} = mailData;
-            // newMail(mail, isScheduled, timeToSend);
-            newMail(mailData);
+            const {mail, isScheduled, timeToSend} = mailData;
+            newMail(mail, isScheduled, timeToSend);
             res.end();
         });
 }
