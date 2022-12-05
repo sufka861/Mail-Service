@@ -6,8 +6,8 @@ function createTable(toArray, subjectArray, timeSentArray, bool) {
         var mytable = "<table class='table table-striped'> <thead> <tr> <th scope='row'>To</th> <th scope='row'>Subject</th><th scope='row'>timeSent</th></tr></thead><tbody>";
 
     }
-
-    for (let i = 0; i < subjectArray.length; i++) {
+    let num = subjectArray.length;
+    for (let i = 0; i < num; i++) {
         console.log(subjectArray[i]);
         mytable += "<tr>";
         mytable += "<th scope='row'>" + toArray[i] + "</th>";
@@ -110,15 +110,7 @@ function getTotalSentEmail() {
         type: 'GET',
         success: function (totalNum) {
             console.log(totalNum);
-            // var total =
-            //     <section id="total">
-            //         <h5 >totalNum:
-            //         </h5>
-            //         <!--                                            id="total"-->
-            //     </section> ;
-            document.getElementById("total").innerHTML = total;
-
-
+            document.getElementById("total").innerHTML = totalNum;
         },
         error: function () {
             alert('Error - get - emails');
@@ -133,8 +125,7 @@ function getTotaltoSendEmail() {
         type: 'GET',
         success: function (totalNum) {
             console.log(totalNum);
-            document.getElementById("total").innerHTML = total;
-
+            document.getElementById("total").innerHTML = totalNum;
 
         },
         error: function () {
@@ -178,29 +169,28 @@ function getAllTemplates() {
     $.ajax({
         url: 'http://localhost:3000/templates',
         type: 'GET',
-        success: function (templates) {
+        success: function (templates){
             console.log(templates);
             let IdArray = [];
             let nameArray = [];
             let htmlArray = [];
-            // let templatesArray =[];
-            // templatesArray.push(templates);
-            for (let i = 0; i < templates.length; i++) {
-                localStorage.setItem(i, JSON.stringify(templates[i].template_id));
+        let templateBox = "<li className =`list-group-item list-group-item-primary` ";
+        for (let i = 0; i < templates.length; i++) {
+            let name = templates[i].name;
+            templateBox+= '<li className =`list-group-item list-group-item-primary` '+'(<a onclick=getTemplateByID('+`${[i]}`+')> '+ `${name}` +' </a></li>';
+
                 nameArray.push(templates[i].name);
                 IdArray.push(templates[i].template_id);
-                htmlArray.push(templates[i].html);
 
             }
+            document.getElementById("templateBox").innerHTML = templateBox;
+
             console.log(nameArray);
             console.log(IdArray);
             console.log(htmlArray);
-
-            createTemplateTable(nameArray, IdArray, htmlArray)
         },
         error: function () {
             alert('Error - get -  Templates');
-            // top.location.href="404.html";
         }
     });
 }
@@ -229,59 +219,29 @@ function getTemplateByID(num) {
         },
         error: function () {
             console.log('Error - get -  TemplatesBYID');
-            // top.location.href="404.html";
         }
     });
 }
 
 
-function DeleteByID(num) {
-    console.log(num);
-    let id = localStorage.getItem(num);
-    let id2 = JSON.stringify(id);
-    let id3 = JSON.parse(id2);
-    let id4 = id.replace('"', '');
-    let id5 = id4.replace('"', '');
-    let data = {
-        "template_id": id5
-    }
 
-    console.log("the id is", id5);
-
-
-    $.ajax({
-        url: 'http://localhost:3000/template',
-        type: 'DELETE',
-        data: (JSON.stringify(data)),
-        success: function (template) {
-            console.log(template);
-            console.log(template.name);
-            console.log(template.html);
-            let html = template.html;
-            document.getElementById("email_message").innerHTML = html;
-            location.reload();
-        },
-        error: function (error) {
-            console.log(error);
-        }
+function clickTemplate() {
+    $(document).on('click', '#template', function (e) {
+        e.preventDefault();
+        alert("herrre");
     });
 }
 
-function createTemplateTable(nameArray, IdArray, htmlArray) {
-    var mytable = "<table class='table table-striped'> <thead> <tr> <th scope='row'>NUM</th> <th scope='row'>ID</th> <th scope='row'>Name</th><th scope='row'>Body</th></tr></thead><tbody>";
+
+function createTemplateTable(nameArray,IdArray,htmlArray){
+
     console.log(nameArray.length);
-    for (let i = 0; i < nameArray.length; i++) {
+    for (let i=0; i<nameArray.length; i++) {
         mytable += "<tr>";
-
-        mytable += "<th scope='row'>" +
-            "<button onclick='getTemplateByID(" + `${[i]}` + ")'" + "class=button>Add Template</button>" +
-            "<button onclick='DeleteByID(" + `${[i]}` + ")'" + "class=button>Delete Template</button>" +
-            "<button onclick='edit()'" + "class=button>Edit Template</button>"
-        {/* mytable += "<th scope='row'><div id=list-items><a href=#> Hindi </a><a href=#> English </a><a href=#> Spanish </a> <a href=#> Chinese </a> <a href=#> Japanese </a> </div><button id="+ `${i}`+">" + "</th>"; */
-        }
-
-        {
-        }
+        mytable += "<th scope='row'>"+
+            "<button onclick='getTemplateByID("+`${[i]}`+")'"+ "class=button>Add Template</button>"+
+            "<button onclick='DeleteByID("+`${[i]}`+")'"+"class=button>Delete Template</button>"+
+            "<button onclick='edit()'"+ "class=button>Edit Template</button>"
         mytable += "<th scope='row'>" + IdArray[i] + "</th>";
         mytable += "<td>" + nameArray[i] + "</td>";
         mytable += "<td>" + htmlArray[i] + "</td>";
@@ -293,15 +253,41 @@ function createTemplateTable(nameArray, IdArray, htmlArray) {
 
 }
 
-function clickTemplate() {
-    $(document).on('click', '#template', function (e) {
-        e.preventDefault();
-        alert("herrre");
+function getTotalnumTemplate() {
+    $.ajax({
+        url: 'http://localhost:3000/templates/num',
+        type: 'GET',
+        success: function (totalNum) {
+            console.log(totalNum);
+            document.getElementById("total").innerHTML = totalNum;
+
+
+        },
+        error: function () {
+            alert('Error - get - emails');
+            top.location.href = "404.html";
+        }
     });
 }
 
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        document.getElementById("myCheck").onchange = toggleBilling;
 
+    },
+    false
+);
 
+function toggleBilling() {
+    const billingItems = document.querySelectorAll('#billing input[type="time"]');
+    const Item2 = document.querySelectorAll('#billing input[type="date"]');
 
+    billingItems.forEach((item) => {
+        item.disabled = !item.disabled;
 
-
+    });
+    Item2.forEach((item) => {
+        item.disabled = !item.disabled;
+    });
+}
