@@ -1,6 +1,7 @@
 const cron = require("node-cron");
 const nodemailer = require("nodemailer");
 const { schedule } = require("node-cron");
+const { v4: uuidv4, validate: validId } = require("uuid");
 require("dotenv").config();
 const {
   addToSentJason,
@@ -21,17 +22,17 @@ let transporter = nodemailer.createTransport({
 ////****** SENDING EMAIL FUNCTION******
 async function sendMail(mailOptions) {
   Object.assign(mailOptions, { from: process.env.EMAIL_ADDRESS_ZOHO });
-  await transporter.sendMail(mailOptions, (error, info) => {
+  await transporter.sendMail(mailOptions, async (error, info) => {
     if (error) console.log(error);
     else {
       console.log("Email sent: " + info.response);
       //CALL TO write to sentEmail json file
-      addToSentJason(mailOptions);
+      await addToSentJason(mailOptions);
     }
   });
 }
 
-function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
+async function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
   if (isScheduled == "on") {
     // BREAK DOWN TO WANTED TIME
     const dateTimeArr = scheduledTo.split(",");
@@ -49,14 +50,17 @@ function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
     const minute = timeArr[1];
     let wantedTime = `${minute} ${hour} ${day} ${month} *`;
     //write to JSON of scheduled emails that are not yet sent
-    const maildID =addToFutureEmails(mailOptions, scheduledTo);
+    const timeObj = { timeToSend: scheduledTo };
+    Object.assign(mailOptions, timeObj, { id: uuidv4() });
+    await addToFutureEmails(mailOptions);
 
-    cron.schedule(wantedTime, function () {
-      sendMail(mailOptions);
-      deleteFromFutureEmails(maildID);  //delete the mail from the scheduled DB after it was allready sent and written in the sent emails DB
+    await cron.schedule(wantedTime, async function () {
+      await sendMail(mailOptions).then(async () => {
+        await deleteFromFutureEmails(mailOptions.id);
+      }); //delete the mail from the scheduled DB after it was allready sent and written in the sent emails DB
     });
   } else {
-    sendMail(mailOptions);
+    await sendMail(mailOptions);
   }
 }
 
