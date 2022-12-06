@@ -2,12 +2,12 @@ const { newMail } = require("../services/mailer");
 const mailService = require("../DAL/emailsDAL");
 const { errorHandler } = require("./clientController");
 
-function getEmails(req, res) {
+async function getEmails(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   res.status(200);
   try {
-    res.json(mailService.getAllSentEmails());
+    res.json(await mailService.getAllSentEmails());
   } catch (err) {
     return errorHandler(req, res);
   }
