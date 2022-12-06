@@ -66,7 +66,6 @@ export function createTable(toArray, subjectArray, timeSentArray, bool) {
   }
   let num = subjectArray.length;
   for (let i = 0; i < num; i++) {
-    console.log(subjectArray[i]);
     mytable += "<tr>";
     mytable += "<th scope='row'>" + toArray[i] + "</th>";
     mytable += "<td>" + subjectArray[i] + "</td>";

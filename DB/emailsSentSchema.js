@@ -8,7 +8,7 @@ const emailsSentSchema = new Schema(
     subject: { type: String },
     html: { type: String },
     from: { type: String },
-    timeSent: { type: Date },
+    timeSent: { type: String },
   },
   {
     collection: "emailsSent",

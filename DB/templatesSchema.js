@@ -6,7 +6,7 @@ const templateSchema = new Schema(
     template_id: { type: String, index: 1, required: true },
     name: { type: String },
     creator: { type: String },
-    date: { type: Date },
+    date: { type: String },
     html: { type: String },
   },
   {

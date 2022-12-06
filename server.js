@@ -13,7 +13,7 @@ connect(process.env.MONGO_URI, {
   .catch((err) => console.log(err));
 
 connection.on("connected", () => {
-  console.log("conncection made");
+  console.log("connection made");
 });
 
 const { templatesRouter } = require("./Routers/templatesRouter");
