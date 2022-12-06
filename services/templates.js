@@ -1,67 +1,37 @@
-const { readTemplates, writeTemplates } = require(`../DAL/templatesDAL`);
-const eventsEmitter = require("events");
+const templatesDAL = require(`../DAL/templatesDAL`);
+
 const { v4: uuidv4, validate: validId } = require("uuid");
 
-const events = {
-  CREATE: "template_create",
-  DELETE: "template_delete",
-  EDIT: `template_edit`,
-};
-
-const createTemplateObj = (name, creator, date, html) => {
+const createTemplateObj = (newTemplate) => {
   return {
     template_id: uuidv4(),
-    name: name,
-    creator: creator,
-    date: date,
-    html: html,
+    name: newTemplate.name,
+    creator: newTemplate.creator,
+    date: new Date().toLocaleString(),
+    html: newTemplate.html,
   };
 };
 
-function createTemplate(data) {
-  const { name, creator, html } = data;
-  const template = createTemplateObj(
-    name,
-    creator,
-    new Date().toLocaleString(),
-    html
-  );
-  const templatesFile = readTemplates();
-  const updatedTemplateFile = {
-    templates: [...templatesFile, template],
-  };
-  writeTemplates(updatedTemplateFile);
+async function createTemplate(template) {
+  const newTemplate = createTemplateObj(template);
+  const res = await templatesDAL.saveTemplate(newTemplate);
+  if (!res) throw "Couldn't load new template to DB";
 }
 
-function editTemplate(templateID, data) {
-  const { name = "", creator = "", html = "" } = data;
-  const templates = readTemplates();
-  templates.forEach(function (obj) {
-    if (obj.template_id == templateID) {
-      if (name) obj.name = name;
-      if (creator) obj.creator = creator;
-      if (html) obj.html = html;
-    }
-    obj.date = new Date().toLocaleString();
-  });
-
-  writeTemplates({ templates: [...templates] });
+async function editTemplate(templateID, editedTemp) {
+  await templatesDAL.updateTemplate(templateID, editedTemp);
 }
 
-function deleteTemplate(templateId) {
-  console.log(templateId);
-  const templates = readTemplates().filter((template) => {
-    return template.template_id != templateId;
-  });
-  writeTemplates({ templates: [...templates] });
+async function deleteTemplate(templateId) {
+  await templatesDAL.deleteTemplateDB(templateId);
 }
 
-function templatesList() {
-  return readTemplates();
+async function templatesList() {
+  return await templatesDAL.getAllTemplates();
 }
 
-function findTemplateByID(tempID) {
-  return templatesList().find((temp) => temp.template_id == tempID);
+async function findTemplateByID(tempID) {
+  return await templatesDAL.getTemplateById(tempID);
 }
 
 module.exports = {
