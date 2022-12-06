@@ -11,25 +11,21 @@ function getSentEmail() {
     url: APIpaths["emailsSent"],
     type: "GET",
     success: function (emails) {
-      console.log(emails);
-      console.log(typeof emails.emails);
-      console.log(emails.emails[0].from);
-
       let to = [];
       let subject = [];
       let timeSent = [];
       const bool = 0;
 
-      for (let i = 0; i < emails.emails.length; i++) {
-        if (emails.emails[i].to.length >= 0) {
-          for (let j = 0; j < emails.emails[i].to.length; j++) {
-            to.push(emails.emails[i].to[j]);
-          }
-        }
+      emails.forEach((email) => {
+        console.log(email);
+        email.to.forEach((address) => {
+          console.log(address);
+          to.push(address);
+        });
+        subject.push(email.subject);
+        timeSent.push(email.timeSent);
+      });
 
-        subject.push(emails.emails[i].subject);
-        timeSent.push(emails.emails[i].timeSent);
-      }
       createTable(to, subject, timeSent, bool);
     },
     error: function () {
