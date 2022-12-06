@@ -11,6 +11,7 @@ mailRouter.get('/numOfEmailsToSend', mailController.totalEmailsToSend);
 // ************** POST method routing ********************* //
 
 mailRouter.post('/sendMail', mailController.sendMail);
+mailRouter.post('/sendeEmailAfterTime', mailController.sendEmailAftertime)
 
 module.exports = {
     mailRouter

@@ -5,7 +5,11 @@ const app = express();
 const { templatesRouter } = require("./Routers/templatesRouter");
 const { clientRouter } = require("./Routers/clientRouter");
 const { mailRouter } = require("./Routers/mailRouter");
+const morgan = require('morgan')
 
+
+
+app.use(morgan("dev"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,4 +1,4 @@
-const { newMail } = require("../services/mailer");
+const { newMail , sendMailAfterTime } = require("../services/mailer");
 const mailService = require("../DAL/emailsDAL");
 const { errorHandler } = require("./clientController");
 
@@ -56,10 +56,34 @@ function sendMail(req, res) {
   }
 }
 
+
+// send email after 10 minite if user does not complete the registeration prosses
+function sendEmailAftertime(req, res) {
+
+  let mailDetails = {
+      from: 'mohamadaboria116@gmail.com',
+      to: 'mohamadaboria116@gmail.com',
+      subject: 'Error Registraction',
+      html:`<h1>sorry you  are not complete the registraction process</h1>`
+  };
+
+  let mailData;
+  let isCompleted = false
+  req
+      .on('data', data => mailData = JSON.parse(data.toString()))
+      .on('end', () => {
+         
+          sendMailAfterTime(mailDetails, isCompleted);
+          res.send(`<h1>Send Email Successfully </h1>`);
+      });
+}
+
+
 module.exports = {
   getEmails,
   getScheduledEmails,
   totalSentEmails,
   totalEmailsToSend,
   sendMail,
+  sendEmailAftertime
 };
