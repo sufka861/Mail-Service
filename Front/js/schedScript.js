@@ -11,26 +11,20 @@ function getScheduledEmails() {
     url: APIpaths["scheduledEmails"],
     type: "GET",
     success: function (emails) {
-      console.log(emails);
-      console.log(typeof emails.emails);
-      console.log(emails.emails[0].from);
-
       let to = [];
       let subject = [];
       let timeToSend = [];
       const bool = 1;
-      for (let i = 0; i < emails.emails.length; i++) {
-        if (emails.emails[i].to.length >= 0) {
-          for (let j = 0; j < emails.emails[i].to.length; j++) {
-            to.push(emails.emails[i].to[j]);
+      for (let i = 0; i < emails.length; i++) {
+        if (emails[i].to.length >= 0) {
+          for (let j = 0; j < emails[i].to.length; j++) {
+            to.push(emails[i].to[j]);
           }
         }
-        subject.push(emails.emails[i].subject);
-        timeToSend.push(emails.emails[i].timeToSend);
+        subject.push(emails[i].subject);
+        timeToSend.push(emails[i].timeToSend);
       }
-      console.log(to);
-      console.log(subject);
-      console.log(timeToSend);
+
       createTable(to, subject, timeToSend, bool);
     },
     error: function () {
@@ -45,7 +39,6 @@ function getTotaltoSendEmail() {
     url: APIpaths["numScheduledEmails"],
     type: "GET",
     success: function (totalNum) {
-      console.log(totalNum);
       document.getElementById("total").innerHTML = totalNum;
     },
     error: function () {

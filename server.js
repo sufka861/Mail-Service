@@ -2,6 +2,21 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+
+const { connect, connection, mongoose } = require("mongoose");
+mongoose.set('strictQuery', true);
+
+connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("Connected!"))
+  .catch((err) => console.log(err));
+
+connection.on("connected", () => {
+  console.log("connection made");
+});
+
 const { templatesRouter } = require("./Routers/templatesRouter");
 const { clientRouter } = require("./Routers/clientRouter");
 const { mailRouter } = require("./Routers/mailRouter");

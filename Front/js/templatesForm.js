@@ -8,7 +8,7 @@ window.onload = () => {
       .addEventListener("submit", (event) =>
         editTemplate(event).then(() => alert("Template Edited!"))
       );
-    injectDataToForm();
+    injectDataToForm().next();
   } else {
     document
       .getElementById("tempForm")
@@ -56,7 +56,7 @@ async function injectDataToForm() {
 async function createTemplate(event) {
   event.preventDefault();
   const newTemp = getDataFromForm(event);
-  await fetch(APIpaths["creatTemplate"], {
+  await fetch(APIpaths["createTemplate"], {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": `application/json` },

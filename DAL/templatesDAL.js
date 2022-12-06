@@ -1,21 +1,33 @@
-const {paths} = require(`../DB/config`);
-const fs = require('fs');
-const path = require(`node:path`)
+const { paths } = require(`../DB/config`);
+const fs = require("fs");
+const path = require(`node:path`);
+const { Template } = require("../DB/templatesSchema");
 
-function writeTemplates(templates) {
-    fs.writeFile(path.join(process.cwd(), paths.templatesJasonPath), JSON.stringify(templates), `utf8`, err => {
-        if (err) throw err;
-        console.log(`File Updated`);
-    });
-
+async function saveTemplate(newTemplate) {
+  const templateToSave = new Template(newTemplate);
+  return await templateToSave.save();
 }
 
-function readTemplates() {
-    const templatesFile = require(path.join(process.cwd(), paths.templatesJasonPath));
-    return templatesFile.templates;
+async function getAllTemplates() {
+  return Template.find({});
+}
+
+async function getTemplateById(templateID) {
+  return Template.findOne({ template_id: templateID });
+}
+
+async function deleteTemplateDB(templateID) {
+  await Template.deleteOne({ template_id: templateID });
+}
+
+async function updateTemplate(templateID, editedTemp) {
+  await Template.updateOne({ template_id: templateID }, editedTemp);
 }
 
 module.exports = {
-    writeTemplates,
-    readTemplates
-}
+  getAllTemplates,
+  getTemplateById,
+  deleteTemplateDB,
+  updateTemplate,
+  saveTemplate,
+};
