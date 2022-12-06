@@ -2,23 +2,16 @@ const {mailRouter} = require("../Routers/mailRouter");
 // ^^^ TO BE DELETED WHEN USED BY THE IAM GROUP
 
 
-//emailAddress : string
-//emailSubject : string
-//emailHtmlPATH : : object {path: './IAM/welcome.html'}
 function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
-    //DYNAMIC LOAD DATA OF EMAIL TO SEND
-    const userEmail = emailAddress;
-    const subject = emailSubject;
-    const htmlPATH = emailHtmlPATH
     const data = {
         "mail": {
             "to": [
-                userEmail
+                emailAddress
             ],
             "cc": "",
             "bcc": "",
-            "subject": subject,
-            "html": htmlPATH,
+            "subject": emailSubject,
+            "html": emailHtmlPATH,
         },
         "isScheduled": "off",
         "timeToSend": "",
@@ -45,9 +38,18 @@ module.exports = {
     sendMail,
 };
 
-////EXAMPLE CALL TO SENDMAIL: *****************************
+//EXAMPLE CALL TO SENDMAIL: *****************************
+//emailAddress : string
+//emailSubject : string
+//emailHtmlPATH : : object {path: './IAM/welcome.html'}
+
+const mailer = require("/mailerAPI.js") //or the rellevant path
 const emailAddress = "sufkarmon2@gmail.com"
 const emailSubject = "Welcome!"
 const emailHtmlPATH = {path: './IAM/welcome.html'}
-sendMail(emailAddress, emailSubject, emailHtmlPATH);
-//// ********************************************************
+
+mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
+// ********************************************************
+
+
+
