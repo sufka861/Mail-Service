@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { validate } = require("uuid");
 
 const templateSchema = new Schema(
   {
@@ -12,6 +13,8 @@ const templateSchema = new Schema(
     collection: "templates",
   }
 );
+
+templateSchema.path("template_id").validate((id) => validate(id));
 
 const Template = model("template", templateSchema);
 module.exports = { Template };
