@@ -1,7 +1,10 @@
 const {mailRouter} = require("../Routers/mailRouter");
-const {errorHandler} = require("../controllers/clientController");
+// ^^^ TO BE DELETED WHEN USED BY THE IAM GROUP
 
 
+//emailAddress : string
+//emailSubject : string
+//emailHtmlPATH : : object {path: './IAM/welcome.html'}
 function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
     //DYNAMIC LOAD DATA OF EMAIL TO SEND
     const userEmail = emailAddress;
@@ -21,7 +24,7 @@ function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
         "timeToSend": "",
     }
 
-//FETCH FUNCTION NEEDS TO BE TRIGGERED BY REGISTRATION
+// API DOMAIN NEEDS TO BE CHANGED TO RENDER DOMAIN WHEN USED BY THE IAM GROUP
     fetch('http://localhost:3000/api/mail/sendMail', {
         method: 'POST',
         headers: {
@@ -38,10 +41,13 @@ function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
         });
 }
 
-const EventEmitter = require('events');
-var eventEmitter = new EventEmitter();
-eventEmitter.on('register', sendMail);
+module.exports = {
+    sendMail,
+};
 
-// Triggering myEvent
-eventEmitter.emit('register', "sufkarmon2@gmail.com", "Welcome!", {path: './IAM/welcome.html'});
-
+////EXAMPLE CALL TO SENDMAIL: *****************************
+const emailAddress = "sufkarmon2@gmail.com"
+const emailSubject = "Welcome!"
+const emailHtmlPATH = {path: './IAM/welcome.html'}
+sendMail(emailAddress, emailSubject, emailHtmlPATH);
+//// ********************************************************
