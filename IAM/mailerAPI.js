@@ -1,8 +1,9 @@
 // const {mailRouter} = require("../Routers/mailRouter");
 // ^^^ TO BE DELETED WHEN USED BY THE IAM GROUP
 
-//API code from Growth Team:
-// file: mailerAPI.js
+//API code from Growth Team: This code is to be implemented where a diiferent team would like to use
+//our API to send out emails
+// file name: mailerAPI.js
 function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
     const data = {
         "mail": {
