@@ -14,7 +14,7 @@ window.onload = () => {
     .getElementById("createNewTemp")
     .addEventListener(
       "click",
-      () => (window.location = "http://localhost:3000/TemplatesForm.html")
+      () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
     );
 };
 
@@ -67,7 +67,7 @@ function addButtons(template) {
   });
   const edit = document.createElement("a");
   edit.classList.add("btn", "btn-warning", "btn-sm", "mg");
-  edit.href = `http://localhost:3000/TemplatesForm.html?id=${template.template_id}`;
+  edit.href = `https://mail-service-69zm.onrender.com/TemplatesForm.html?id=${template.template_id}`;
   edit.innerHTML = "Edit";
 
   const btnsDiv = document.createElement("div");
