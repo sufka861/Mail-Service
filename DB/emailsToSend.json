@@ -1,16 +1,1 @@
-{
-  "emails": [
-    {
-      "from": "dcs-growth dcs-growth@outlook.com",
-      "to": [
-        "sufkarmon2@gmail.com"
-      ],
-      "cc": "",
-      "bcc": "",
-      "subject": "Email from Node-App: A Test Message!",
-      "html": "<h1>blah blah blah</h1>",
-      "timeToSend": "24.11.2022, 11:23:42",
-      "id": "62d58269-c5b5-47d7-923e-f37412af232b"
-    }
-  ]
-}
+{"emails":[{"from":"dcs-growth dcs-growth@outlook.com","to":["sufkarmon2@gmail.com"],"cc":"","bcc":"","subject":"Email from Node-App: A Test Message!","html":"<h1>blah blah blah</h1>","timeToSend":"24.11.2022, 11:23:42","id":"62d58269-c5b5-47d7-923e-f37412af232b"},{"to":"sufkarmon2@gmail.com","cc":"","bcc":"","subject":"asdfas","html":"asdfd","timeToSend":"2022-12-03, 18:58","id":"ba54a16b-9214-4662-b8a1-fe0740af6ef7"},{"to":"peerfikhman@gmail.com","cc":"","bcc":"","subject":"check","html":"","timeToSend":"2022-12-06, 15:51","id":"f7ca4947-df83-4d8d-b0cf-f92a51a1eeb8"},{"to":"peerfikhman@gmail.com","cc":"","bcc":"","subject":"check","html":"","timeToSend":"2022-12-06, 15:55","id":"e5fe8f97-5a74-4f4e-a2a6-d8f4c93d6238"}]}

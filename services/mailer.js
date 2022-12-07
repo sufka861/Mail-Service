@@ -1,65 +1,70 @@
-const cron = require('node-cron');
-const nodemailer = require('nodemailer');
-const {schedule} = require("node-cron");
-require('dotenv').config();
-const {addToSentJason, addToFutureEmails, deleteFromFutureEmails} = require("../DAL/emailsDAL");
-
+const cron = require("node-cron");
+const nodemailer = require("nodemailer");
+const { schedule } = require("node-cron");
+const { v4: uuidv4, validate: validId } = require("uuid");
+require("dotenv").config();
+const {
+  addToSentJason,
+  addToFutureEmails,
+  deleteFromFutureEmails,
+} = require("../DAL/emailsDAL");
 
 let transporter = nodemailer.createTransport({
-     host: 'zohomail.com',
-    // port: process.env.PORT,
-    service: 'Zoho',
-    //service: 'outlook',
-    auth: {
-        user: `${process.env.EMAIL_ADDRESS_ZOHO}`,
-        pass: `${process.env.EMAIL_PASS}`,
-    },
-    secureConnection: false,
+  host: "zohomail.com",
+  service: "Zoho",
+  auth: {
+    user: `${process.env.EMAIL_ADDRESS_ZOHO}`,
+    pass: `${process.env.EMAIL_PASS}`,
+  },
+  secureConnection: false,
 });
 
 ////****** SENDING EMAIL FUNCTION******
 async function sendMail(mailOptions) {
-    Object.assign(mailOptions, {"from": process.env.EMAIL_ADDRESS_ZOHO});
-    console.log(mailOptions);
-    await transporter.sendMail(mailOptions, (error, info) => {
-        if (error) console.log(error);
-        else
-        {
-            console.log('Email sent: ' + info.response);
-            //CALL TO write to sentEmail json file
-            addToSentJason(mailOptions);
-        }
-    });
-
-    // addToSentJason(mailOptions);
-
-    //const timeToSend = {timeToSend: new Date().toLocaleString()};
-    //deleteFromFutureEmails("60580934-f9c3-4d3b-afc2-36dfd7117903");
+  Object.assign(mailOptions, { from: process.env.EMAIL_ADDRESS_ZOHO });
+  await transporter.sendMail(mailOptions, async (error, info) => {
+    if (error) console.log(error);
+    else {
+      console.log("Email sent: " + info.response);
+      //CALL TO write to sentEmail json file
+      await addToSentJason(mailOptions);
+    }
+  });
 }
 
+async function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
+  if (isScheduled == "on") {
+    // BREAK DOWN TO WANTED TIME
+    const dateTimeArr = scheduledTo.split(",");
+    let dateStr = dateTimeArr[0];
+    dateStr = dateStr.split("-");
+    const month = dateStr[1];
+    const day = dateStr[2];
+    // const date = new Date(scheduledTo);
+    // const day = date.getDay();
+    // const month = date.getMonth();
 
-function newMail(mailOptions, isScheduled = false, scheduledTo = "") {
-    if (isScheduled == true) {
-        //$$$$$ BREAK DOWN TO WANTED TIME $$$$$$
+    const timeStr = dateTimeArr[1];
+    const timeArr = timeStr.split(":");
+    const hour = timeArr[0];
+    const minute = timeArr[1];
+    let wantedTime = `${minute} ${hour} ${day} ${month} *`;
+    //write to JSON of scheduled emails that are not yet sent
+    const timeObj = { timeToSend: scheduledTo };
+    Object.assign(mailOptions, timeObj, { id: uuidv4() });
+    await addToFutureEmails(mailOptions);
 
-        let minute = "", hour = "", date = "", month = "";
-        let wantedTime = `${minute} ${hour} ${date} ${month} *`;
-
-        cron.schedule(wantedTime, function () {
-            console.log('---------------------');
-            console.log('Running Cron Process');
-            //write to JSON of scheduled emails
-            addToFutureEmails(mailOptions, scheduledTo);
-            // Delivering mail with sendMail method
-            sendMail(mailOptions);
-            //deleteFromFutureEmails();
-        });
-    } else {
-        sendMail(mailOptions);
-    }
+    await cron.schedule(wantedTime, async function () {
+      await sendMail(mailOptions).then(async () => {
+        await deleteFromFutureEmails(mailOptions.id);
+      }); //delete the mail from the scheduled DB after it was allready sent and written in the sent emails DB
+    });
+  } else {
+    await sendMail(mailOptions);
+  }
 }
 
 module.exports = {
-    newMail,
-    // mailOptions
-}
+  newMail,
+  // mailOptions
+};

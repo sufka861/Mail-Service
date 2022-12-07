@@ -1,6 +1,32 @@
-let http = require('http');
-const routes = require(`./router`);
-require('dotenv').config();
+//************* Express Server ************//
+require("dotenv").config();
+const express = require("express");
+const app = express();
 
-http.createServer(routes).listen(process.env.PORT);
-console.log("server running on port 3000");
+const { connect, connection, mongoose } = require("mongoose");
+mongoose.set('strictQuery', true);
+
+connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log("Connected!"))
+  .catch((err) => console.log(err));
+
+connection.on("connected", () => {
+  console.log("connection made");
+});
+
+const { templatesRouter } = require("./Routers/templatesRouter");
+const { clientRouter } = require("./Routers/clientRouter");
+const { mailRouter } = require("./Routers/mailRouter");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/templates", templatesRouter);
+app.use("/api/mail", mailRouter);
+app.use("/", clientRouter);
+
+app.listen(process.env.PORT);
+console.log(`listening to port ${process.env.PORT}`);

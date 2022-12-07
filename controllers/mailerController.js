@@ -1,58 +1,65 @@
-const cron = require("node-cron");
-const {newMail} = require("../services/mailer");
-const {getAllSentEmails, getAllFutureEmails, getNumOfSentEmails, getNumOfEmailsToSend} = require("../DAL/emailsDAL");
+const { newMail } = require("../services/mailer");
+const mailService = require("../DAL/emailsDAL");
+const { errorHandler } = require("./clientController");
 
-function getEmails(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', 'application/json');
-    res.writeHeader(200);
-    console.log(JSON.stringify(getAllSentEmails()));
-    res.end(JSON.stringify(getAllSentEmails()));
+async function getEmails(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "application/json");
+  res.status(200);
+  try {
+    res.json(await mailService.getAllSentEmails());
+  } catch (err) {
+    return errorHandler(req, res);
+  }
 }
 
-function getScheduledEmails(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', 'application/json');
-    res.writeHeader(200);
-    console.log(JSON.stringify(getAllFutureEmails()));
-    res.end(JSON.stringify(getAllFutureEmails()));
+async function getScheduledEmails(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "application/json");
+  res.status(200);
+  try {
+    res.json(await mailService.getAllFutureEmails());
+  } catch (err) {
+    return errorHandler(req, res);
+  }
 }
 
-function totalSentEmails(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', ' text/plain');
-    res.writeHeader(200);
-    console.log(`num of sent emails: ${getNumOfSentEmails()}`);
-    res.end(`${getNumOfSentEmails()}`);
+async function totalSentEmails(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", " text/plain");
+  res.status(200);
+  try {
+    res.send(`${await mailService.getNumOfSentEmails()}`);
+  } catch (err) {
+    return errorHandler(req, res);
+  }
 }
 
-function totalEmailsToSend(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', ' text/plain');
-    res.writeHeader(200);
-    console.log(`num of emails to send: ${getNumOfEmailsToSend()}`);
-    res.end(`${getNumOfEmailsToSend()}`);
+async function totalEmailsToSend(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", " text/plain");
+  res.status(200);
+  try {
+    res.send(`${await mailService.getNumOfEmailsToSend()}`);
+  } catch (err) {
+    return errorHandler(req, res);
+  }
 }
 
-function sendMail(req, res) {
-    //console.log(req.url);
-    let mailData;
-    // debugger;
-    req
-        .on('data', data => mailData = JSON.parse(data.toString()))
-        .on('end', () => {
-            // const {mail, isScheduled = false, timeToSend = ""} = mailData;
-            // newMail(mail, isScheduled, timeToSend);
-            newMail(mailData);
-            res.end();
-        });
+async function sendMail(req, res) {
+  try {
+    const { mail, isScheduled, timeToSend } = req.body;
+    await newMail(mail, isScheduled, timeToSend);
+    res.status(200);
+  } catch (err) {
+    return errorHandler(req, res);
+  }
 }
-
 
 module.exports = {
-    getEmails,
-    getScheduledEmails,
-    totalSentEmails,
-    totalEmailsToSend,
-    sendMail,
-}
+  getEmails,
+  getScheduledEmails,
+  totalSentEmails,
+  totalEmailsToSend,
+  sendMail,
+};

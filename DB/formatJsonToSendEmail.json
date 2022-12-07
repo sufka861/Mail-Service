@@ -1,4 +1,5 @@
 {
+  "mail": {
     "to": [
       "peerfikhman@gmail.com"
     ],
@@ -6,4 +7,7 @@
     "bcc": "",
     "subject": "Email from Node-App: A Test Message!",
     "html": "<h1>let go to the culi</h1>"
+  },
+  "isScheduled": false,
+  "timeToSend": "2022-12-04, 1930"
 }

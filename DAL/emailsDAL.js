@@ -1,84 +1,48 @@
-const path = require(`node:path`)
-const {paths} = require(`../DB/config`);
-const fs = require('fs');
-const {v4: uuidv4} = require('uuid');
+const { emailSent } = require("../DB/emailsSentSchema");
+const { FutureEmail } = require("../DB/futureEmailsSchema");
 
-function addToSentJason(mailOptions) {
+async function addToSentJason(mailOptions) {
+  if (mailOptions.timeToSend) delete mailOptions.timeToSend;
+  if (mailOptions.id) delete mailOptions.id;
 
-    let emailsSent = require(path.join(process.cwd(), paths.emailsSentPath));
-    //console.log(emailsSent);
-    let numOfEmails = emailsSent.emails.length;
-    console.log(mailOptions);
-    const timeNow = {"timeSent": new Date().toLocaleString()};
-
-    let mailDetails = Object.assign(mailOptions, timeNow);
-    emailsSent.emails.push(mailDetails);
-
-    fs.writeFile(path.join(process.cwd(), paths.emailsSentPath), JSON.stringify(emailsSent), "utf-8", (err) => {
-        if (err)
-            throw err;
-        else
-            console.log("email saved to emailsSent.json");
-    });
+  const timeNow = { timeSent: new Date().toLocaleString() };
+  const mailDetails = Object.assign(mailOptions, timeNow);
+  const mailToSave = new emailSent(mailDetails);
+  return await mailToSave.save();
 }
 
 //NOTICE - TimeToSend has to be a Date().toLocaleString() object
-function addToFutureEmails(mailOptions, timeToSend) {
-    let emailsToSend = require(path.join(process.cwd(), paths.emailsToSendPath));
-    let mailID = {id: uuidv4()};
-    timeObj = {"timeToSend": timeToSend};
-    let mailDetails = Object.assign(mailOptions, timeObj, mailID);
-    emailsToSend.emails.push(mailDetails);
-    fs.writeFile((path.join(process.cwd(), paths.emailsToSendPath)), JSON.stringify(emailsToSend), "utf-8", (err) => {
-        if (err)
-            throw err;
-        else
-            console.log("email saved to emailsToSend.json");
-    });
+async function addToFutureEmails(mailOptions) {
+  const mailToSave = new FutureEmail(mailOptions);
+  return await mailToSave.save();
 }
 
-
-function deleteFromFutureEmails(mailID) {
-    let emailsToSend = require(path.join(process.cwd(), paths.emailsToSendPath));
-    let indexOfEmail = emailsToSend.emails.findIndex(function (mailID) {
-        return emailsToSend.emails.id == mailID;
-    });
-    emailsToSend.emails.splice(indexOfEmail, 1);
-    fs.writeFile(path.join(process.cwd(), paths.emailsToSendPath), JSON.stringify(emailsToSend), "utf-8", (err) => {
-        if (err)
-            throw err;
-        else
-            console.log("deleted email from emailsToSend.json");
-    });
+async function deleteFromFutureEmails(mailID) {
+  return FutureEmail.deleteOne({ id: mailID });
 }
 
-function getAllSentEmails() {
-    const emailsSent = require(path.join(process.cwd(), paths.emailsSentPath));
-    return (emailsSent);
+async function getAllSentEmails() {
+  return emailSent.find({});
 }
 
-
-function getAllFutureEmails() {
-    const emailsToSend = require(`../${paths.emailsToSendPath}`);
-    return (emailsToSend);
+async function getAllFutureEmails() {
+  return FutureEmail.find({});
 }
 
-function getNumOfSentEmails() {
-    const emailsSent = require(`../${paths.emailsSentPath}`);
-    return (emailsSent.emails.length);
+async function getNumOfSentEmails() {
+  return await emailSent.find({}).then((emails) => emails.length);
 }
 
-function getNumOfEmailsToSend() {
-    const emailsToSend = require(`../${paths.emailsToSendPath}`);
-    return (emailsToSend.emails.length);
+async function getNumOfEmailsToSend() {
+  return await FutureEmail.find({}).then((emails) => emails.length);
 }
 
 module.exports = {
-    addToSentJason,
-    addToFutureEmails,
-    deleteFromFutureEmails,
-    getAllSentEmails,
-    getAllFutureEmails,
-    getNumOfSentEmails,
-    getNumOfEmailsToSend,
+  addToSentJason,
+  addToFutureEmails,
+  deleteFromFutureEmails,
+  getAllSentEmails,
+  getAllFutureEmails,
+  getNumOfSentEmails,
+  getNumOfEmailsToSend,
 };
