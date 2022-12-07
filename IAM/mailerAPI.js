@@ -1,7 +1,8 @@
-const {mailRouter} = require("../Routers/mailRouter");
+// const {mailRouter} = require("../Routers/mailRouter");
 // ^^^ TO BE DELETED WHEN USED BY THE IAM GROUP
 
-
+//API code from Growth Team:
+// file: mailerAPI.js
 function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
     const data = {
         "mail": {
@@ -18,7 +19,7 @@ function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
     }
 
 // API DOMAIN NEEDS TO BE CHANGED TO RENDER DOMAIN WHEN USED BY THE IAM GROUP
-    fetch('http://localhost:3000/api/mail/sendMail', {
+    fetch('https://mail-service-69zm.onrender.com/api/mail/sendMail', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,21 +36,25 @@ function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
 }
 
 module.exports = {
-    sendMail,
+    sendMailer,
 };
+//end of file: mailerAPI.js
 
-//EXAMPLE CALL TO SENDMAIL: *****************************
-//emailAddress : string
-//emailSubject : string
-//emailHtmlPATH : : object {path: './IAM/welcome.html'}
 
-const mailer = require("/mailerAPI.js") //or the rellevant path
-const emailAddress = "sufkarmon2@gmail.com"
-const emailSubject = "Welcome!"
-const emailHtmlPATH = {path: './IAM/welcome.html'}
+//EXAMPLE CALL TO SENDMAIL FROM SOMEWHERE ELSE: *****************************
 
-mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
-// ********************************************************
+////FUNCTION DATA INPUTS:
+////emailAddress : string
+////emailSubject : string
+////emailHtmlPATH : : object {path: './IAM/welcome.html'}
+
+//const mailer = require("./mailerAPI.js") //or the rellevant path
+// const emailAddress = "sufkarmon2@gmail.com"
+// const emailSubject = "Welcome!"
+// const emailHtmlPATH = {path: './IAM/welcome.html'}
+//mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
+
+// ***************************************************************************
 
 
 
