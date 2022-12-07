@@ -1,5 +1,5 @@
 // const domain = `http://localhost:3000`;    //used for DEVELOP
-const domain = `https://mail-service.onrender.com`;       //used for MASTER
+const domain = `https://mail-service-69zm.onrender.com`;       //used for MASTER
 
 export const APIpaths = {
   emailsSent: domain + "/api/mail/emailsSent",
