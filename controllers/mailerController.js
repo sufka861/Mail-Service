@@ -61,7 +61,7 @@ async function welcomeHTML(req, res) {
   res.setHeader("Content-Type", "text/html");
   res.status(200);
   try {
-    res.sendFile("../IAM/welcome.html");
+    res.sendFile(__dirname + "/../IAM/welcome.html");
   } catch (err) {
     return errorHandler(req, res);
   }
