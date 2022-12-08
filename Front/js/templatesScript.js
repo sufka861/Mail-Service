@@ -34,14 +34,14 @@ async function createTemplatesList() {
 }
 
 function addButtons(template) {
-  const send = document.createElement("a");
-  send.classList.add("btn", "btn-primary", "btn-sm", "mg");
-  send.innerHTML = "Send";
-  send.setAttribute("data-toggle", "modal");
-  send.setAttribute("data-target", "#compose-modal");
-  send.addEventListener("click", () => {
-    document.getElementById("email_message").value = template.html;
-  });
+  //const send = document.createElement("a");
+ // send.classList.add("btn", "btn-primary", "btn-sm", "mg");
+ // send.innerHTML = "Send";
+  //send.setAttribute("data-toggle", "modal");
+  //send.setAttribute("data-target", "#compose-modal");
+  //send.addEventListener("click", () => {
+    //document.getElementById("email_message").value = template.html;
+  //});
 
   const del = document.createElement("a");
   del.classList.add("btn", "btn-danger", "btn-sm", "mg");
