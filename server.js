@@ -33,7 +33,8 @@ console.log(`listening to port ${process.env.PORT}`);
 
 const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
 const emailAddress = "sufkarmon2@gmail.com";
-const emailSubject = "Welcome!";
-const emailHtmlPATH = {path: 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML'};
+const emailSubject = "mailerAPI!";
+const emailHtmlPATH = 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML';
+// const emailHtmlPATH = "this mail is from render using mailer API";
 
 mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
