@@ -24,10 +24,15 @@ async function updateTemplate(templateID, editedTemp) {
   await Template.updateOne({ template_id: templateID }, editedTemp);
 }
 
+async function getNumTemplates() {
+  return Template.find({}).count();
+}
+
 module.exports = {
   getAllTemplates,
   getTemplateById,
   deleteTemplateDB,
   updateTemplate,
   saveTemplate,
+  getNumTemplates,
 };
