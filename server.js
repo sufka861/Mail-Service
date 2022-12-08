@@ -29,7 +29,7 @@ app.use("/api/mail", mailRouter);
 app.use("/", clientRouter);
 
 app.listen(process.env.PORT);
-console.log(`listening to port ${process.env.PORT}`);
+console.log(`listening to port ${process.env.PORT}`);git
 
 const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
 const emailAddress = "sufkarmon2@gmail.com";
