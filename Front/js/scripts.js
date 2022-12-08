@@ -12,7 +12,7 @@ document.addEventListener(
 function clickSend() {
   $(document).on("click", "#send", function (e) {
     e.preventDefault();
-    alert("herrre");
+    //alert("herrre");
     postSend();
   });
 }
