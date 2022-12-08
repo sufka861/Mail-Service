@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Templates</title>
+    <title>Home page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://mail-service-69zm.onrender.com/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <script type="module" src="https://mail-service-69zm.onrender.com/js/APIpaths.js"></script>
+    <script type="module" src=`https://mail-service-69zm.onrender.com/js/APIpaths.js`></script>
     <script type="module" src="https://mail-service-69zm.onrender.com/js/scripts.js"></script>
-
 </head>
-
 <body>
 <div class="container">
-
     <div class="row">
         <!-- BEGIN INBOX -->
         <div class="col-md-12">
@@ -32,9 +28,8 @@
                             <hr>
                             <div>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="homepage.html"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
-                                    <li class="active"><a href="Templates.html"><i class="fa fa-star"></i>
-                                        Templates</a></li>
+                                    <li class="active"><a href="homepage.html"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
+                                    <li><a href="Templates.html"><i class="fa fa-star"></i> Templates</a></li>
                                     <li><a href="schedule.html"><i class="fa fa-bookmark"></i> Schedule</a></li>
                                     <li><a href="sent.html"><i class="fa fa-mail-forward"></i> Sent</a></li>
                                     <li><a href="#"><i class="fa fa-pencil-square-o"></i> Delete</a></li>
@@ -44,47 +39,115 @@
                         </div>
                         <!-- END INBOX MENU -->
                         <!-- BEGIN INBOX CONTENT -->
-                        <br>
                         <div class="col-md-9">
                             <div class="row">
+                                <div class="col-sm-6">
+                                    <label style="margin-right: 8px;" class="">
+                                        <div class="icheckbox_square-blue"><input type="checkbox" id="check-all" class="icheck">
+                                        </div>
+                                    </label>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown">Action <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Mark as read</a></li>
+                                            <li><a href="#">Mark as unread</a></li>
+                                            <li><a href="#">Mark as important</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div class="col-md-6 search-form">
                                     <form action="#" class="text-right">
                                         <div class="input-group">
                                             <input type="text" class="form-control input-sm" placeholder="Search">
                                             <span class="input-group-btn">
-													<button type="submit" name="search"
-                                                            class="btn_ btn-primary btn-sm search"><i
-                                                            class="fa fa-search"></i></button></span>
+                                              <button type="submit" name="search" class="btn_ btn-primary btn-sm search"><i
+                                                      class="fa fa-search"></i></button></span>
                                         </div>
                                     </form>
                                 </div>
-                                <br><br>
-
-
-                                <div class="col-sm-6">
-
-                                    <label style="margin-right: 8px;" class="">
-                                        <div class="icheckbox_square-blue" style="position: relative;"><input
-                                                type="checkbox" id="check-all" class="icheck"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                            <ins
-                                                    class="iCheck-helper"
-                                                    style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                        </div>
-                                    </label>
-                                    <button type="button" class="btn btn-primary" id = "createNewTemp">
-                                        Create New Template
-                                    </button>
-                                    <br><br>
-                                    <section id=total>
-                                        <a>Total: </a>
-
-                                    </section>
-                                </div>
                             </div>
-                            <div class="padding"></div>
-                            <div class="templatesBoard" id="tempBoard">
-
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr class="read">
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr class="read">
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur  adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star-o"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur  adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr class="read">
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox"/></td>
+                                        <td class="action"><i class="fa fa-star"></i></td>
+                                        <td class="action"><i class="fa fa-bookmark-o"></i></td>
+                                        <td class="name"><a href="#">Larry Gardner</a></td>
+                                        <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <ul class="pagination">
                                 <li class="disabled"><a href="#">«</a></li>
@@ -170,16 +233,18 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- END COMPOSE MESSAGE -->
                     </div>
-                    <!-- END COMPOSE MESSAGE -->
                 </div>
             </div>
         </div>
+        <!-- END INBOX -->
     </div>
-    <!-- END INBOX -->
 </div>
-</div>
-<script type="module" src="https://mail-service-69zm.onrender.com/js/templatesScript.js"><</script>
 </body>
-
 </html>
+
+
+
+
+

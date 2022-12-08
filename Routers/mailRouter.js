@@ -9,6 +9,7 @@ mailRouter.get('/numOfSentEmails', mailController.totalSentEmails);
 mailRouter.get('/numOfEmailsToSend', mailController.totalEmailsToSend);
 
 
+
 // ************** POST method routing ********************* //
 
 mailRouter.post('/sendMail', mailController.sendMail);

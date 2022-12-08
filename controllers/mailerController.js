@@ -57,10 +57,12 @@ async function sendMail(req, res) {
 }
 
 
+
 module.exports = {
   getEmails,
   getScheduledEmails,
   totalSentEmails,
   totalEmailsToSend,
   sendMail,
+  welcomeHTML,
 };
