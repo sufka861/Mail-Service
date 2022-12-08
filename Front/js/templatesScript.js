@@ -16,7 +16,20 @@ window.onload = () => {
       "click",
       () => (window.location = "http://localhost:3000/TemplatesForm.html")
     );
+  (async () => {
+    document.getElementById("total").innerHTML += await getTotalNumTemplates();
+  })();
 };
+
+async function getTotalNumTemplates() {
+  return (
+    await fetch(APIpaths["numTemplates"], {
+      method: "GET",
+      mode: `cors`,
+      headers: { Accept: `text/plain` },
+    })
+  ).text();
+}
 
 async function createTemplatesList() {
   const res = await fetch(APIpaths["allTemplates"], {

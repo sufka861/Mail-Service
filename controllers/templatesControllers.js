@@ -23,7 +23,7 @@ async function getNumOfTemplates(req, res) {
   res.setHeader("Content-Type", " text/plain");
   res.status(200);
   try {
-    res.send(`${await templatesService.templatesList().length}`);
+    res.send(`${await templatesService.getNumTemplates()}`);
   } catch (err) {
     return errorHandler(req, res);
   }
