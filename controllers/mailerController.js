@@ -64,5 +64,4 @@ module.exports = {
   totalSentEmails,
   totalEmailsToSend,
   sendMail,
-  welcomeHTML,
 };

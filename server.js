@@ -29,11 +29,11 @@ app.use("/api/mail", mailRouter);
 app.use("/", clientRouter);
 
 app.listen(process.env.PORT);
-console.log(`listening to port ${process.env.PORT}`);git
+console.log(`listening to port ${process.env.PORT}`);
 
 const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
 const emailAddress = "sufkarmon2@gmail.com";
 const emailSubject = "Welcome!";
 const emailHtmlPATH = {path: 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML'};
 
-mailer.sendMail(emailAddress, emailSubject, emailHtml);
+mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
