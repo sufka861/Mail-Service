@@ -1,5 +1,3 @@
-// const {mailRouter} = require("../Routers/mailRouter");
-// ^^^ TO BE DELETED WHEN USED BY THE IAM GROUP
 
 //API code from Growth Team: This code is to be implemented where a diiferent team would like to use
 //our API to send out emails
@@ -37,7 +35,7 @@ function sendMail(emailAddress, emailSubject, emailHtmlPATH) {
 }
 
 module.exports = {
-    sendMailer,
+    sendMail,
 };
 //end of file: mailerAPI.js
 
@@ -49,11 +47,11 @@ module.exports = {
 ////emailSubject : string
 ////emailHtmlPATH : : object {path: './IAM/welcome.html'}
 
-//const mailer = require("./mailerAPI.js") //or the rellevant path
+// const mailer = require("./mailerAPI.js") //or the rellevant path
 // const emailAddress = "sufkarmon2@gmail.com"
 // const emailSubject = "Welcome!"
 // const emailHtmlPATH = {path: './IAM/welcome.html'}
-//mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
+// mailer.sendMail(emailAddress, emailSubject, emailHtmlPATH);
 
 // ***************************************************************************
 
