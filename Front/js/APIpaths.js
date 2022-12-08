@@ -11,4 +11,5 @@ export const APIpaths = {
   createTemplate: domain + "/api/templates",
   editTemplate: domain + "/api/templates",
   deleteTemplate: domain + "/api/templates",
+  numTemplates: domain + "/api/templates/num",
 };
