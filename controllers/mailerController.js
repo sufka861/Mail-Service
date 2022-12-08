@@ -56,10 +56,22 @@ async function sendMail(req, res) {
   }
 }
 
+async function welcomeHTML(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "text/html");
+  res.status(200);
+  try {
+    res.sendFile("../IAM/welcome.html");
+  } catch (err) {
+    return errorHandler(req, res);
+  }
+}
+
 module.exports = {
   getEmails,
   getScheduledEmails,
   totalSentEmails,
   totalEmailsToSend,
   sendMail,
+  welcomeHTML,
 };
