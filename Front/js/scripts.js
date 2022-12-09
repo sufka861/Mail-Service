@@ -2,9 +2,13 @@ import { APIpaths } from "./APIpaths.js";
 
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
+    async () => {
+
     clickSend();
     document.getElementById("myCheck").onchange = toggleBilling;
+      await  getAllTemplates();
+
+
   },
   false
 );
@@ -76,3 +80,78 @@ export function createTable(toArray, subjectArray, timeSentArray, bool) {
   mytable += "</table>";
   document.getElementById("chart").innerHTML = mytable;
 }
+
+async function getAllTemplates() {
+  await
+  $.ajax({
+    url: APIpaths["allTemplates"],
+    // url: 'http://localhost:3000/templates',
+    type: "GET",
+    success: function (templates){
+      console.log(templates);
+      let IdArray = [];
+      let nameArray = [];
+      let htmlArray = [];
+      let tempbox = document.getElementById("templateBox");
+      let templateBox = "<li className =`list-group-item list-group-item-primary` ";
+      for (let i = 0; i < templates.length; i++) {
+        let name = templates[i].name;
+        // templateBox+= '<li className =`list-group-item list-group-item-primary` '+'(<a onclick=getTemplateByID('+`${templates[i].template_id}`+')> '+ `${name}` +' </a></li>';
+        console.log(templates[i].template_id);
+        let li = document.createElement("li");
+        li.classList.add("list-group-item" ,"list-group-item-primary");
+        let templateLink= document.createElement("a");
+        templateLink.onclick =() => getTemplateByID(templates[i].template_id);
+        templateLink.innerHTML = templates[i].name;
+        li.appendChild(templateLink);
+        tempbox.appendChild(li);
+        nameArray.push(templates[i].name);
+        IdArray.push(templates[i].template_id);
+
+      }
+
+      console.log(nameArray);
+      console.log(IdArray);
+      console.log(htmlArray);
+    },
+    error: function () {
+      alert('Error - get -  Templates');
+    }
+  });
+}
+
+
+function getTemplateByID(num) {
+  console.log(num);
+  // let id = localStorage.getItem(num);
+  // let id2 = JSON.stringify(id);
+  // let id3 = JSON.parse(id2);
+  // let id4 = id.replace('"', '');
+  // let id5 = id4.replace('"', '');
+
+
+  $.ajax({
+    url: 'http://localhost:3000/api/templates/' + num,
+    // url: 'http://localhost:3000/api/templates/id?id=' + id5,
+    type: 'GET',
+    success: function (template) {
+      console.log(template);
+      console.log(template.name);
+      console.log(template.html);
+      let html = template.html;
+      document.getElementById("email_message").innerHTML = html;
+
+    },
+    error: function () {
+      console.log('Error - get -  TemplatesBYID');
+    }
+  });
+}
+
+export function clickTemplate() {
+  $(document).on('click', '#template', function (e) {
+    e.preventDefault();
+    alert("herrre");
+  });
+}
+

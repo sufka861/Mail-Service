@@ -14,9 +14,24 @@ window.onload = () => {
     .getElementById("createNewTemp")
     .addEventListener(
       "click",
-      () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
+      // () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
+        () => (window.location = " http://localhost:63342/MailService/newMailservice/Mail-Service/Front/TemplatesForm.html")
+
     );
+  (async () => {
+    document.getElementById("total").innerHTML += await getTotalNumTemplates();
+  })();
 };
+
+async function getTotalNumTemplates() {
+  return (
+    await fetch(APIpaths["numTemplates"], {
+      method: "GET",
+      mode: `cors`,
+      headers: { Accept: `text/plain` },
+    })
+  ).text();
+}
 
 async function createTemplatesList() {
   const res = await fetch(APIpaths["allTemplates"], {
@@ -34,15 +49,6 @@ async function createTemplatesList() {
 }
 
 function addButtons(template) {
-  const send = document.createElement("a");
-  send.classList.add("btn", "btn-primary", "btn-sm", "mg");
-  send.innerHTML = "Send";
-  send.setAttribute("data-toggle", "modal");
-  send.setAttribute("data-target", "#compose-modal");
-  send.addEventListener("click", () => {
-    document.getElementById("email_message").value = template.html;
-  });
-
   const del = document.createElement("a");
   del.classList.add("btn", "btn-danger", "btn-sm", "mg");
   del.innerHTML = "Delete";
@@ -104,3 +110,4 @@ function createTemplateElem(template) {
   elem.appendChild(detailsBtnsDiv);
   return elem;
 }
+
