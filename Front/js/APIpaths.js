@@ -1,7 +1,7 @@
 
-// const domain = `https://mail-service-69zm.onrender.com`;       //used for MASTER
+const domain = `https://mail-service-69zm.onrender.com`;       //used for MASTER
 
-const domain = `http://localhost:3000`;       //used for develop/
+// const domain = `http://localhost:3000`;       //used for develop/
 
 
 

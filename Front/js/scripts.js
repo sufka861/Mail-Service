@@ -131,7 +131,7 @@ function getTemplateByID(num) {
 
 
   $.ajax({
-    url: 'http://localhost:3000/api/templates/' + num,
+    url: APIpaths["templateById"] + num,
     // url: 'http://localhost:3000/api/templates/id?id=' + id5,
     type: 'GET',
     success: function (template) {
