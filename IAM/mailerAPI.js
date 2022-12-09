@@ -44,8 +44,12 @@ module.exports = {
 const emailAddress = "sufkarmon2@gmail.com";
 const emailSubject = "Welcome!";
 // const emailHtmlPATH = {path: 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML'};
+
 const ejs = require('ejs');
-const emailHtml = ejs.renderFile(process.cwd() + '/IAM/welcome.html');
+const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
+//emailHtml.then(console.log)
+
+
 //const emailHtmlPATH = {path: htmlPATH};
 // const emailHtmlPATH = "this mail is from render using mailer API";
 // ***************************************************************************
