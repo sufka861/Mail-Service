@@ -1,6 +1,6 @@
 const { paths } = require(`../DB/config`);
 const fs = require("fs");
-const path = require(`node:path`);
+const path = require(`path`);
 const { Template } = require("../DB/templatesSchema");
 
 async function saveTemplate(newTemplate) {

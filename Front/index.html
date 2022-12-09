@@ -11,12 +11,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <!--    <script type="module" src=`https://mail-service-69zm.onrender.com/js/APIpaths.js`></script>-->
 <!--    <script type="module" src="https://mail-service-69zm.onrender.com/js/scripts.js"></script>-->
-<!--    <script type ="module" src="./js/templatesScript.js"></script>-->
-    <script type ="module" src="./js/APIpaths.js"></script>
     <script type ="module" src="./js/scripts.js"></script>
-
-
-        </head>
+    <script type ="module" src="./js/templatesScript.js"></script>
+    <script type ="module" src="./js/schedScript.js"></script>
+    <script type ="module" src="./js/templatesForm.js"></script>
+    <script type ="module" src="./js/sentScript.js"></script>
+    <script type ="module" src="./js/APIpaths.js"></script>
+</head>
 <body>
 <div class="container">
     <div class="row">
@@ -70,14 +71,14 @@
                                             <input type="text" class="form-control input-sm" placeholder="Search">
                                             <span class="input-group-btn">
                                               <button type="submit" name="search" class="btn_ btn-primary btn-sm search"><i
-                                             class="fa fa-search"></i></button></span>
+                                                      class="fa fa-search"></i></button></span>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
-                                  <tbody>
+                                    <tbody>
                                     <tr>
                                         <td class="action"><input type="checkbox"/></td>
                                         <td class="action"><i class="fa fa-star-o"></i></td>
@@ -151,7 +152,7 @@
                                         <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
                                         <td class="time">08:30 PM</td>
                                     </tr>
-                                  </tbody>
+                                    </tbody>
                                 </table>
                             </div>
                             <ul class="pagination">
@@ -171,72 +172,70 @@
                                         <div class="modal-header bg-blue">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             <h4 class="modal-title"><i class="fa fa-envelope"></i> New Message</h4>
-                                            </div>
-                                            <form action="#" method="post">
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <input name="to" type="email" class="form-control" placeholder="To">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="cc" type="email" class="form-control" placeholder="Cc">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="Bcc" type="email" class="form-control" placeholder="BCc">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="subject" type="text" class="form-control" placeholder="Subject">
-                                                    </div>
-                                                    <div class="form-group">
-                                                          <textarea name="message" id="email_message" class="form-control" placeholder="Message" ></textarea>
-                                                    </div>
-                                                    <form>
-                                                        <div id="billing">
-                                                            <input type="checkbox" class="form-group" id="myCheck"> schedule<br>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">
-                                                                    <input type="date" class="form-group" name="event_date" id="date" placeholder="date1" disabled>
-                                                                </label>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">
-                                                                    <input type="time" class="form-group" name="event_time" placeholder="Time" id="time1" disabled>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                        </div>
+                                        <form action="#" method="post">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input name="to" type="email" class="form-control" placeholder="To">
                                                 </div>
-                                                <div class="modal-footer" >
-                                                    <!-- Button trigger modal -->
-                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                         aria-hidden="true" >
-                                                            <div class="modal-content" >
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="chooseTemplateTitle">Choose Template</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body" id="window">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table">
-                                                                            <section  id="templateBox"></section>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer" >
-                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="closewindow">Save</button>
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn">Close</button>
-                                                              </div>
+                                                <div class="form-group">
+                                                    <input name="cc" type="email" class="form-control" placeholder="Cc">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="Bcc" type="email" class="form-control" placeholder="BCc">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="subject" type="text" class="form-control" placeholder="Subject">
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="message" id="email_message" class="form-control" placeholder="Message" ></textarea>
+                                                </div>
+                                                <form>
+                                                    <div id="billing">
+                                                        <input type="checkbox" class="form-group" id="myCheck"> schedule<br>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">
+                                                                <input type="date" class="form-group" name="event_date" id="date" placeholder="date1" disabled>
+                                                            </label>
                                                         </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">
+                                                                <input type="time" class="form-group" name="event_time" placeholder="Time" id="time1" disabled>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer" >
+                                                <!-- Button trigger modal -->
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                     aria-hidden="true" >
+                                                    <div class="modal-content" >
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="chooseTemplateTitle">Choose Template</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body" id="window">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <section  id="templateBox"></section>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer" >
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="closewindow">Save</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn">Close</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" > Add Template </button>
                                                     <button type="submit" class="btn btn-primary pull-right" id="send"><i class="fa fa-envelope"></i> Send Message </button>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Discard</button>
                                                 </div>
-                                         </div>
-                                            </form>
+                                            </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -245,10 +244,9 @@
                 </div>
             </div>
         </div>
-
         <!-- END INBOX -->
-        </div>
     </div>
+</div>
 </body>
 </html>
 
