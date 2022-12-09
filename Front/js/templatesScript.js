@@ -14,7 +14,8 @@ window.onload = () => {
     .getElementById("createNewTemp")
     .addEventListener(
       "click",
-      () => (window.location = "http://localhost:3000/TemplatesForm.html")
+      // () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
+        () => (window.location = " http://localhost:63342/MailService/newMailservice/Mail-Service/Front/TemplatesForm.html")
     );
   (async () => {
     document.getElementById("total").innerHTML += await getTotalNumTemplates();
@@ -47,15 +48,6 @@ async function createTemplatesList() {
 }
 
 function addButtons(template) {
-  //const send = document.createElement("a");
- // send.classList.add("btn", "btn-primary", "btn-sm", "mg");
- // send.innerHTML = "Send";
-  //send.setAttribute("data-toggle", "modal");
-  //send.setAttribute("data-target", "#compose-modal");
-  //send.addEventListener("click", () => {
-    //document.getElementById("email_message").value = template.html;
-  //});
-
   const del = document.createElement("a");
   del.classList.add("btn", "btn-danger", "btn-sm", "mg");
   del.innerHTML = "Delete";
@@ -80,7 +72,7 @@ function addButtons(template) {
   });
   const edit = document.createElement("a");
   edit.classList.add("btn", "btn-warning", "btn-sm", "mg");
-  edit.href = `http://localhost:3000/TemplatesForm.html?id=${template.template_id}`;
+  edit.href = `https://mail-service-69zm.onrender.com/TemplatesForm.html?id=${template.template_id}`;
   edit.innerHTML = "Edit";
 
   const btnsDiv = document.createElement("div");
@@ -117,3 +109,4 @@ function createTemplateElem(template) {
   elem.appendChild(detailsBtnsDiv);
   return elem;
 }
+
