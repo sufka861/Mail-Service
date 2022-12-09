@@ -19,6 +19,7 @@ let transporter = nodemailer.createTransport({
 });
 
 
+
 ////****** SENDING EMAIL FUNCTION******
 async function sendMail(mailOptions) {
   Object.assign(mailOptions, { from: process.env.EMAIL_ADDRESS_ZOHO });
@@ -63,9 +64,9 @@ function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
 
 
 ////****** SENDING EMAIL FUNCTION  after 10 minite if user does not complete registeration prosses ******
-async function sendMailAfterTime(mailOptions , isCmpleted) {
+async function sendMailAfterTime(mailOptions , isCompleted) {
   
-  if( isCmpleted === false) {
+  if( isCompleted === false) {
       setTimeout(()=>{
           sendMail(mailOptions)
       },40000)

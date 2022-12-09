@@ -58,24 +58,32 @@ function sendMail(req, res) {
 
 
 // send email after 10 minite if user does not complete the registeration prosses
+
 function sendEmailAftertime(req, res) {
+  try {
+ //   let mail = {
+ //     from: 'dcs@gmail.com',
+ //     to: 'dcs@gmail.com',
+ //     subject: 'Test mail',
+ //     html:`<h1>sorry you  are not complete the registraction process</h1>`
+ // };
 
-  let mailDetails = {
-      from: 'mohamadaboria116@gmail.com',
-      to: 'mohamadaboria116@gmail.com',
-      subject: 'Error Registraction',
-      html:`<h1>sorry you  are not complete the registraction process</h1>`
-  };
+   // console.log(req.body)
+   const {mail,isCompleted} = req.body;
+   if(isCompleted === false){
+     sendMailAfterTime(mail, isCompleted);
+     res.status(200);
+     res.send(`<h1>Send Email Successfully </h1>`);
+   }else{
+     res.send(`<h1> this user has successfully completed the registration process </h1>`);
 
-  let mailData;
-  let isCompleted = false
-  req
-      .on('data', data => mailData = JSON.parse(data.toString()))
-      .on('end', () => {
-         
-          sendMailAfterTime(mailDetails, isCompleted);
-          res.send(`<h1>Send Email Successfully </h1>`);
-      });
+   }
+
+ } catch (err) {
+   return errorHandler(req, res);
+ }
+
+
 }
 
 
