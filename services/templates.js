@@ -34,10 +34,15 @@ async function findTemplateByID(tempID) {
   return await templatesDAL.getTemplateById(tempID);
 }
 
+async function getNumTemplates() {
+  return await templatesDAL.getNumTemplates();
+}
+
 module.exports = {
   deleteTemplate,
   editTemplate,
   createTemplate,
   templatesList,
   findTemplateByID,
+  getNumTemplates,
 };

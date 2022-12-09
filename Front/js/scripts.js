@@ -76,3 +76,71 @@ export function createTable(toArray, subjectArray, timeSentArray, bool) {
   mytable += "</table>";
   document.getElementById("chart").innerHTML = mytable;
 }
+
+/*async function getAllTemplates() {
+  $.ajax({
+    url: 'http://localhost:3000/templates',
+    type: 'GET',
+    success: function (templates){
+      console.log(templates);
+      let IdArray = [];
+      let nameArray = [];
+      let htmlArray = [];
+      let templateBox = "<li className =`list-group-item list-group-item-primary` ";
+      for (let i = 0; i < templates.length; i++) {
+        let name = templates[i].name;
+        templateBox+= '<li className =`list-group-item list-group-item-primary` '+'(<a onclick=getTemplateByID('+`${[i]}`+')> '+ `${name}` +' </a></li>';
+
+        nameArray.push(templates[i].name);
+        IdArray.push(templates[i].template_id);
+
+      }
+      document.getElementById("templateBox").innerHTML = templateBox;
+
+      console.log(nameArray);
+      console.log(IdArray);
+      console.log(htmlArray);
+    },
+    error: function () {
+      alert('Error - get -  Templates');
+    }
+  });
+}
+*/
+
+
+async function getAllTemplates2() {
+  const res = await fetch(APIpaths["allTemplates"], {
+    method: "GET",
+    mode: `cors`,
+    headers: { Accept: `application/json` },
+  });
+  const data = await res.json();
+  data.forEach(function (obj) {
+    let templateBox = "<li className =`list-group-item list-group-item-primary` ";
+    let IdArray = [];
+    let nameArray = [];
+    let htmlArray = [];
+    for (let i = 0; i < data.length; i++) {
+      let name = data[i].name;
+      templateBox+= '<li className =`list-group-item list-group-item-primary` '+'(<a onclick=getTemplateByID('+`${[i]}`+')> '+ `${name}` +' </a></li>';
+
+      nameArray.push(data[i].name);
+      IdArray.push(data[i].template_id);
+
+    }
+    document.getElementById("templateBox").innerHTML = templateBox;
+    console.log(nameArray);
+    console.log(IdArray);
+    console.log(htmlArray);
+  });
+}
+
+
+
+function clickTemplate() {
+  $(document).on('click', '#template', function (e) {
+    e.preventDefault();
+    alert("herrre");
+  });
+}
