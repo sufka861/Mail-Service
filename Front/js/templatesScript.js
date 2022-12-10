@@ -10,14 +10,11 @@ window.onload = () => {
     });
   });
 
-  document
-    .getElementById("createNewTemp")
-    .addEventListener(
-      "click",
-      // () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
-        () => (window.location = " http://localhost:63342/MailService/newMailservice/Mail-Service/Front/TemplatesForm.html")
-
-    );
+  document.getElementById("createNewTemp").addEventListener(
+    "click",
+    // () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
+    () => (window.location = " http://localhost:3000/TemplatesForm.html")
+  );
   (async () => {
     document.getElementById("total").innerHTML += await getTotalNumTemplates();
   })();
@@ -110,4 +107,3 @@ function createTemplateElem(template) {
   elem.appendChild(detailsBtnsDiv);
   return elem;
 }
-
