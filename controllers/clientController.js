@@ -14,7 +14,7 @@ function loadPage(req, res) {
   try {
     res.setHeader("Access-Control-Allow-Origin","*");
     res.setHeader('Content-Type','text/html');
-    res.setHeader('Content-Type','text/js');
+    res.setHeader('Content-Type','application/javascript');
     res.status(200);
     res.sendFile(Path.join(process.cwd() + "/Front" + pathName));
   } catch (err) {
