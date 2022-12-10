@@ -75,10 +75,8 @@ function addButtons(template) {
 
   const btnsDiv = document.createElement("div");
   btnsDiv.classList.add("flexBox", "flexCol");
-  // btnsDiv.appendChild(send);
   btnsDiv.appendChild(edit);
   btnsDiv.appendChild(del);
-
   return btnsDiv;
 }
 
@@ -103,7 +101,6 @@ function createTemplateElem(template) {
   detailsBtnsDiv.classList.add("flexBox", "frame");
   detailsBtnsDiv.appendChild(details);
   detailsBtnsDiv.appendChild(addButtons(template));
-
   elem.appendChild(detailsBtnsDiv);
   return elem;
 }

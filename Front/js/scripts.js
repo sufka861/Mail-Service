@@ -110,17 +110,14 @@ async function getAllTemplates() {
                 console.log(IdArray);
                 console.log(htmlArray);
             },
-            error: function () {
-                alert('Error - get -  Templates');
-            }
+
         });
 }
-
 
 function getTemplateByID(num) {
     console.log(num);
     $.ajax({
-        url: `${APIpaths["templateById"]}/num`,
+        url: `${APIpaths["templateById"]}/` + num,
         type: 'GET',
         success: function (template) {
             console.log(template);

@@ -1,11 +1,11 @@
 function errorHandler(req, res, err) {
-  res.writeHead(404);
-  res.write(pageNotFoundHtml(err));
-  res.end();
+    res.writeHead(404);
+    res.write(pageNotFoundHtml(err));
+    res.end();
 }
 
 function pageNotFoundHtml(error) {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +13,10 @@ function pageNotFoundHtml(error) {
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="module" src="http://localhost:3000/Front/js/APIpaths.js"></script>
     <script type="module" src="http://localhost:3000/Front/js/404Script.js"></script>
-
-
     <title>404</title>
 </head>
 <body>
 <div>
-
     <h1 class="grid-title"><i class="fa fa-inbox"></i> Growth Mail</h1>
     <div class="container">
         <h2>404 :Page not found</h2>
@@ -36,6 +33,6 @@ function pageNotFoundHtml(error) {
 }
 
 module.exports = function logAndErrorHandler(req, res, err) {
-  console.error(err);
-  return errorHandler(req, res, err);
+    console.error(err);
+    return errorHandler(req, res, err);
 };

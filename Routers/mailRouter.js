@@ -14,5 +14,5 @@ mailRouter.post("/sendMail", mailController.sendMail);
 mailRouter.post("/sendEmailAfterTime", mailController.timedOutRegisterMail);
 
 module.exports = {
-  mailRouter,
+    mailRouter,
 };
