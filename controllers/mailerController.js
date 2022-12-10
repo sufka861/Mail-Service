@@ -1,6 +1,6 @@
-const { newMail } = require("../services/mailer");
+const { newMail, sendMailAfterTime } = require("../services/mailer");
 const mailService = require("../DAL/emailsDAL");
-const { errorHandler } = require("./clientController");
+const errorHandler = require("./errorController");
 
 async function getEmails(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -9,7 +9,7 @@ async function getEmails(req, res) {
   try {
     res.json(await mailService.getAllSentEmails());
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -20,7 +20,7 @@ async function getScheduledEmails(req, res) {
   try {
     res.json(await mailService.getAllFutureEmails());
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -31,7 +31,7 @@ async function totalSentEmails(req, res) {
   try {
     res.send(`${await mailService.getNumOfSentEmails()}`);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -52,18 +52,24 @@ async function sendMail(req, res) {
     await newMail(mail, isScheduled, timeToSend);
     res.status(200);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
-async function welcomeHTML(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Content-Type", "text/html");
-  res.status(200);
+async function timedOutRegisterMail(req, res) {
   try {
-    res.sendFile(__dirname + "/../IAM/welcome.html");
+    const { mail, isCompleted } = req.body;
+    if (isCompleted === false) {
+      await sendMailAfterTime(mail, isCompleted);
+      res.status(200);
+      res.send(`<h1>Send Email Successfully </h1>`);
+    } else {
+      res.send(
+        `<h1> this user has successfully completed the registration process </h1>`
+      );
+    }
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -73,5 +79,5 @@ module.exports = {
   totalSentEmails,
   totalEmailsToSend,
   sendMail,
-  welcomeHTML,
+  timedOutRegisterMail,
 };

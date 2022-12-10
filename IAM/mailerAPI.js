@@ -1,6 +1,7 @@
 //API code from Growth Team: This code is to be implemented where a diiferent team would like to use
 //our API to send out emails
 // file name: mailerAPI.js
+
 function sendMail(emailAddress, emailSubject, emailHtml) {
     const data = {
         mail: {
@@ -25,13 +26,27 @@ function sendMail(emailAddress, emailSubject, emailHtml) {
         .catch(function (error) {
             console.log(error);
         });
-
-
 }
 
-module.exports = {
-    sendMail,
-};
+////****** SENDING EMAIL FUNCTION  after 10 min if user does not complete registeration prosses ******
+function sendMailAfterTime(emailAddress, emailSubject, emailHtml, isCompleted) {
+    const data = {
+        mail: {
+            to: [
+                emailAddress
+            ],
+            cc: "",
+            bcc: "",
+            subject: emailSubject,
+            html: emailHtml,
+        },
+        isCompleted: isCompleted,
+    }
+
+    module.exports = {
+        sendMail,
+        sendMailAfterTime,
+    };
 //end of file: mailerAPI.js
 
 
@@ -43,15 +58,15 @@ module.exports = {
 ////emailHtml : string
 
 //const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
-const emailAddress = "sufkarmon2@gmail.com";
-const emailSubject = "Welcome!";
-// const emailHtmlPATH = {path: 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML'};
-const ejs = require('ejs');
-const emailHtml = ejs.renderFile(process.cwd() + '/IAM/welcome.html');
+//     const emailAddress = "sufkarmon2@gmail.com";
+//     const emailSubject = "Welcome!";
+//     const ejs = require('ejs');
+//     const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
+//     console.log(emailHtml);
+
 //const emailHtmlPATH = {path: htmlPATH};
 // const emailHtmlPATH = "this mail is from render using mailer API";
 // ***************************************************************************
 
-//sendMail(emailAddress, emailSubject, emailHtml);
 
 

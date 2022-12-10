@@ -1,5 +1,5 @@
 const templatesService = require(`../services/templates`);
-const { errorHandler } = require("./clientController");
+const errorHandler = require("./errorController");
 
 // ************* Express way of handling Id passed in path params  ****************/
 function getTemplateID(req) {
@@ -14,7 +14,7 @@ async function getAllTemplates(req, res) {
     res.json(await templatesService.templatesList());
   } catch (err) {
     console.log(err);
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -25,7 +25,7 @@ async function getNumOfTemplates(req, res) {
   try {
     res.send(`${await templatesService.getNumTemplates()}`);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -37,40 +37,40 @@ async function getTemplate(req, res) {
   try {
     res.json(await templatesService.findTemplateByID(templateID));
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
-function createTemplateHandler(req, res) {
+async function createTemplateHandler(req, res) {
   try {
-    templatesService.createTemplate(req.body);
+    await templatesService.createTemplate(req.body);
     res.status(200);
     res.send("New Template Saved");
   } catch (err) {
     console.log(err);
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
-function editTemplateHandler(req, res) {
+async function editTemplateHandler(req, res) {
   const templateID = getTemplateID(req);
   try {
-    templatesService.editTemplate(templateID, req.body);
+    await templatesService.editTemplate(templateID, req.body);
     res.status(200);
     res.send("Template Edited!");
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
-function deleteTemplateHandler(req, res) {
+async function deleteTemplateHandler(req, res) {
   try {
     console.log(req.body);
-    templatesService.deleteTemplate(req.body.template_id);
+    await templatesService.deleteTemplate(req.body.template_id);
     res.status(200);
     res.send("Template Deleted");
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 

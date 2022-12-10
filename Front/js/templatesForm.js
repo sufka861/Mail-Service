@@ -14,7 +14,7 @@ window.onload = () => {
       .getElementById("tempForm")
       .addEventListener("submit", (event) =>
         createTemplate(event).then(
-          () => (window.location.href = "https://mail-service-69zm.onrender.com/Templates.html")
+          () => (window.location.href = "http://localhost:3000/Templates.html")
         )
       );
   }
@@ -35,7 +35,7 @@ async function editTemplate(event) {
     cache: "no-cache",
     body: JSON.stringify(editedTemp),
   }).then(
-    () => (window.location.href = "https://mail-service-69zm.onrender.com/Templates.html")
+    () => (window.location.href = "http://localhost:3000/Templates.html")
   );
 }
 
