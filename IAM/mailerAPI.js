@@ -43,12 +43,9 @@ module.exports = {
 //const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
 const emailAddress = "sufkarmon2@gmail.com";
 const emailSubject = "Welcome!";
-// const emailHtmlPATH = {path: 'https://mail-service-69zm.onrender.com/api/mail/welcomeHTML'};
-
 const ejs = require('ejs');
 const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
-//emailHtml.then(console.log)
-
+console.log(emailHtml);
 
 //const emailHtmlPATH = {path: htmlPATH};
 // const emailHtmlPATH = "this mail is from render using mailer API";
@@ -57,3 +54,4 @@ const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
 //sendMail(emailAddress, emailSubject, emailHtml);
 
 
+console.log(process.enz.TZ);

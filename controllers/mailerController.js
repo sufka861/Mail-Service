@@ -52,6 +52,7 @@ async function sendMail(req, res) {
     await newMail(mail, isScheduled, timeToSend);
     res.status(200);
   } catch (err) {
+    console.log(err);
     return errorHandler(req, res);
   }
 }
