@@ -21,12 +21,12 @@ const { templatesRouter } = require("./Routers/templatesRouter");
 const { clientRouter } = require("./Routers/clientRouter");
 const { mailRouter } = require("./Routers/mailRouter");
 
-app.use("/Front", express.static(process.cwd() + "/Front"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 app.use("/api/templates", templatesRouter);
 app.use("/api/mail", mailRouter);
+app.use("/Front", express.static(process.cwd() + "/Front"));
 app.use("/", clientRouter);
 
 app.listen(process.env.PORT);
