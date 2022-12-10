@@ -20,7 +20,7 @@ function pageNotFoundHtml(error) {
     <h1 class="grid-title"><i class="fa fa-inbox"></i> Growth Mail</h1>
     <div class="container">
         <h2>404 :Page not found</h2>
-        <h3>Reason: <br><br></br>${error}</h3>
+        <h3>Reason: <br><br>${error}</h3>
     </div>
 
     <h4>Redirecting to home page...</h4>
