@@ -1,4 +1,3 @@
-const {paths} = require(`../DB/config`);
 const fs = require("fs");
 const path = require(`path`);
 const {Template} = require("../DB/templatesSchema");
