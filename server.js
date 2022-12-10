@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-
+const logger = require("./logger");
 const { connect, connection, mongoose } = require("mongoose");
 mongoose.set("strictQuery", true);
 
@@ -24,7 +24,7 @@ const { mailRouter } = require("./Routers/mailRouter");
 app.use("/Front", express.static(process.cwd() + "/Front"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(logger);
 app.use("/api/templates", templatesRouter);
 app.use("/api/mail", mailRouter);
 app.use("/", clientRouter);

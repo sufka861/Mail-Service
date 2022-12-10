@@ -1,15 +1,15 @@
 const { URL } = require("url");
-
 const Path = require("path");
-
-function errorHandler(req, res) {
-  res.writeHead(404);
-  res.write(`Bad request`);
-  res.end();
-}
+const errorHandler = require("./errorController");
 
 function loadPage(req, res) {
-  const pathName = new URL(req.url, `http://${req.headers.host}`).pathname;
+  let pathName = new URL(req.url, `http://${req.headers.host}`).pathname;
+
+  pathName =
+    pathName === "/" || pathName === "/index.html"
+      ? "/homepage.html"
+      : pathName;
+
   res.status(200);
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -29,11 +29,10 @@ function loadPage(req, res) {
     res.status(200);
     res.sendFile(Path.join(process.cwd() + "/Front" + pathName));
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
 module.exports = {
   loadPage,
-  errorHandler,
 };
