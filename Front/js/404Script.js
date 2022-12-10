@@ -1,5 +1,5 @@
 window.onload = () => {
   setTimeout(() => {
-    window.location.replace("http://localhost:3000");
+    window.location.replace("https://mail-service-69zm.onrender.com/");
   }, 4500);
 };
