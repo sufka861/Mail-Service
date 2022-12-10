@@ -118,7 +118,6 @@ body {
     margin: 0;
     font-weight: 300;
     font-size: 1.5em;
-    /*   float: left;*/
 }
 
 .grid .grid-header span {
@@ -229,8 +228,6 @@ input[type="date"]:disabled {
     background: #ccc;
 }
 
-/*Templates Style*/
-
 .templatesBoard {
     display: flex;
     flex-wrap: wrap;
@@ -272,42 +269,43 @@ input[type="date"]:disabled {
     width: 100%;
 
 }
-.frameBody{
+
+.frameBody {
     height: 450px;
     width: 100px;
 }
-#templateBox{
+
+#templateBox {
     text-align: left;
 }
-li:hover{
+
+li:hover {
     color: blue;
 }
-#chooseTemplateTitle{
+
+#chooseTemplateTitle {
     text-align: left;
 }
- #check-all{
-     position: absolute;
-     top: -20%;
-     left: -20%;
-     display: block;
-     width: 140%;
-     height: 140%;
-     margin: 0px;
-     padding: 0px;
-     border: 0px;
-     opacity: 0;
-     background: rgb(255, 255, 255);
- }
 
-icheckbox_square-blue{
+#check-all {
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    display: block;
+    width: 140%;
+    height: 140%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    opacity: 0;
+    background: rgb(255, 255, 255);
+}
+
+icheckbox_square-blue {
     position: relative;
 
 }
 
-iCheck-helper{
-
-}
-
-#email_message{
+#email_message {
     height: 120px;
 }

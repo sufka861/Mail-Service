@@ -1,11 +1,11 @@
 function errorHandler(req, res, err) {
-  res.writeHead(404);
-  res.write(pageNotFoundHtml(err));
-  res.end();
+    res.writeHead(404);
+    res.write(pageNotFoundHtml(err));
+    res.end();
 }
 
 function pageNotFoundHtml(error) {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,6 @@ function pageNotFoundHtml(error) {
 }
 
 module.exports = function logAndErrorHandler(req, res, err) {
-  console.error(err);
-  return errorHandler(req, res, err);
+    console.error(err);
+    return errorHandler(req, res, err);
 };

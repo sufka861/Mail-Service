@@ -4,29 +4,27 @@ const {schedule} = require("node-cron");
 const {v4: uuidv4, validate: validId} = require("uuid");
 require("dotenv").config();
 const {
-  addToSentJason,
-  addToFutureEmails,
-  deleteFromFutureEmails,
+    addToSentJason,
+    addToFutureEmails,
+    deleteFromFutureEmails,
 } = require("../DAL/emailsDAL");
 
 let transporter = nodemailer.createTransport({
-  host: "zohomail.com",
-  service: "Zoho",
-  auth: {
-    user: `${process.env.EMAIL_ADDRESS_ZOHO}`,
-    pass: `${process.env.EMAIL_PASS}`,
-  },
-  secureConnection: false,
+    host: "zohomail.com",
+    service: "Zoho",
+    auth: {
+        user: `${process.env.EMAIL_ADDRESS_ZOHO}`,
+        pass: `${process.env.EMAIL_PASS}`,
+    },
+    secureConnection: false,
 });
 
-////****** SENDING EMAIL FUNCTION******
 async function sendMail(mailOptions) {
     Object.assign(mailOptions, {from: process.env.EMAIL_ADDRESS_ZOHO});
     await transporter.sendMail(mailOptions, async (error, info) => {
         if (error) console.log(error);
         else {
             console.log("Email sent: " + info.response);
-            //CALL TO write to sentEmail json file
             await addToSentJason(mailOptions);
         }
     });
@@ -39,7 +37,6 @@ async function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
         dateStr = dateStr.split("-");
         const month = dateStr[1];
         const day = dateStr[2];
-
         const timeStr = dateTimeArr[1];
         const timeArr = timeStr.split(":");
         const hour = timeArr[0];

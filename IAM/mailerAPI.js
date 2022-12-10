@@ -47,6 +47,7 @@ function sendMailAfterTime(emailAddress, emailSubject, emailHtml, isCompleted) {
         sendMail,
         sendMailAfterTime,
     };
+
 //end of file: mailerAPI.js
 
 
@@ -57,15 +58,11 @@ function sendMailAfterTime(emailAddress, emailSubject, emailHtml, isCompleted) {
 ////emailSubject : string
 ////emailHtml : string
 
-//const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
+//     const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
 //     const emailAddress = "sufkarmon2@gmail.com";
 //     const emailSubject = "Welcome!";
-//     const ejs = require('ejs');
-//     const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
-//     console.log(emailHtml);
-
-//const emailHtmlPATH = {path: htmlPATH};
-// const emailHtmlPATH = "this mail is from render using mailer API";
+//     const emailHtml = "this mail is from render using mailer API";
+//     mailer.sendMail(emailAddress, emailSubject, emailHtml);
 // ***************************************************************************
 
 

@@ -3,13 +3,13 @@ const Path = require("path");
 const fs = require("fs");
 
 let logStream = fs.createWriteStream(
-  Path.join(process.cwd(), "mailerLogger.log"),
-  {
-    flags: "a",
-  }
+    Path.join(process.cwd(), "mailerLogger.log"),
+    {
+        flags: "a",
+    }
 );
 (() => {
-  process.stderr.write = logStream.write.bind(logStream);
+    process.stderr.write = logStream.write.bind(logStream);
 })();
 
-module.exports = logger("combined", { stream: logStream });
+module.exports = logger("combined", {stream: logStream});

@@ -1,228 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <title>Templates</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <script type ="module" src="https://mail-service-69zm.onrender.com/Front/js/scripts.js"></script>
-  <script type ="module" src="https://mail-service-69zm.onrender.com/Front/js/templatesScript.js"></script>
-  <script type ="module" src="https://mail-service-69zm.onrender.com/Front/js/templatesForm.js"></script>
-  <script type ="module" src="https://mail-service-69zm.onrender.com/Front/js/APIpaths.js"></script>
-  <link href="https://mail-service-69zm.onrender.com/Front/style.css" rel="stylesheet">
-
+    <meta charset="utf-8">
+    <title>Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/scripts.js"></script>
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/templatesScript.js"></script>
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/templatesForm.js"></script>
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/APIpaths.js"></script>
+    <link href="https://mail-service-69zm.onrender.com/Front/style.css" rel="stylesheet">
 </head>
-
 <body>
 <div class="container">
-  <div class="row">
-    <!-- BEGIN INBOX -->
-    <div class="col-md-12">
-      <div class="grid email">
-        <div class="grid-body">
-          <div class="row">
-            <!-- BEGIN INBOX MENU -->
-            <div class="col-md-3">
-              <h2 class="grid-title"><i class="fa fa-inbox"></i> Growth Mail</h2>
-              <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal"><i
-                      class="fa fa-pencil"></i>&nbsp;&nbsp;NEW MESSAGE</a>
-              <hr>
-              <div>
-                <ul class="nav nav-pills nav-stacked">
-                  <li><a href="homepage.html"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
-                  <li class="active"><a href="Templates.html"><i class="fa fa-star"></i>
-                    Templates</a></li>
-                  <li><a href="schedule.html"><i class="fa fa-bookmark"></i> Schedule</a></li>
-                  <li><a href="sent.html"><i class="fa fa-mail-forward"></i> Sent</a></li>
-                  <li><a href="#"><i class="fa fa-pencil-square-o"></i> Delete</a></li>
-                  <li><a href="#"><i class="fa fa-folder"></i> settings</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- END INBOX MENU -->
-            <!-- BEGIN INBOX CONTENT -->
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-sm-6">
+    <div class="row">
+        <!-- BEGIN INBOX -->
+        <div class="col-md-12">
+            <div class="grid email">
+                <div class="grid-body">
+                    <div class="row">
+                        <!-- BEGIN INBOX MENU -->
+                        <div class="col-md-3">
+                            <h2 class="grid-title"><i class="fa fa-inbox"></i> Growth Mail</h2>
+                            <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#compose-modal"><i
+                                    class="fa fa-pencil"></i>&nbsp;&nbsp;NEW MESSAGE</a>
+                            <hr>
+                            <div>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="homepage.html"><i class="fa fa-inbox"></i> Inbox (14)</a></li>
+                                    <li class="active"><a href="Templates.html"><i class="fa fa-star"></i>
+                                        Templates</a></li>
+                                    <li><a href="schedule.html"><i class="fa fa-bookmark"></i> Schedule</a></li>
+                                    <li><a href="sent.html"><i class="fa fa-mail-forward"></i> Sent</a></li>
+                                    <li><a href="#"><i class="fa fa-pencil-square-o"></i> Delete</a></li>
+                                    <li><a href="#"><i class="fa fa-folder"></i> settings</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END INBOX MENU -->
+                        <!-- BEGIN INBOX CONTENT -->
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-sm-6">
 
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown">
-                      Action <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Mark as read</a></li>
-                      <li><a href="#">Mark as unread</a></li>
-                      <li><a href="#">Mark as important</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Delete</a></li>
-                    </ul>
-                  </div>
-                  <section id="total">
-                    <h5>total:
-                    </h5>
-                  </section>
-
-
-                </div>
-                <div class="col-md-6 search-form">
-                  <form action="#" method="post" class="text-right">
-                    <div class="input-group">
-                      <input type="text" class="form-control input-sm" placeholder="Search">
-                      <span class="input-group-btn">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                                data-toggle="dropdown">
+                                            Action <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Mark as read</a></li>
+                                            <li><a href="#">Mark as unread</a></li>
+                                            <li><a href="#">Mark as important</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                    <section id="total">
+                                        <h5>total:
+                                        </h5>
+                                    </section>
+                                </div>
+                                <div class="col-md-6 search-form">
+                                    <form action="#" method="post" class="text-right">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm" placeholder="Search">
+                                            <span class="input-group-btn">
 													<button type="submit" name="search"
                                                             class="btn_ btn-primary btn-sm search"><i
                                                             class="fa fa-search"></i></button></span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="padding"></div>
-<!--              Template form-->
-
-
-              <div class="" id="tempForm">
-                <form action="https://mail-service-69zm.onrender.com/Templates.html" method="GET">
-                  <div class="form-group">
-                    <label>Template's Name:</label>
-                    <input type="text" class="form-control" name="name" id="tempName">
-                  </div>
-                  <div class="form-group">
-                    <label>Creator's Name:</label>
-                    <input type="text" class="form-control" name="creator" id="tempCreator">
-                  </div>
-                  <div class="form-group">
-                    <label>HTML</label>
-                    <textarea rows="20" cols="50" class="form-control" name="html" id="tempHTML">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="padding"></div>
+                            <div class="" id="tempForm">
+                                <form action="https://mail-service-69zm.onrender.com/Templates.html" method="GET">
+                                    <div class="form-group">
+                                        <label>Template's Name:</label>
+                                        <input type="text" class="form-control" name="name" id="tempName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Creator's Name:</label>
+                                        <input type="text" class="form-control" name="creator" id="tempCreator">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>HTML</label>
+                                        <textarea rows="20" cols="50" class="form-control" name="html" id="tempHTML">
                     </textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
-                </form>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                                </form>
 
-              </div>
-<!--            end of form-->
-
-              <ul class="pagination">
-                <li class="disabled"><a href="#">«</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-wrapper">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header bg-blue">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                      ×
-                    </button>
-                    <h4 class="modal-title"><i class="fa fa-envelope"></i> New Message</h4>
-                  </div>
-                  <form action="#" method="post">
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <input name="to" type="email" class="form-control" placeholder="To">
-                      </div>
-                      <div class="form-group">
-                        <input name="cc" type="email" class="form-control" placeholder="Cc">
-                      </div>
-                      <div class="form-group">
-                        <input name="Bcc" type="email" class="form-control"
-                               placeholder="BCc">
-                      </div>
-                      <div class="form-group">
-                        <input name="subject" type="text" class="form-control"
-                               placeholder="Subject">
-                      </div>
-                      <div class="form-group">
+                            </div>
+                            <ul class="pagination">
+                                <li class="disabled"><a href="#">«</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-wrapper">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-blue">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            ×
+                                        </button>
+                                        <h4 class="modal-title"><i class="fa fa-envelope"></i> New Message</h4>
+                                    </div>
+                                    <form action="#" method="post">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input name="to" type="email" class="form-control" placeholder="To">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="cc" type="email" class="form-control" placeholder="Cc">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="Bcc" type="email" class="form-control"
+                                                       placeholder="BCc">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="subject" type="text" class="form-control"
+                                                       placeholder="Subject">
+                                            </div>
+                                            <div class="form-group">
                                                     <textarea name="message" id="email_message" class="form-control"
                                                               placeholder="Message"></textarea>
-                      </div>
-                      <form>
-                        <div id="billing">
-                          <input type="checkbox" class="form-group" id="myCheck"> schedule<br>
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <input type="date" class="form-group" name="event_date"
-                                     id="date" placeholder="date1" disabled>
-                            </label>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <input type="time" class="form-group" name="event_time"
-                                     placeholder="Time" id="time1" disabled>
-                            </label>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- Button trigger modal -->
-                      <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                           role="dialog" aria-labelledby="exampleModalCenterTitle"
-                           aria-hidden="true">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="chooseTemplateTitle">Choose
-                              Template</h5>
-                            <button type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close"><span
-                                    aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body" id="window">
-                            <div class="table-responsive">
-                              <table class="table">
-                                <section id="templateBox"></section>
-                              </table>
+                                            </div>
+                                            <form>
+                                                <div id="billing">
+                                                    <input type="checkbox" class="form-group" id="myCheck"> schedule<br>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">
+                                                            <input type="date" class="form-group" name="event_date"
+                                                                   id="date" placeholder="date1" disabled>
+                                                        </label>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">
+                                                            <input type="time" class="form-group" name="event_time"
+                                                                   placeholder="Time" id="time1" disabled>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                                 role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                 aria-hidden="true">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="chooseTemplateTitle">Choose
+                                                            Template</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close"><span
+                                                                aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="window">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <section id="templateBox"></section>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"
+                                                                data-dismiss="modal" id="closewindow">Save
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal" id="btn">Close
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModalCenter"> Add Template
+                                                </button>
+                                                <button type="submit" class="btn btn-primary pull-right" id="send">
+                                                    <i class="fa fa-envelope"></i> Send Message
+                                                </button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    <i class="fa fa-times"></i>Discard
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                             </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-primary"
-                                    data-dismiss="modal" id="closewindow">Save
-                            </button>
-                            <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal" id="btn">Close
-                            </button>
-                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModalCenter"> Add Template
-                        </button>
-                        <button type="submit" class="btn btn-primary pull-right" id="send">
-                          <i class="fa fa-envelope"></i> Send Message
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                          <i class="fa fa-times"></i>Discard
-                        </button>
-                      </div>
                     </div>
-                  </form>
+                    <!-- END COMPOSE MESSAGE -->
                 </div>
-
-              </div>
             </div>
-          </div>
-          <!-- END COMPOSE MESSAGE -->
         </div>
-      </div>
     </div>
-  </div>
-  <!-- END INBOX -->
+    <!-- END INBOX -->
 </div>
 </div>
-
 </body>
-
 </html>
