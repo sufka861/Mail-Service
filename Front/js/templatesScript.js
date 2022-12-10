@@ -78,7 +78,7 @@ function addButtons(template) {
 
   const btnsDiv = document.createElement("div");
   btnsDiv.classList.add("flexBox", "flexCol");
-  btnsDiv.appendChild(send);
+  // btnsDiv.appendChild(send);
   btnsDiv.appendChild(edit);
   btnsDiv.appendChild(del);
 

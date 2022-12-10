@@ -43,9 +43,5 @@ function getTotalSentEmail() {
       console.log(totalNum);
       document.getElementById("total").innerHTML = totalNum;
     },
-    error: function () {
-      alert("Error - get - emails");
-      top.location.href = "404.html";
-    },
   });
 }

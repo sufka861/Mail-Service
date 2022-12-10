@@ -24,12 +24,7 @@ function getScheduledEmails() {
         subject.push(emails[i].subject);
         timeToSend.push(emails[i].timeToSend);
       }
-
       createTable(to, subject, timeToSend, bool);
-    },
-    error: function () {
-      alert("Error - get -  scheduled emails");
-      top.location.href = "404.html";
     },
   });
 }
@@ -40,10 +35,6 @@ function getTotaltoSendEmail() {
     type: "GET",
     success: function (totalNum) {
       document.getElementById("total").innerHTML = totalNum;
-    },
-    error: function () {
-      alert("Error - get - emails");
-      top.location.href = "404.html";
     },
   });
 }

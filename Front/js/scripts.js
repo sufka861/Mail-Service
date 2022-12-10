@@ -123,13 +123,6 @@ async function getAllTemplates() {
 
 function getTemplateByID(num) {
   console.log(num);
-  // let id = localStorage.getItem(num);
-  // let id2 = JSON.stringify(id);
-  // let id3 = JSON.parse(id2);
-  // let id4 = id.replace('"', '');
-  // let id5 = id4.replace('"', '');
-
-
   $.ajax({
     url: 'http://localhost:3000/api/templates/' + num,
     // url: 'http://localhost:3000/api/templates/id?id=' + id5,
@@ -140,18 +133,7 @@ function getTemplateByID(num) {
       console.log(template.html);
       let html = template.html;
       document.getElementById("email_message").innerHTML = html;
-
     },
-    error: function () {
-      console.log('Error - get -  TemplatesBYID');
-    }
-  });
-}
-
-export function clickTemplate() {
-  $(document).on('click', '#template', function (e) {
-    e.preventDefault();
-    alert("herrre");
   });
 }
 
