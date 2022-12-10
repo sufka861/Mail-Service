@@ -47,6 +47,7 @@ async function newMail(mailOptions, isScheduled = "off", scheduledTo = "") {
     const timeStr = dateTimeArr[1];
     const timeArr = timeStr.split(":");
     const hour = timeArr[0];
+    const hour = Number(hour) - 2;
     const minute = timeArr[1];
     let wantedTime = `${minute} ${hour} ${day} ${month} *`;
     //write to JSON of scheduled emails that are not yet sent
