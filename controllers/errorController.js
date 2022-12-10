@@ -9,10 +9,10 @@ function pageNotFoundHtml(error) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="http://localhost:3000/Front/404.css" rel="stylesheet">
+    <link href="https://mail-service-69zm.onrender.com/Front/404.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <script type="module" src="http://localhost:3000/Front/js/APIpaths.js"></script>
-    <script type="module" src="http://localhost:3000/Front/js/404Script.js"></script>
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/APIpaths.js"></script>
+    <script type="module" src="https://mail-service-69zm.onrender.com/Front/js/404Script.js"></script>
 
 
     <title>404</title>
