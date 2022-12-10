@@ -3,6 +3,7 @@
 
 const domain = `http://localhost:3000`;       //used for develop/
 
+
 export const APIpaths = {
   emailsSent: domain + "/api/mail/emailsSent",
   scheduledEmails: domain + "/api/mail/scheduledEmails",
@@ -16,5 +17,7 @@ export const APIpaths = {
   deleteTemplate: domain + "/api/templates",
   numTemplates: domain + "/api/templates/num",
   welcomeHTML: domain + "/api/welcomeHTML"
+
+
 
 };

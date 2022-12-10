@@ -16,6 +16,7 @@ window.onload = () => {
       "click",
       // () => (window.location = "https://mail-service-69zm.onrender.com/TemplatesForm.html")
         () => (window.location = " http://localhost:63342/MailService/newMailservice/Mail-Service/Front/TemplatesForm.html")
+
     );
   (async () => {
     document.getElementById("total").innerHTML += await getTotalNumTemplates();
