@@ -27,9 +27,25 @@ function sendMail(emailAddress, emailSubject, emailHtml) {
         });
 }
 
-module.exports = {
-    sendMail,
-};
+////****** SENDING EMAIL FUNCTION  after 10 min if user does not complete registeration prosses ******
+function sendMailAfterTime(emailAddress, emailSubject, emailHtml, isCompleted) {
+    const data = {
+        mail: {
+            to: [
+                emailAddress
+            ],
+            cc: "",
+            bcc: "",
+            subject: emailSubject,
+            html: emailHtml,
+        },
+        isCompleted: isCompleted,
+    }
+
+    module.exports = {
+        sendMail,
+        sendMailAfterTime,
+    };
 //end of file: mailerAPI.js
 
 
@@ -41,11 +57,11 @@ module.exports = {
 ////emailHtml : string
 
 //const mailer = require("./IAM/mailerAPI.js") //or the rellevant path
-const emailAddress = "sufkarmon2@gmail.com";
-const emailSubject = "Welcome!";
-const ejs = require('ejs');
-const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
-console.log(emailHtml);
+    const emailAddress = "sufkarmon2@gmail.com";
+    const emailSubject = "Welcome!";
+    const ejs = require('ejs');
+    const emailHtml = ejs.renderFile(process.cwd() + '/welcome.html');
+    console.log(emailHtml);
 
 //const emailHtmlPATH = {path: htmlPATH};
 // const emailHtmlPATH = "this mail is from render using mailer API";
@@ -54,4 +70,4 @@ console.log(emailHtml);
 //sendMail(emailAddress, emailSubject, emailHtml);
 
 
-console.log(process.enz.TZ);
+

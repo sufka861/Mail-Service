@@ -8,11 +8,10 @@ mailRouter.get('/scheduledEmails', mailController.getScheduledEmails);
 mailRouter.get('/numOfSentEmails', mailController.totalSentEmails);
 mailRouter.get('/numOfEmailsToSend', mailController.totalEmailsToSend);
 
-mailRouter.get('/welcomeHTML', mailController.welcomeHTML);
-
 // ************** POST method routing ********************* //
 
 mailRouter.post('/sendMail', mailController.sendMail);
+mailRouter.post('/sendeEmailAfterTime', mailController.sendEmailAftertime)
 
 module.exports = {
     mailRouter
