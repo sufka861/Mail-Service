@@ -3,7 +3,13 @@ const Path = require("path");
 const errorHandler = require("./errorController");
 
 function loadPage(req, res) {
-  const pathName = new URL(req.url, `http://${req.headers.host}`).pathname;
+  let pathName = new URL(req.url, `http://${req.headers.host}`).pathname;
+
+  pathName =
+    pathName === "/" || pathName === "/index.html"
+      ? "/homepage.html"
+      : pathName;
+
   res.status(200);
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
