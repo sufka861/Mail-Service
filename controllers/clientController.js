@@ -31,7 +31,6 @@ function loadPage(req, res) {
       if (err) errorHandler(req, res, err);
     });
   } catch (err) {
-    console.log("here");
     return errorHandler(req, res, err);
   }
 }
