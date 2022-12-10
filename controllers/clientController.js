@@ -12,8 +12,8 @@ function loadPage(req, res) {
   const pathName = new URL(req.url, `http://${req.headers.host}`).pathname;
   res.status(200);
   try {
-    res.setHeader("Access-Control-Allow-Origin","*");
-    res.setHeader('Content-Type','text/javascript');
+    // res.setHeader("Access-Control-Allow-Origin","*");
+    // res.setHeader('Content-Type','text/javascript');
     res.status(200);
     res.sendFile(Path.join(process.cwd() + "/Front" + pathName));
   } catch (err) {
