@@ -16,7 +16,6 @@ document.addEventListener(
 function clickSend() {
   $(document).on("click", "#send", function (e) {
     e.preventDefault();
-    //alert("herrre");
     postSend();
   });
 }
@@ -85,7 +84,6 @@ async function getAllTemplates() {
   await
   $.ajax({
     url: APIpaths["allTemplates"],
-    // url: 'http://localhost:3000/templates',
     type: "GET",
     success: function (templates){
       console.log(templates);
@@ -96,7 +94,6 @@ async function getAllTemplates() {
       let templateBox = "<li className =`list-group-item list-group-item-primary` ";
       for (let i = 0; i < templates.length; i++) {
         let name = templates[i].name;
-        // templateBox+= '<li className =`list-group-item list-group-item-primary` '+'(<a onclick=getTemplateByID('+`${templates[i].template_id}`+')> '+ `${name}` +' </a></li>';
         console.log(templates[i].template_id);
         let li = document.createElement("li");
         li.classList.add("list-group-item" ,"list-group-item-primary");
@@ -122,10 +119,8 @@ async function getAllTemplates() {
 
 
 function getTemplateByID(num) {
-  console.log(num);
   $.ajax({
-    url: APIpaths["templateById"] + num,
-    // url: 'http://localhost:3000/api/templates/id?id=' + id5,
+    url: APIpaths["templateById"] + '/' + num,
     type: 'GET',
     success: function (template) {
       console.log(template);
