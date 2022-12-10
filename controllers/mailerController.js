@@ -1,6 +1,6 @@
 const { newMail } = require("../services/mailer");
 const mailService = require("../DAL/emailsDAL");
-const { errorHandler } = require("./clientController");
+const errorHandler = require("./errorController");
 
 async function getEmails(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -9,7 +9,7 @@ async function getEmails(req, res) {
   try {
     res.json(await mailService.getAllSentEmails());
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -20,7 +20,7 @@ async function getScheduledEmails(req, res) {
   try {
     res.json(await mailService.getAllFutureEmails());
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -31,7 +31,7 @@ async function totalSentEmails(req, res) {
   try {
     res.send(`${await mailService.getNumOfSentEmails()}`);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -42,7 +42,7 @@ async function totalEmailsToSend(req, res) {
   try {
     res.send(`${await mailService.getNumOfEmailsToSend()}`);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -52,7 +52,7 @@ async function sendMail(req, res) {
     await newMail(mail, isScheduled, timeToSend);
     res.status(200);
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
@@ -63,7 +63,7 @@ async function welcomeHTML(req, res) {
   try {
     res.sendFile(__dirname + "/../IAM/welcome.html");
   } catch (err) {
-    return errorHandler(req, res);
+    return errorHandler(req, res, err);
   }
 }
 
