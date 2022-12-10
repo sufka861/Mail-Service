@@ -1,0 +1,55 @@
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #000000; /* Blue */
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 2s linear infinite;
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+h1 {
+    position: fixed;
+    left: 40%;
+
+}
+
+h2 {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    margin-bottom: 125px;
+}
+
+.loaderPoss {
+    position: absolute;
+    top: 58%;
+    left: 45%;
+    margin-bottom: 125px;
+}
+
+h3 {
+    position: absolute;
+    width: 60%;
+    top: 35%;
+    left: 25%;
+    margin-bottom: 125px;
+
+}
+
+h4 {
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    margin-bottom: 125px;
+}
+
