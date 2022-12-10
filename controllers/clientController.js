@@ -13,7 +13,7 @@ function loadPage(req, res) {
   res.status(200);
   try {
     res.setHeader("Access-Control-Allow-Origin","*");
-    res.setHeader('Content-Type','text/javascript');
+    res.setHeader('Content-Type','text/html');
     res.status(200);
     res.sendFile(Path.join(process.cwd() + "/Front" + pathName));
   } catch (err) {
