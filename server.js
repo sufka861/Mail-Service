@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 const { connect, connection, mongoose } = require("mongoose");
-mongoose.set('strictQuery', true);
+mongoose.set("strictQuery", true);
 
 connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -21,6 +21,7 @@ const { templatesRouter } = require("./Routers/templatesRouter");
 const { clientRouter } = require("./Routers/clientRouter");
 const { mailRouter } = require("./Routers/mailRouter");
 
+app.use("/Front", express.static(process.cwd() + "/Front"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
